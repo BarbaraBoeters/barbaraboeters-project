@@ -16,6 +16,7 @@
 		1AC802121E2669C7002ACAFC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC802111E2669C7002ACAFC /* RegisterViewController.swift */; };
 		1AC8021A1E2790A7002ACAFC /* AddPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */; };
 		1AC8021C1E279111002ACAFC /* MyGardenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8021B1E279111002ACAFC /* MyGardenViewController.swift */; };
+		1AC8021E1E279EDD002ACAFC /* PROCESS.md in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8021D1E279EDD002ACAFC /* PROCESS.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		1AC802111E2669C7002ACAFC /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlantViewController.swift; sourceTree = "<group>"; };
 		1AC8021B1E279111002ACAFC /* MyGardenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGardenViewController.swift; sourceTree = "<group>"; };
+		1AC8021D1E279EDD002ACAFC /* PROCESS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = PROCESS.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 			isa = PBXGroup;
 			children = (
 				1A9EA5C51E2416C7008A8CF9 /* README.md */,
+				1AC8021D1E279EDD002ACAFC /* PROCESS.md */,
 				1AC8020F1E2660C4002ACAFC /* DESIGN.md */,
 				1A9EA5B21E241620008A8CF9 /* barbaraboeters-project */,
 				1A9EA5B11E241620008A8CF9 /* Products */,
@@ -152,6 +155,7 @@
 				1AC8021C1E279111002ACAFC /* MyGardenViewController.swift in Sources */,
 				1A9EA5C61E2416C7008A8CF9 /* README.md in Sources */,
 				1AC8021A1E2790A7002ACAFC /* AddPlantViewController.swift in Sources */,
+				1AC8021E1E279EDD002ACAFC /* PROCESS.md in Sources */,
 				1AC802121E2669C7002ACAFC /* RegisterViewController.swift in Sources */,
 				1AC802101E2660C5002ACAFC /* DESIGN.md in Sources */,
 				1A9EA5B41E241620008A8CF9 /* AppDelegate.swift in Sources */,
