@@ -8,7 +8,7 @@ Programmeerproject
 3. De gebruiker krijgt pas een alert wanneer een plant water nodig heeft en hij/zij op de locatie is van de plant
 4. Countdown bij elke plant
 
-Extra: 
+## Extra 
 1. Delen met huisgenoten en rouleren van taak
 2. Zoekfunctie planten met behulp van een API of webscrape
 3. Homescherm maken met de eerstvolgende plant aan de beurt is
