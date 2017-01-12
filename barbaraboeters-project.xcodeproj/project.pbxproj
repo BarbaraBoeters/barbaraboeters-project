@@ -12,11 +12,14 @@
 		1A9EA5BB1E241620008A8CF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A9EA5BA1E241620008A8CF9 /* Assets.xcassets */; };
 		1A9EA5BE1E241620008A8CF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9EA5BC1E241620008A8CF9 /* LaunchScreen.storyboard */; };
 		1A9EA5C61E2416C7008A8CF9 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EA5C51E2416C7008A8CF9 /* README.md */; };
+		1AAE1C7A1E27C5A3009160AC /* PlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAE1C791E27C5A3009160AC /* PlantCell.swift */; };
 		1AC802101E2660C5002ACAFC /* DESIGN.md in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8020F1E2660C4002ACAFC /* DESIGN.md */; };
 		1AC802121E2669C7002ACAFC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC802111E2669C7002ACAFC /* RegisterViewController.swift */; };
 		1AC8021A1E2790A7002ACAFC /* AddPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */; };
 		1AC8021C1E279111002ACAFC /* MyGardenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8021B1E279111002ACAFC /* MyGardenViewController.swift */; };
 		1AC8021E1E279EDD002ACAFC /* PROCESS.md in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8021D1E279EDD002ACAFC /* PROCESS.md */; };
+		1AC802211E27B766002ACAFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AC802201E27B766002ACAFC /* GoogleService-Info.plist */; };
+		9492E5A62C2468D75906C500 /* Pods_barbaraboeters_project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3008EAC4F7120F32D383B14E /* Pods_barbaraboeters_project.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,11 +30,16 @@
 		1A9EA5BD1E241620008A8CF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A9EA5BF1E241620008A8CF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A9EA5C51E2416C7008A8CF9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1AAE1C791E27C5A3009160AC /* PlantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantCell.swift; sourceTree = "<group>"; };
 		1AC8020F1E2660C4002ACAFC /* DESIGN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DESIGN.md; sourceTree = "<group>"; };
 		1AC802111E2669C7002ACAFC /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlantViewController.swift; sourceTree = "<group>"; };
 		1AC8021B1E279111002ACAFC /* MyGardenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGardenViewController.swift; sourceTree = "<group>"; };
 		1AC8021D1E279EDD002ACAFC /* PROCESS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = PROCESS.md; sourceTree = "<group>"; };
+		1AC802201E27B766002ACAFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		26F39D638DC3EABC1443229E /* Pods-barbaraboeters-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-barbaraboeters-project.release.xcconfig"; path = "Pods/Target Support Files/Pods-barbaraboeters-project/Pods-barbaraboeters-project.release.xcconfig"; sourceTree = "<group>"; };
+		3008EAC4F7120F32D383B14E /* Pods_barbaraboeters_project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_barbaraboeters_project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C30AAF97CDD5277D475B1E7F /* Pods-barbaraboeters-project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-barbaraboeters-project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-barbaraboeters-project/Pods-barbaraboeters-project.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9492E5A62C2468D75906C500 /* Pods_barbaraboeters_project.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +62,8 @@
 				1AC8020F1E2660C4002ACAFC /* DESIGN.md */,
 				1A9EA5B21E241620008A8CF9 /* barbaraboeters-project */,
 				1A9EA5B11E241620008A8CF9 /* Products */,
+				F77BA2099989FEB053EE91AD /* Pods */,
+				9FDA08D45A8F81867CC287F5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,15 +79,42 @@
 			isa = PBXGroup;
 			children = (
 				1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */,
-				1AC8021B1E279111002ACAFC /* MyGardenViewController.swift */,
-				1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */,
-				1AC802111E2669C7002ACAFC /* RegisterViewController.swift */,
+				1AC8021F1E27B4C4002ACAFC /* Controllers */,
 				1A9EA5B71E241620008A8CF9 /* Main.storyboard */,
 				1A9EA5BA1E241620008A8CF9 /* Assets.xcassets */,
 				1A9EA5BC1E241620008A8CF9 /* LaunchScreen.storyboard */,
+				1AC802201E27B766002ACAFC /* GoogleService-Info.plist */,
 				1A9EA5BF1E241620008A8CF9 /* Info.plist */,
 			);
 			path = "barbaraboeters-project";
+			sourceTree = "<group>";
+		};
+		1AC8021F1E27B4C4002ACAFC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1AC8021B1E279111002ACAFC /* MyGardenViewController.swift */,
+				1AAE1C791E27C5A3009160AC /* PlantCell.swift */,
+				1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */,
+				1AC802111E2669C7002ACAFC /* RegisterViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		9FDA08D45A8F81867CC287F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3008EAC4F7120F32D383B14E /* Pods_barbaraboeters_project.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F77BA2099989FEB053EE91AD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C30AAF97CDD5277D475B1E7F /* Pods-barbaraboeters-project.debug.xcconfig */,
+				26F39D638DC3EABC1443229E /* Pods-barbaraboeters-project.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,9 +124,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A9EA5C21E241620008A8CF9 /* Build configuration list for PBXNativeTarget "barbaraboeters-project" */;
 			buildPhases = (
+				A619D42CD7A5D21BD78F85B1 /* [CP] Check Pods Manifest.lock */,
 				1A9EA5AC1E241620008A8CF9 /* Sources */,
 				1A9EA5AD1E241620008A8CF9 /* Frameworks */,
 				1A9EA5AE1E241620008A8CF9 /* Resources */,
+				EA0D1287A0618CA8985337C4 /* [CP] Embed Pods Frameworks */,
+				8C0A7ACAB190C09A882FCDED /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -140,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A9EA5BE1E241620008A8CF9 /* LaunchScreen.storyboard in Resources */,
+				1AC802211E27B766002ACAFC /* GoogleService-Info.plist in Resources */,
 				1A9EA5BB1E241620008A8CF9 /* Assets.xcassets in Resources */,
 				1A9EA5B91E241620008A8CF9 /* Main.storyboard in Resources */,
 			);
@@ -147,12 +189,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8C0A7ACAB190C09A882FCDED /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-barbaraboeters-project/Pods-barbaraboeters-project-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A619D42CD7A5D21BD78F85B1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EA0D1287A0618CA8985337C4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-barbaraboeters-project/Pods-barbaraboeters-project-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1A9EA5AC1E241620008A8CF9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1AC8021C1E279111002ACAFC /* MyGardenViewController.swift in Sources */,
+				1AAE1C7A1E27C5A3009160AC /* PlantCell.swift in Sources */,
 				1A9EA5C61E2416C7008A8CF9 /* README.md in Sources */,
 				1AC8021A1E2790A7002ACAFC /* AddPlantViewController.swift in Sources */,
 				1AC8021E1E279EDD002ACAFC /* PROCESS.md in Sources */,
@@ -279,6 +370,7 @@
 		};
 		1A9EA5C31E241620008A8CF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C30AAF97CDD5277D475B1E7F /* Pods-barbaraboeters-project.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 62W6Z49ZST;
@@ -292,6 +384,7 @@
 		};
 		1A9EA5C41E241620008A8CF9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26F39D638DC3EABC1443229E /* Pods-barbaraboeters-project.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 62W6Z49ZST;

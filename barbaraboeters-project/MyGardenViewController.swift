@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import Firebase
 
 class MyGardenViewController: UIViewController {
 
+    let ref = FIRDatabase.database().reference(withPath: "my-plants")
+    
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let backgroundImage = UIImage(named: "plantj2.png")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
+//        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "plantj2.png")!)
     }
 
     override func didReceiveMemoryWarning() {
