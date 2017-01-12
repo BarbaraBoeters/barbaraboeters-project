@@ -1,11 +1,11 @@
 # Design Document: Plantastic
-## Barbara Boeters - 10774513
-## Programmeerproject 
+### Barbara Boeters - 10774513
+### Programmeerproject 
 
-# Controllers:
-RegisterViewController
-MyGardenViewController
-AddPlantViewController
+### Controllers:
+1. RegisterViewController
+2. MyGardenViewController
+3. AddPlantViewController
 
 ### RegisterViewController
 De RegisterViewController bestaat uit een view met twee text fields waarmee je met behulp van een username en wachtwoord je kan registreren. Er zal enkel een sign up button zijn in plaat van een log in en log out functie. De gebruiker zal de app installeren en in één keer registreren waardoor een log in en log out functie overbodig zouden zijn. Het registeren wordt gedaan met behulp van Firebase. Er zal dus een class aangemaakt moeten worden met de username en uid van de gebruiker. Verder is er een button nodig die pas naar de volgende view gaat wanneer de gebruiker de text fields correct heeft ingevuld. Voor het implementeren van Firebase zal ik de volgende tutorial gebruiken: https://www.raywenderlich.com/139322/firebase-tutorial-getting-started-2. Verder staat er in deze view de titel van de app.
