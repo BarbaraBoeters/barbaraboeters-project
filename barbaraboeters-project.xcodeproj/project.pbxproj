@@ -8,21 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		1A9EA5B41E241620008A8CF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */; };
-		1A9EA5B61E241620008A8CF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EA5B51E241620008A8CF9 /* ViewController.swift */; };
 		1A9EA5B91E241620008A8CF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9EA5B71E241620008A8CF9 /* Main.storyboard */; };
 		1A9EA5BB1E241620008A8CF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A9EA5BA1E241620008A8CF9 /* Assets.xcassets */; };
 		1A9EA5BE1E241620008A8CF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9EA5BC1E241620008A8CF9 /* LaunchScreen.storyboard */; };
 		1A9EA5C61E2416C7008A8CF9 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EA5C51E2416C7008A8CF9 /* README.md */; };
 		1AC802101E2660C5002ACAFC /* DESIGN.md in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8020F1E2660C4002ACAFC /* DESIGN.md */; };
 		1AC802121E2669C7002ACAFC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC802111E2669C7002ACAFC /* RegisterViewController.swift */; };
-		1AC802141E2669EC002ACAFC /* MyGardenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC802131E2669EC002ACAFC /* MyGardenTableViewController.swift */; };
-		1AC802161E266A1A002ACAFC /* AddPlantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC802151E266A1A002ACAFC /* AddPlantTableViewController.swift */; };
+		1AC8021A1E2790A7002ACAFC /* AddPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */; };
+		1AC8021C1E279111002ACAFC /* MyGardenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8021B1E279111002ACAFC /* MyGardenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1A9EA5B01E241620008A8CF9 /* barbaraboeters-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "barbaraboeters-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1A9EA5B51E241620008A8CF9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1A9EA5B81E241620008A8CF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1A9EA5BA1E241620008A8CF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A9EA5BD1E241620008A8CF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -30,8 +28,8 @@
 		1A9EA5C51E2416C7008A8CF9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1AC8020F1E2660C4002ACAFC /* DESIGN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DESIGN.md; sourceTree = "<group>"; };
 		1AC802111E2669C7002ACAFC /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		1AC802131E2669EC002ACAFC /* MyGardenTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGardenTableViewController.swift; sourceTree = "<group>"; };
-		1AC802151E266A1A002ACAFC /* AddPlantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlantTableViewController.swift; sourceTree = "<group>"; };
+		1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlantViewController.swift; sourceTree = "<group>"; };
+		1AC8021B1E279111002ACAFC /* MyGardenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGardenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,10 +65,9 @@
 			isa = PBXGroup;
 			children = (
 				1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */,
+				1AC8021B1E279111002ACAFC /* MyGardenViewController.swift */,
+				1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */,
 				1AC802111E2669C7002ACAFC /* RegisterViewController.swift */,
-				1AC802131E2669EC002ACAFC /* MyGardenTableViewController.swift */,
-				1AC802151E266A1A002ACAFC /* AddPlantTableViewController.swift */,
-				1A9EA5B51E241620008A8CF9 /* ViewController.swift */,
 				1A9EA5B71E241620008A8CF9 /* Main.storyboard */,
 				1A9EA5BA1E241620008A8CF9 /* Assets.xcassets */,
 				1A9EA5BC1E241620008A8CF9 /* LaunchScreen.storyboard */,
@@ -152,11 +149,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AC802141E2669EC002ACAFC /* MyGardenTableViewController.swift in Sources */,
-				1AC802161E266A1A002ACAFC /* AddPlantTableViewController.swift in Sources */,
+				1AC8021C1E279111002ACAFC /* MyGardenViewController.swift in Sources */,
 				1A9EA5C61E2416C7008A8CF9 /* README.md in Sources */,
+				1AC8021A1E2790A7002ACAFC /* AddPlantViewController.swift in Sources */,
 				1AC802121E2669C7002ACAFC /* RegisterViewController.swift in Sources */,
-				1A9EA5B61E241620008A8CF9 /* ViewController.swift in Sources */,
 				1AC802101E2660C5002ACAFC /* DESIGN.md in Sources */,
 				1A9EA5B41E241620008A8CF9 /* AppDelegate.swift in Sources */,
 			);
