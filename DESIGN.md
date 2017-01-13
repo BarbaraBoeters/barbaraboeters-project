@@ -2,6 +2,18 @@
 ### Barbara Boeters - 10774513
 ### Programmeerproject 
 
+## Minimum Viable Product
+1. De gebruiker kan registreren
+2. Er kunnen planten toegevoegd worden met foto, frequentie en een naam
+3. De gebruiker krijgt pas een alert wanneer een plant water nodig heeft en hij/zij op de locatie is van de plant
+4. Countdown bij elke plant
+
+## Extra 
+1. Delen met huisgenoten en rouleren van taak
+2. Zoekfunctie planten met behulp van een API of webscrape
+3. Homescherm maken met de eerstvolgende plant aan de beurt is
+4. Status maken van de plant
+
 ### Controllers:
 1. RegisterViewController
 2. MyGardenViewController
