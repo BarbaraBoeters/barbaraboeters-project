@@ -20,4 +20,4 @@ Programmeerproject
 <p>Mijn doel is om alles overzichtelijk in één view te plaatsen. Mocht dat niet lukken, dan wil ik graag ervoor zorgen dat het een makkelijk en snel begrijpbare app wordt zoals Snapchat. De lijst met planten zou ik graag willen maken zoals de Memories in Snapchat: als een soort swipe-up. Graag zou ik een app willen ontwikkelen die heel goed is in één ding: de gebruiker eraan herinneren wanneer de plantjes dorst hebben.</p>
 
 ## Sketches
-![alt tag](https://github.com/barbaraboeters/barbaraboeters-project/doc/Sketch%20Interface%20Plantastic.png)
+![alt tag](https://github.com/barbaraboeters/barbaraboeters-project/blob/master/doc/Sketch%20Interface%20Plantastic.png)
