@@ -15,3 +15,6 @@ De volgende view (MyGardenViewController) zal bestaan uit de (nu nog lege) lijst
 
 ### AddPlantViewController
 Planten kunnen toegevoegd worden door de + button op MyGardenViewController. Dit staat in een nieuwe view genaamd AddPlantViewController. Hiervoor heb ik een extra class nodig voor Firebase waarin de naam, frequentie en extra info in zal komen te staan. Deze view bestaat uit een paar text fields (name en extra info), een keuze van de frequentie (aantal dagen) en de optie om een foto te maken of toe te voegen. Ik weet nog niet hoe ik binnen een app een foto kan maken en daarvoor moet ik nog een tutorial vinden. 
+
+## Diagram Classes
+![alt tag](https://github.com/barbaraboeters/barbaraboeters-project/blob/master/doc/Diagram.png)
