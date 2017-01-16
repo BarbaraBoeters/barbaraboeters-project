@@ -11,16 +11,26 @@ import Firebase
 
 class MyGardenViewController: UIViewController {
 
-    let ref = FIRDatabase.database().reference(withPath: "my-plants")
+    var user: User!
+    let usersRef = FIRDatabase.database().reference(withPath: "users")
+
     
     @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        FIRAuth.auth()!.addStateDidChangeListener { auth, user in
+            guard let user = user else { return }
+            self.user = User(authData: user)
+            let currentUserRef = self.usersRef.child(self.user.uid)
+            currentUserRef.setValue(self.user.email)
+            currentUserRef.onDisconnectRemoveValue()
+        }
 
         let backgroundImage = UIImage(named: "plantj2.png")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
-//        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "plantj2.png")!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,15 +38,12 @@ class MyGardenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func logOutDidTouch(_ sender: Any) {
+        let firebaseAuth = FIRAuth.auth()
+        do {
+            try firebaseAuth?.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
     }
-    */
-
 }

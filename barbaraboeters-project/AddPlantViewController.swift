@@ -7,10 +7,19 @@
 //
 
 import UIKit
+import Firebase
 
 class AddPlantViewController: UIViewController {
 
+    // let usersRef = FIRDatabase.database().reference(withPath: "users")
+
+    var user: User!
+    var items: [Plant] = []
+
+    
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var textFieldName: UITextField!
+    @IBOutlet weak var textFieldInfo: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,28 +33,33 @@ class AddPlantViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func addPhoto(_ sender: Any) {
-        let alert = UIAlertController(title: "Photo",
-                                      message: "Add a photo",
-                                      preferredStyle: .alert)
-        
-        // TODO
-        let saveAction = UIAlertAction(title: "Save",
-                                       style: .default) { _ in
-                                        guard let textField = alert.textFields?.first,
-                                            let text = textField.text else { return }
-        }
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .default)
-        alert.addTextField()
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true, completion: nil)
+
+
     }
     
+    @IBAction func addPlant(_ sender: Any) {
+        if textFieldName.text != nil {
+            let plant = Plant(name: textFieldName.text!,
+                              addedByUser: self.user.email,
+                              completed: false,
+                              info: textFieldInfo.text!)
+            self.items.append(plant)
+//            let name = textFieldName.text
+//            let info = textFieldInfo.text
+//            let addedByUser = 
+//            
+//            let plant : [String : AnyObject] = ["name" : name as AnyObject,
+//                                                "info" : info as AnyObject]
+//            
+//            let databaseRef = FIRDatabase.database().reference()
+//            databaseRef.child("Plants").childByAutoId().setValue(plant)
+//            
+            
+        }
+    }
     
 
     /*
