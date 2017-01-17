@@ -138,25 +138,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ESg-DF-lVz">
-                                                    <rect key="frame" x="8" y="8" width="91" height="83"/>
+                                                    <rect key="frame" x="8" y="8" width="85" height="85"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.14848759770393372" green="0.7206304669380188" blue="0.078652270138263702" alpha="0.76094285102739723" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQ7-hy-Rcj">
-                                                    <rect key="frame" x="107" y="8" width="42" height="21"/>
+                                                    <rect key="frame" x="107" y="8" width="260" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REl-Sk-1AJ">
-                                                    <rect key="frame" x="107" y="39" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BfO-mH-JLg">
-                                                    <rect key="frame" x="107" y="68" width="42" height="21"/>
+                                                    <rect key="frame" x="107" y="39" width="260" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -171,12 +165,19 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="0.16759417808219179" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="plantDaysLeft" destination="S2E-ur-6d4" id="12v-2Q-QH1"/>
                                             <outlet property="plantImage" destination="ESg-DF-lVz" id="FWB-sd-e4Q"/>
+                                            <outlet property="plantInfo" destination="REl-Sk-1AJ" id="h3k-fD-Kyy"/>
                                             <outlet property="plantName" destination="sQ7-hy-Rcj" id="t7b-rN-Vud"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="6Go-Zd-7ES" id="LLS-bB-tNQ"/>
+                                    <outlet property="delegate" destination="6Go-Zd-7ES" id="LBA-Zd-8IL"/>
+                                </connections>
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Schermafbeelding 2017-01-11 om 14.17.14" translatesAutoresizingMaskIntoConstraints="NO" id="K1S-ce-BJH">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>

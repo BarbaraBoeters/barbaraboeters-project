@@ -10,13 +10,15 @@ import UIKit
 import Firebase
 
 class AddPlantViewController: UIViewController {
-
+    
+    // Mark: Properties
     let ref = FIRDatabase.database().reference(withPath: "plants")
     var user: User!
     var items: [Plant] = []
     var optionalString: String?
     var turnedString: Int?
     
+    // Mark: Outlets
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var textFieldName: UITextField!
     @IBOutlet weak var textFieldInfo: UITextField!
@@ -37,6 +39,7 @@ class AddPlantViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    // MARK: Actions
     @IBAction func addPhoto(_ sender: Any) {
 
 
@@ -71,14 +74,15 @@ class AddPlantViewController: UIViewController {
         // let photoURL = user?.photoURL
         // let value = Int(UIStepper.value(UIStepper)
 
-        //if textFieldName.text != nil {
-        let text = textFieldName.text!
-        let plant = Plant(name: text,
-                          uid: userUid!,
-                          completed: false,
-                          info: textFieldInfo.text!,
-                          value: turnedString!)
-        let plantItemRef = self.ref.child(text.lowercased())
-        plantItemRef.setValue(plant.toAnyObject())
+        if textFieldName.text != nil {
+            let text = textFieldName.text!
+            let plant = Plant(name: text,
+                              uid: userUid!,
+                              completed: false,
+                              info: textFieldInfo.text!,
+                              value: turnedString!)
+            let plantItemRef = self.ref.child(text.lowercased())
+            plantItemRef.setValue(plant.toAnyObject())
+        }
     }
 }

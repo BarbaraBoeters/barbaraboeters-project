@@ -9,16 +9,23 @@
 import UIKit
 import Firebase
 
-class MyGardenViewController: UIViewController {
+class MyGardenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    // MARK: Properties
+    var plants: [Plant] = []
     var user: User!
+    let ref = FIRDatabase.database().reference(withPath: "plants")
     let usersRef = FIRDatabase.database().reference(withPath: "users")
 
-    
+    // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let backgroundImage = UIImage(named: "plantj2.png")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
         
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
             guard let user = user else { return }
@@ -28,11 +35,20 @@ class MyGardenViewController: UIViewController {
             currentUserRef.onDisconnectRemoveValue()
         }
 
-        let backgroundImage = UIImage(named: "plantj2.png")
-        let imageView = UIImageView(image: backgroundImage)
-        self.tableView.backgroundView = imageView
+        ref.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+            var newItems: [Plant] = []
+            for item in snapshot.children {
+                let groceryItem = Plant(snapshot: item as! FIRDataSnapshot)
+                newItems.append(groceryItem)
+            }
+            self.plants = newItems
+            self.tableView.reloadData()
+        })
         
-        // print(user)
+        FIRAuth.auth()!.addStateDidChangeListener { auth, user in
+            guard let user = user else { return }
+            self.user = User(authData: user)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,4 +64,57 @@ class MyGardenViewController: UIViewController {
             print ("Error signing out: %@", signOutError)
         }
     }
+    
+    // MARK: Tableviews
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return plants.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PlantCell
+        let groceryItem = plants[indexPath.row]
+        cell.plantName?.text = groceryItem.name
+        cell.plantInfo?.text = groceryItem.info
+        // cell.plantDaysLeft?.numberOfLines = groceryItem.value
+        cell.plantDaysLeft?.text = Int(groceryItem.value).description
+
+        // cell.plantName.text = groceryItem.addedByUser
+        // cell.detailTextLabel?.text = groceryItem.addedByUser
+        toggleCellCheckbox(cell, isCompleted: groceryItem.completed)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let groceryItem = plants[indexPath.row]
+            groceryItem.ref?.removeValue()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        let groceryItem = plants[indexPath.row]
+        let toggledCompletion = !groceryItem.completed
+        toggleCellCheckbox(cell, isCompleted: toggledCompletion)
+        groceryItem.ref?.updateChildValues([
+            "completed": toggledCompletion
+            ])
+    }
+    
+    /// Checking off items.
+    func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
+        if !isCompleted {
+            cell.accessoryType = .none
+            cell.textLabel?.textColor = UIColor.black
+            cell.detailTextLabel?.textColor = UIColor.black
+        } else {
+            cell.accessoryType = .checkmark
+            cell.textLabel?.textColor = UIColor.gray
+            cell.detailTextLabel?.textColor = UIColor.gray
+        }
+    }    
 }

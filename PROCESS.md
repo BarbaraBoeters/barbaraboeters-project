@@ -35,3 +35,4 @@ Used this tutorial to convert http://stackoverflow.com/questions/31694635/conver
 Was able to add the value of the Stepper in Firebase
 Next step is to get the datestamp and something like a reminder using the value of the Stepper. 
 Found a tutorial about Event Kit which could be usefull: http://www.techotopia.com/index.php/Using_iOS_8_Event_Kit_and_Swift_to_Create_Date_and_Location_Based_Reminders
+Had an error which occured before and was easy to fix: http://www.swifttocodes.com/cannot-assign-value-type-uiimage-type-uiimageview/
