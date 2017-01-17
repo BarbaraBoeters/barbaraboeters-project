@@ -31,6 +31,8 @@ class MyGardenViewController: UIViewController {
         let backgroundImage = UIImage(named: "plantj2.png")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
+        
+        // print(user)
     }
 
     override func didReceiveMemoryWarning() {

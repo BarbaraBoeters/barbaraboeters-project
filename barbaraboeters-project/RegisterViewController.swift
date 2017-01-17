@@ -13,6 +13,7 @@ class RegisterViewController: UIViewController {
     
     let loginToList = "loginToList"
     var ref: FIRDatabaseReference!
+    var user: User!
 
     @IBOutlet weak var textFieldEmail: UITextField!
     @IBOutlet weak var textFieldPassword: UITextField!
@@ -27,11 +28,20 @@ class RegisterViewController: UIViewController {
             }
         }
         ref = FIRDatabase.database().reference()
+        
+        let user = FIRAuth.auth()?.currentUser
+        // The user's ID, unique to the Firebase project.
+        // Do NOT use this value to authenticate with your backend server,
+        // if you have one. Use getTokenWithCompletion:completion: instead.
+        let email = user?.email
+        let uid = user?.uid
+        // let photoURL = user?.photoURL
+        // print(email)
+        // print(uid)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func signUpDidTouch(_ sender: Any) {

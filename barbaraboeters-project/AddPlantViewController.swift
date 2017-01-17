@@ -11,15 +11,17 @@ import Firebase
 
 class AddPlantViewController: UIViewController {
 
-    // let usersRef = FIRDatabase.database().reference(withPath: "users")
-
+    let ref = FIRDatabase.database().reference(withPath: "plants")
     var user: User!
     var items: [Plant] = []
-
+    var optionalString: String?
+    var turnedString: Int?
     
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var textFieldName: UITextField!
     @IBOutlet weak var textFieldInfo: UITextField!
+    @IBOutlet weak var labelStepper: UILabel!
+    @IBOutlet weak var stepper: UIStepper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,36 +42,43 @@ class AddPlantViewController: UIViewController {
 
     }
     
-    @IBAction func addPlant(_ sender: Any) {
-        if textFieldName.text != nil {
-            let plant = Plant(name: textFieldName.text!,
-                              addedByUser: self.user.email,
-                              completed: false,
-                              info: textFieldInfo.text!)
-            self.items.append(plant)
-//            let name = textFieldName.text
-//            let info = textFieldInfo.text
-//            let addedByUser = 
-//            
-//            let plant : [String : AnyObject] = ["name" : name as AnyObject,
-//                                                "info" : info as AnyObject]
-//            
-//            let databaseRef = FIRDatabase.database().reference()
-//            databaseRef.child("Plants").childByAutoId().setValue(plant)
-//            
+    @IBAction func stepperAction(_ sender: UIStepper) {
+        labelStepper.text = Int(sender.value).description
+        // let value = Int(sender.value).description
+        // print(labelStepper.text)
+        optionalString = labelStepper.text
+        
+        // Make sure that the string is not nil
+        if let unwrappedString = optionalString {
             
+            // convert String to Int
+            let optionalInt = Int(unwrappedString)
+            turnedString = optionalInt
+            // Make sure the string was actually an integer
+            if let upwrappedInt = optionalInt {
+                print(upwrappedInt)
+            }
         }
     }
     
+    @IBAction func addPlant(_ sender: Any) {
+        let user = FIRAuth.auth()?.currentUser
+        // The user's ID, unique to the Firebase project.
+        // Do NOT use this value to authenticate with your backend server,
+        // if you have one. Use getTokenWithCompletion:completion: instead.
+        // let email = user?.email
+        let userUid = user?.uid
+        // let photoURL = user?.photoURL
+        // let value = Int(UIStepper.value(UIStepper)
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        //if textFieldName.text != nil {
+        let text = textFieldName.text!
+        let plant = Plant(name: text,
+                          uid: userUid!,
+                          completed: false,
+                          info: textFieldInfo.text!,
+                          value: turnedString!)
+        let plantItemRef = self.ref.child(text.lowercased())
+        plantItemRef.setValue(plant.toAnyObject())
     }
-    */
-
 }
