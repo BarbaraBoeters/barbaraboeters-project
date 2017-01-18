@@ -22,16 +22,13 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Create an authentication observer using addStateDidChangeListener(_:).
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
             if user != nil {
                 self.performSegue(withIdentifier: self.loginToList, sender: nil)
             }
         }
-        
         ref = FIRDatabase.database().reference()
-        
         let user = FIRAuth.auth()?.currentUser
         // The user's ID, unique to the Firebase project.
         // Do NOT use this value to authenticate with your backend server,
@@ -41,10 +38,6 @@ class RegisterViewController: UIViewController {
         // let photoURL = user?.photoURL
         // print(email)
         // print(uid)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     // MARK: Actions

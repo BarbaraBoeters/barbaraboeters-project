@@ -38,8 +38,8 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
         ref.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
             var newItems: [Plant] = []
             for item in snapshot.children {
-                let groceryItem = Plant(snapshot: item as! FIRDataSnapshot)
-                newItems.append(groceryItem)
+                let plantItem = Plant(snapshot: item as! FIRDataSnapshot)
+                newItems.append(plantItem)
             }
             self.plants = newItems
             self.tableView.reloadData()
@@ -49,11 +49,6 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             guard let user = user else { return }
             self.user = User(authData: user)
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func logOutDidTouch(_ sender: Any) {
@@ -72,15 +67,15 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PlantCell
-        let groceryItem = plants[indexPath.row]
-        cell.plantName?.text = groceryItem.name
-        cell.plantInfo?.text = groceryItem.info
+        let plantItem = plants[indexPath.row]
+        cell.plantName?.text = plantItem.name
+        cell.plantInfo?.text = plantItem.info
         // cell.plantDaysLeft?.numberOfLines = groceryItem.value
-        cell.plantDaysLeft?.text = Int(groceryItem.value).description
+        cell.plantDaysLeft?.text = Int(plantItem.value).description
 
         // cell.plantName.text = groceryItem.addedByUser
         // cell.detailTextLabel?.text = groceryItem.addedByUser
-        toggleCellCheckbox(cell, isCompleted: groceryItem.completed)
+        toggleCellCheckbox(cell, isCompleted: plantItem.completed)
         return cell
     }
     
@@ -97,10 +92,10 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        let groceryItem = plants[indexPath.row]
-        let toggledCompletion = !groceryItem.completed
+        let plantItem = plants[indexPath.row]
+        let toggledCompletion = !plantItem.completed
         toggleCellCheckbox(cell, isCompleted: toggledCompletion)
-        groceryItem.ref?.updateChildValues([
+        plantItem.ref?.updateChildValues([
             "completed": toggledCompletion
             ])
     }

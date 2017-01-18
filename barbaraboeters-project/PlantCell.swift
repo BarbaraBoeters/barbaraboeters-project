@@ -13,18 +13,13 @@ import UIKit
 
 class PlantCell: UITableViewCell {
 
-    @IBOutlet weak var plantImage: UIImageView!
+    @IBOutlet weak var plantImage: RoundedImageView!
     @IBOutlet weak var plantName: UILabel!
     @IBOutlet weak var plantInfo: UILabel!
     @IBOutlet weak var plantDaysLeft: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        plantImage.layer.borderWidth = 1
-        plantImage.layer.masksToBounds = false
-        plantImage.layer.borderColor = UIColor.white.cgColor
-        plantImage.layer.cornerRadius = plantImage.frame.height/2
-        plantImage.clipsToBounds = true
         plantImage.image = UIImage(named: "happyyellowflower.png")
     }
 

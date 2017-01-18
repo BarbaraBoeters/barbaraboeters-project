@@ -36,3 +36,9 @@ Was able to add the value of the Stepper in Firebase
 Next step is to get the datestamp and something like a reminder using the value of the Stepper. 
 Found a tutorial about Event Kit which could be usefull: http://www.techotopia.com/index.php/Using_iOS_8_Event_Kit_and_Swift_to_Create_Date_and_Location_Based_Reminders
 Had an error which occured before and was easy to fix: http://www.swifttocodes.com/cannot-assign-value-type-uiimage-type-uiimageview/
+
+# 18 January
+Added a standard photo in the tableview. 
+Made he tableview working, in a simple way. 
+Next step is to only show the items of the currentuser
+Then I need to start with Eventkit: tutorial: https://www.andrewcbancroft.com/2015/05/14/beginners-guide-to-eventkit-in-swift-requesting-permission/

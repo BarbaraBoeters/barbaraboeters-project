@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A2320741E2CDED80025153D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2320731E2CDED80025153D /* User.swift */; };
 		1A2320761E2CFCE50025153D /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2320751E2CFCE50025153D /* Plant.swift */; };
+		1A28B90F1E2F8245007585CA /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A28B90E1E2F8245007585CA /* RoundedImageView.swift */; };
 		1A9EA5B41E241620008A8CF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */; };
 		1A9EA5B91E241620008A8CF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9EA5B71E241620008A8CF9 /* Main.storyboard */; };
 		1A9EA5BB1E241620008A8CF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A9EA5BA1E241620008A8CF9 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		1A2320731E2CDED80025153D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1A2320751E2CFCE50025153D /* Plant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
+		1A28B90E1E2F8245007585CA /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		1A9EA5B01E241620008A8CF9 /* barbaraboeters-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "barbaraboeters-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A9EA5B81E241620008A8CF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -59,6 +61,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A28B90D1E2F8221007585CA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1AAE1C791E27C5A3009160AC /* PlantCell.swift */,
+				1A28B90E1E2F8245007585CA /* RoundedImageView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		1A9EA5A71E241620008A8CF9 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +96,7 @@
 			children = (
 				1AAE1C7B1E2CCCD5009160AC /* barbaraboeters-project.entitlements */,
 				1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */,
+				1A28B90D1E2F8221007585CA /* View */,
 				1AC8021F1E27B4C4002ACAFC /* Controllers */,
 				1A9EA5B71E241620008A8CF9 /* Main.storyboard */,
 				1A9EA5BA1E241620008A8CF9 /* Assets.xcassets */,
@@ -102,7 +114,6 @@
 			children = (
 				1AC802111E2669C7002ACAFC /* RegisterViewController.swift */,
 				1AC8021B1E279111002ACAFC /* MyGardenViewController.swift */,
-				1AAE1C791E27C5A3009160AC /* PlantCell.swift */,
 				1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */,
 			);
 			name = Controllers;
@@ -263,6 +274,7 @@
 				1A2320741E2CDED80025153D /* User.swift in Sources */,
 				1AC802121E2669C7002ACAFC /* RegisterViewController.swift in Sources */,
 				1A2320761E2CFCE50025153D /* Plant.swift in Sources */,
+				1A28B90F1E2F8245007585CA /* RoundedImageView.swift in Sources */,
 				1AC802101E2660C5002ACAFC /* DESIGN.md in Sources */,
 				1A9EA5B41E241620008A8CF9 /* AppDelegate.swift in Sources */,
 			);

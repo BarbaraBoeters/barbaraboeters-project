@@ -19,7 +19,7 @@ class AddPlantViewController: UIViewController {
     var turnedString: Int?
     
     // Mark: Outlets
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var image: RoundedImageView!
     @IBOutlet weak var textFieldName: UITextField!
     @IBOutlet weak var textFieldInfo: UITextField!
     @IBOutlet weak var labelStepper: UILabel!
@@ -27,16 +27,6 @@ class AddPlantViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        image.layer.borderWidth = 1
-        image.layer.masksToBounds = false
-        image.layer.borderColor = UIColor.white.cgColor
-        image.layer.cornerRadius = image.frame.height/2
-        image.clipsToBounds = true
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     // MARK: Actions
@@ -50,10 +40,8 @@ class AddPlantViewController: UIViewController {
         // let value = Int(sender.value).description
         // print(labelStepper.text)
         optionalString = labelStepper.text
-        
         // Make sure that the string is not nil
         if let unwrappedString = optionalString {
-            
             // convert String to Int
             let optionalInt = Int(unwrappedString)
             turnedString = optionalInt
@@ -71,7 +59,7 @@ class AddPlantViewController: UIViewController {
         // if you have one. Use getTokenWithCompletion:completion: instead.
         // let email = user?.email
         let userUid = user?.uid
-        // let photoURL = user?.photoURL
+         // let photoURL = user?.photoURL
         // let value = Int(UIStepper.value(UIStepper)
 
         if textFieldName.text != nil {
