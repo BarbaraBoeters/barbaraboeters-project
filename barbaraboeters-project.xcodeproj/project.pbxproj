@@ -61,13 +61,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1A28B90D1E2F8221007585CA /* View */ = {
+		1A28B90D1E2F8221007585CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				1AAE1C791E27C5A3009160AC /* PlantCell.swift */,
 				1A28B90E1E2F8245007585CA /* RoundedImageView.swift */,
 			);
-			name = View;
+			name = Views;
+			sourceTree = "<group>";
+		};
+		1A74190B1E31496300A89D8F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1A2320751E2CFCE50025153D /* Plant.swift */,
+				1A2320731E2CDED80025153D /* User.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		1A9EA5A71E241620008A8CF9 = {
@@ -96,15 +105,14 @@
 			children = (
 				1AAE1C7B1E2CCCD5009160AC /* barbaraboeters-project.entitlements */,
 				1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */,
-				1A28B90D1E2F8221007585CA /* View */,
+				1A74190B1E31496300A89D8F /* Models */,
+				1A28B90D1E2F8221007585CA /* Views */,
 				1AC8021F1E27B4C4002ACAFC /* Controllers */,
 				1A9EA5B71E241620008A8CF9 /* Main.storyboard */,
 				1A9EA5BA1E241620008A8CF9 /* Assets.xcassets */,
 				1A9EA5BC1E241620008A8CF9 /* LaunchScreen.storyboard */,
 				1AC802201E27B766002ACAFC /* GoogleService-Info.plist */,
 				1A9EA5BF1E241620008A8CF9 /* Info.plist */,
-				1A2320751E2CFCE50025153D /* Plant.swift */,
-				1A2320731E2CDED80025153D /* User.swift */,
 			);
 			path = "barbaraboeters-project";
 			sourceTree = "<group>";

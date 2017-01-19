@@ -42,3 +42,9 @@ Added a standard photo in the tableview.
 Made he tableview working, in a simple way. 
 Next step is to only show the items of the currentuser
 Then I need to start with Eventkit: tutorial: https://www.andrewcbancroft.com/2015/05/14/beginners-guide-to-eventkit-in-swift-requesting-permission/
+
+# 19 January
+Changed Firebase tree structure to childByAutoId() for the plants instead of the name to prevent overwriting. 
+Also added some error handling in the addPlant function
+Enabled Firebase to be able to work offline
+

@@ -11,6 +11,8 @@ import Firebase
 
 class AddPlantViewController: UIViewController {
     
+
+    
     // Mark: Properties
     let ref = FIRDatabase.database().reference(withPath: "plants")
     var user: User!
@@ -37,40 +39,75 @@ class AddPlantViewController: UIViewController {
     
     @IBAction func stepperAction(_ sender: UIStepper) {
         labelStepper.text = Int(sender.value).description
-        // let value = Int(sender.value).description
-        // print(labelStepper.text)
         optionalString = labelStepper.text
-        // Make sure that the string is not nil
         if let unwrappedString = optionalString {
-            // convert String to Int
             let optionalInt = Int(unwrappedString)
             turnedString = optionalInt
-            // Make sure the string was actually an integer
-            if let upwrappedInt = optionalInt {
-                print(upwrappedInt)
-            }
+//            if let upwrappedInt = optionalInt {
+//                print(upwrappedInt)
+//            }
         }
     }
     
     @IBAction func addPlant(_ sender: Any) {
+//        if appDelegate.eventStore == nil {
+//            appDelegate.eventStore = EKEventStore()
+//            
+//            appDelegate.eventStore?.requestAccess(
+//                to: EKEntityType.reminder, completion: {(granted, error) in
+//                    if !granted {
+//                        print("Access to store not granted")
+//                        print(error?.localizedDescription)
+//                    } else {
+//                        print("Access granted")
+//                    }
+//            })
+//        }
+//        
+//        if (appDelegate.eventStore != nil) {
+//            self.createReminder()
+//        }
         let user = FIRAuth.auth()?.currentUser
-        // The user's ID, unique to the Firebase project.
-        // Do NOT use this value to authenticate with your backend server,
-        // if you have one. Use getTokenWithCompletion:completion: instead.
-        // let email = user?.email
         let userUid = user?.uid
-         // let photoURL = user?.photoURL
-        // let value = Int(UIStepper.value(UIStepper)
-
-        if textFieldName.text != nil {
+        if textFieldName.text != "" {
             let text = textFieldName.text!
             let plant = Plant(name: text,
                               uid: userUid!,
                               completed: false,
                               info: textFieldInfo.text!,
                               value: turnedString!)
-            let plantItemRef = self.ref.child(text.lowercased())
-            plantItemRef.setValue(plant.toAnyObject())
+            let plantRef = self.ref.childByAutoId()
+            plantRef.setValue(plant.toAnyObject())
+        } else {
+            let alert = UIAlertController(title: "Oops!",
+                                          message: "You didn't enter the right information ay",
+                                          preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+//    func createReminder() {
+//        
+//        let reminder = EKReminder(eventStore: appDelegate.eventStore!)
+//        
+//        reminder.title = textFieldName.text!
+//        reminder.calendar =
+//            appDelegate.eventStore!.defaultCalendarForNewReminders()
+//        let date = myDatePicker.date
+//        let alarm = EKAlarm(absoluteDate: date)
+//        
+//        reminder.addAlarm(alarm)
+//        
+//        do {
+//            try appDelegate.eventStore?.save(reminder,
+//                                             commit: true)
+//        } catch let error {
+//            print("Reminder failed with error \(error.localizedDescription)")
+//        }
+//    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        textFieldName.endEditing(true)
     }
 }

@@ -29,7 +29,7 @@ class RegisterViewController: UIViewController {
             }
         }
         ref = FIRDatabase.database().reference()
-        let user = FIRAuth.auth()?.currentUser
+        // let user = FIRAuth.auth()?.currentUser
         // The user's ID, unique to the Firebase project.
         // Do NOT use this value to authenticate with your backend server,
         // if you have one. Use getTokenWithCompletion:completion: instead.
@@ -41,7 +41,6 @@ class RegisterViewController: UIViewController {
     }
     
     // MARK: Actions
-    
     @IBAction func signUpDidTouch(_ sender: Any) {
         if textFieldEmail.text != "" && textFieldPassword.text != "" {
             FIRAuth.auth()!.createUser(withEmail: textFieldEmail.text!, password: textFieldPassword.text!) { user, error in

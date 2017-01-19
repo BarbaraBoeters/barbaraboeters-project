@@ -8,9 +8,12 @@
 
 import UIKit
 import Firebase
+import EventKit
 
 class MyGardenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    var eventStore: EKEventStore!
+    var reminders: [EKReminder]!
     // MARK: Properties
     var plants: [Plant] = []
     var user: User!
@@ -19,6 +22,28 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
 
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // 1
+//        self.eventStore = EKEventStore()
+//        self.reminders = [EKReminder]()
+//        self.eventStore.requestAccessToEntityType(EKEntityType.Reminder) { (granted: Bool, error: NSError?) -> Void in
+//            
+//            if granted{
+//                // 2
+//                let predicate = self.eventStore.predicateForRemindersInCalendars(nil)
+//                self.eventStore.fetchRemindersMatchingPredicate(predicate, completion: { (reminders: [EKReminder]?) -> Void in
+//                    
+//                    self.reminders = reminders
+//                    dispatch_async(dispatch_get_main_queue()) {
+//                        self.tableView.reloadData()
+//                    }
+//                })
+//            }else{
+//                print("The app is not permitted to access reminders, make sure to grant permission in the settings and try again")
+//            }
+//        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,5 +136,5 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             cell.textLabel?.textColor = UIColor.gray
             cell.detailTextLabel?.textColor = UIColor.gray
         }
-    }    
+    }
 }
