@@ -52,4 +52,5 @@ Enabled Firebase to be able to work offline
 # 20 January
 Add photo by camera or photolibrary with this tutorial: http://www.codingexplorer.com/choosing-images-with-uiimagepickercontroller-in-swift/
 Added some keyboard actions but failed to install the IQKeyboardManagerSwift framework: https://github.com/hackiftekhar/IQKeyboardManager. Update: it worked
+Getting an error with the loading of the photo 2017-01-21 02:20:09.321013 barbaraboeters-project[398:46782] [Generic] Creating an image format with an unknown type is an error
 

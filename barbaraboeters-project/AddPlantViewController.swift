@@ -29,6 +29,7 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        self.image.reloadInputViews()
     }
     
     // MARK: Actions
@@ -76,7 +77,7 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
                               uid: userUid!,
                               completed: false,
                               info: textFieldInfo.text!,
-                              value: turnedString!)
+                              interval: turnedString!)
             let plantRef = self.ref.childByAutoId()
             plantRef.setValue(plant.toAnyObject())
         } else {
@@ -114,12 +115,13 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
 //    }
 
     // MARK: - UIImagePickerControllerDelegate Methods
-    private func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            image.contentMode = .scaleAspectFit
-            image.image = pickedImage
-        }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    {
+        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
+        image.image = selectedImage
+        
+        // Dismiss the picker.
         dismiss(animated: true, completion: nil)
     }
 

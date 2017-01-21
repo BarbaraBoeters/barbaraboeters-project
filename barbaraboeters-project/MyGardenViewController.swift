@@ -96,7 +96,7 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
         cell.plantName?.text = plantItem.name
         cell.plantInfo?.text = plantItem.info
         // cell.plantDaysLeft?.numberOfLines = groceryItem.value
-        cell.plantDaysLeft?.text = Int(plantItem.value).description
+        cell.plantDaysLeft?.text = Int(plantItem.interval).description
 
         // cell.plantName.text = groceryItem.addedByUser
         // cell.detailTextLabel?.text = groceryItem.addedByUser

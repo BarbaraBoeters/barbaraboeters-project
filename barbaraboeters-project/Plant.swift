@@ -15,16 +15,16 @@ struct Plant {
     let name: String
     let info: String
     let uid: String
-    let value: Int
+    let interval: Int
     let ref: FIRDatabaseReference?
     var completed: Bool
     
-    init(name: String, uid: String, completed: Bool, info: String, value: Int, key: String = "") {
+    init(name: String, uid: String, completed: Bool, info: String, interval: Int, key: String = "") {
         self.key = key
         self.name = name
         self.info = info
         self.uid = uid
-        self.value = value
+        self.interval = interval
         self.completed = completed
         self.ref = nil
     }
@@ -35,7 +35,7 @@ struct Plant {
         name = snapshotValue["name"] as! String
         info = snapshotValue["info"] as! String
         uid = snapshotValue["uid"] as! String
-        value = snapshotValue["value"] as! Int
+        interval = snapshotValue["value"] as! Int
         completed = snapshotValue["completed"] as! Bool
         ref = snapshot.ref
     }
@@ -45,7 +45,7 @@ struct Plant {
             "name": name,
             "info": info,
             "uid": uid,
-            "value": value,
+            "interval": interval,
             "completed": completed
         ]
     }
