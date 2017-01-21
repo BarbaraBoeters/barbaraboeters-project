@@ -9,11 +9,10 @@
 import UIKit
 import Firebase
 
-class AddPlantViewController: UIViewController {
-    
-
+class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // Mark: Properties
+    let imagePicker = UIImagePickerController()
     let ref = FIRDatabase.database().reference(withPath: "plants")
     var user: User!
     var items: [Plant] = []
@@ -29,12 +28,14 @@ class AddPlantViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagePicker.delegate = self
     }
     
     // MARK: Actions
     @IBAction func addPhoto(_ sender: Any) {
-
-
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func stepperAction(_ sender: UIStepper) {
@@ -107,7 +108,22 @@ class AddPlantViewController: UIViewController {
 //        }
 //    }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        textFieldName.endEditing(true)
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        textFieldName.endEditing(true)
+//        textFieldInfo.endEditing(true)
+//    }
+
+    // MARK: - UIImagePickerControllerDelegate Methods
+    private func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            image.contentMode = .scaleAspectFit
+            image.image = pickedImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 }

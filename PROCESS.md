@@ -26,6 +26,7 @@ Found out how to create a circle rounded image view.
 # 16 January
 Started Firebase: sign up, log in and log out. 
 Started saving plants in Firebase but wanted to save them by user. Didn't work yet. Couldnt get the UID from the user to add to the plant'
+Made the table view transparant with this tutorial: https://grokswift.com/transparent-table-view/
 
 # 17 January 
 Checked the Guide on Firebase and figured out how to fix the last problem. 
@@ -47,4 +48,8 @@ Then I need to start with Eventkit: tutorial: https://www.andrewcbancroft.com/20
 Changed Firebase tree structure to childByAutoId() for the plants instead of the name to prevent overwriting. 
 Also added some error handling in the addPlant function
 Enabled Firebase to be able to work offline
+
+# 20 January
+Add photo by camera or photolibrary with this tutorial: http://www.codingexplorer.com/choosing-images-with-uiimagepickercontroller-in-swift/
+Added some keyboard actions but failed to install the IQKeyboardManagerSwift framework: https://github.com/hackiftekhar/IQKeyboardManager. Update: it worked
 
