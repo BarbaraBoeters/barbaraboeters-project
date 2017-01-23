@@ -8,47 +8,33 @@
 
 import UIKit
 import Firebase
-import EventKit
+import MapKit
+import CoreLocation
+
+struct PreferencesKeys {
+    static let savedItems = "savedItems"
+}
 
 class MyGardenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var eventStore: EKEventStore!
-    var reminders: [EKReminder]!
     // MARK: Properties
     var plants: [Plant] = []
     var user: User!
     let ref = FIRDatabase.database().reference(withPath: "plants")
     let usersRef = FIRDatabase.database().reference(withPath: "users")
-    var calendars: [EKCalendar]?
+    var geotifications: [Geotification] = []
+    var locationManager = CLLocationManager()
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
-    
-    override func viewWillAppear(_ animated: Bool) {
-        // checkCalendarAuthorizationStatus()
-        // 1
-//        self.eventStore = EKEventStore()
-//        self.reminders = [EKReminder]()
-//        self.eventStore.requestAccessToEntityType(EKEntityType.Reminder) { (granted: Bool, error: NSError?) -> Void in
-//            
-//            if granted{
-//                // 2
-//                let predicate = self.eventStore.predicateForRemindersInCalendars(nil)
-//                self.eventStore.fetchRemindersMatchingPredicate(predicate, completion: { (reminders: [EKReminder]?) -> Void in
-//                    
-//                    self.reminders = reminders
-//                    dispatch_async(dispatch_get_main_queue()) {
-//                        self.tableView.reloadData()
-//                    }
-//                })
-//            }else{
-//                print("The app is not permitted to access reminders, make sure to grant permission in the settings and try again")
-//            }
-//        }
-    }
+    @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.isHidden = true
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        loadAllGeotifications()
         
         let backgroundImage = UIImage(named: "plantj2.png")
         let imageView = UIImageView(image: backgroundImage)
@@ -87,7 +73,7 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    // MARK: Tableviews
+    // MARK: Tableview functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return plants.count
     }
@@ -99,9 +85,6 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
         cell.plantInfo?.text = plantItem.info
         // cell.plantDaysLeft?.numberOfLines = groceryItem.value
         cell.plantDaysLeft?.text = Int(plantItem.interval).description
-
-        // cell.plantName.text = groceryItem.addedByUser
-        // cell.detailTextLabel?.text = groceryItem.addedByUser
         toggleCellCheckbox(cell, isCompleted: plantItem.completed)
         return cell
     }
@@ -140,64 +123,63 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-//    func checkCalendarAuthorizationStatus() {
-//        let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
-//        
-//        switch (status) {
-//        case EKAuthorizationStatus.notDetermined:
-//            // This happens on first-run
-//            requestAccessToCalendar()
-//        case EKAuthorizationStatus.authorized:
-//            // Things are in line with being able to show the calendars in the table view
-//            loadCalendars()
-//            //refreshTableView()
-//        case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied:
-//            // We need to help them give us permission
-//            needPermissionView()
+    // MARK: Geotification functions
+    func loadAllGeotifications() {
+        geotifications = []
+        guard let savedItems = UserDefaults.standard.array(forKey: PreferencesKeys.savedItems) else { return }
+        for savedItem in savedItems {
+            guard let geotification = NSKeyedUnarchiver.unarchiveObject(with: savedItem as! Data) as? Geotification else { continue }
+            add(geotification: geotification)
+        }
+    }
+    
+    // MARK: Functions that update the model/associated views with geotification changes
+    func add(geotification: Geotification) {
+        geotifications.append(geotification)
+        mapView.addAnnotation(geotification)
+        addRadiusOverlay(forGeotification: geotification)
+//        updateGeotificationsCount()
+    }
+    
+//    func remove(geotification: Geotification) {
+//        if let indexInArray = geotifications.index(of: geotification) {
+//            geotifications.remove(at: indexInArray)
 //        }
+//        mapView.removeAnnotation(geotification)
+//        removeRadiusOverlay(forGeotification: geotification)
+//        updateGeotificationsCount()
 //    }
-//    func requestAccessToCalendar() {
-//        eventStore.requestAccess(to: EKEntityType.event, completion: {
-//            (accessGranted: Bool, error: Error?) in
-//            
-//            if accessGranted == true {
-//                DispatchQueue.main.async(execute: {
-//                    self.loadCalendars()
-//                    //self.refreshTableView()
-//                })
-//            } else {
-//                DispatchQueue.main.async(execute: {
-//                    self.needPermissionView()
-//                })
-//            }
-//        })
-//    }
-//    func loadCalendars() {
-//        self.calendars = eventStore.calendars(for: EKEntityType.event)
-//    }
-//    func needPermissionView() {
-//        let alert = UIAlertController(title: "Access",
-//                                      message: "We need access to your calender",
-//                                      preferredStyle: .alert)
-//        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
-//            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
-//                return
-//            }
-//            
-//            if UIApplication.shared.canOpenURL(settingsUrl) {
-//                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-//                    print("Settings opened: \(success)") // Prints true
-//                })
-//            }
-//        }
-//        alert.addAction(settingsAction)
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-//        alert.addAction(cancelAction)
-//        
-//        present(alert, animated: true, completion: nil)
-//    }
-//    func refreshTableView() {
-//        calendarsTableView.isHidden = false
-//        calendarsTableView.reloadData()
-//    }
+    
+    // MARK: Map overlay functions
+    func addRadiusOverlay(forGeotification geotification: Geotification) {
+        mapView?.add(MKCircle(center: geotification.coordinate, radius: geotification.radius))
+    }
+    
+    func removeRadiusOverlay(forGeotification geotification: Geotification) {
+        // Find exactly one overlay which has the same coordinates & radius to remove
+        guard let overlays = mapView?.overlays else { return }
+        for overlay in overlays {
+            guard let circleOverlay = overlay as? MKCircle else { continue }
+            let coord = circleOverlay.coordinate
+            if coord.latitude == geotification.coordinate.latitude && coord.longitude == geotification.coordinate.longitude && circleOverlay.radius == geotification.radius {
+                mapView?.remove(circleOverlay)
+                break
+            }
+        }
+    }
+}
+// MARK: Helper Extensions
+extension UIViewController {
+    func showAlert(withTitle title: String?, message: String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+}
+
+extension MyGardenViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        mapView.showsUserLocation = (status == .authorizedAlways)
+    }
 }

@@ -16,12 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var eventStore: EKEventStore?
+    var plants: [Plant] = []
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         IQKeyboardManager.sharedManager().enable = true
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
+        updatePlants()
         return true
     }
 
@@ -47,6 +49,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    // func geofencing  triggered
+    
+    
+    func updatePlants() {
+        let ref = FIRDatabase.database().reference(withPath: "plants")
 
+        ref.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+            for item in snapshot.children {
+                let plantItem = Plant(snapshot: item as! FIRDataSnapshot)
+                self.plants.append(plantItem)
+            }
+            print("DEZE \(self.plants)")
+            self.checkIntervalPlants()
+        })
+    }
+    
+    private func checkIntervalPlants() {
+        for plant in plants {
+            print(plant.lastUpdated)
+            let lastUpdated = Date(timeIntervalSince1970: plant.lastUpdated)
+            let timeDifference = Date().timeIntervalSince(lastUpdated)
+            let interval = Double(plant.interval * 24 * 60 * 60)
+            if timeDifference - interval >= 0 {
+                // TODO func notificaties
+            }
+        }
+    }
+    
+    // todo
 }
 

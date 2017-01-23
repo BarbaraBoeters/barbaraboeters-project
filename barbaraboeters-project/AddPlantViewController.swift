@@ -60,7 +60,8 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
                               uid: userUid!,
                               completed: false,
                               info: textFieldInfo.text!,
-                              interval: turnedString!)
+                              interval: turnedString!,
+                              lastUpdated: Date().timeIntervalSince1970)
             let plantRef = self.ref.childByAutoId()
             plantRef.setValue(plant.toAnyObject())
         } else {
