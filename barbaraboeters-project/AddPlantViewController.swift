@@ -44,31 +44,14 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
         optionalString = labelStepper.text
         if let unwrappedString = optionalString {
             let optionalInt = Int(unwrappedString)
-            turnedString = optionalInt
-//            if let upwrappedInt = optionalInt {
-//                print(upwrappedInt)
-//            }
+            turnedString = optionalInt!
+            if let upwrappedInt = optionalInt {
+                print(upwrappedInt)
+            }
         }
     }
     
     @IBAction func addPlant(_ sender: Any) {
-//        if appDelegate.eventStore == nil {
-//            appDelegate.eventStore = EKEventStore()
-//            
-//            appDelegate.eventStore?.requestAccess(
-//                to: EKEntityType.reminder, completion: {(granted, error) in
-//                    if !granted {
-//                        print("Access to store not granted")
-//                        print(error?.localizedDescription)
-//                    } else {
-//                        print("Access granted")
-//                    }
-//            })
-//        }
-//        
-//        if (appDelegate.eventStore != nil) {
-//            self.createReminder()
-//        }
         let user = FIRAuth.auth()?.currentUser
         let userUid = user?.uid
         if textFieldName.text != "" {
@@ -89,31 +72,6 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
         }
     }
     
-//    func createReminder() {
-//        
-//        let reminder = EKReminder(eventStore: appDelegate.eventStore!)
-//        
-//        reminder.title = textFieldName.text!
-//        reminder.calendar =
-//            appDelegate.eventStore!.defaultCalendarForNewReminders()
-//        let date = myDatePicker.date
-//        let alarm = EKAlarm(absoluteDate: date)
-//        
-//        reminder.addAlarm(alarm)
-//        
-//        do {
-//            try appDelegate.eventStore?.save(reminder,
-//                                             commit: true)
-//        } catch let error {
-//            print("Reminder failed with error \(error.localizedDescription)")
-//        }
-//    }
-    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        textFieldName.endEditing(true)
-//        textFieldInfo.endEditing(true)
-//    }
-
     // MARK: - UIImagePickerControllerDelegate Methods
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {

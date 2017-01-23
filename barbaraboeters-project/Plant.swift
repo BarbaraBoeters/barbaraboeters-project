@@ -35,7 +35,7 @@ struct Plant {
         name = snapshotValue["name"] as! String
         info = snapshotValue["info"] as! String
         uid = snapshotValue["uid"] as! String
-        interval = snapshotValue["value"] as! Int
+        interval = snapshotValue["interval"] as! Int
         completed = snapshotValue["completed"] as! Bool
         ref = snapshot.ref
     }

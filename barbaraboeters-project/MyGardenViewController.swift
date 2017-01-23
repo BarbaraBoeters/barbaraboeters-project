@@ -19,11 +19,13 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
     var user: User!
     let ref = FIRDatabase.database().reference(withPath: "plants")
     let usersRef = FIRDatabase.database().reference(withPath: "users")
-
+    var calendars: [EKCalendar]?
+    
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
+        // checkCalendarAuthorizationStatus()
         // 1
 //        self.eventStore = EKEventStore()
 //        self.reminders = [EKReminder]()
@@ -137,4 +139,65 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             cell.detailTextLabel?.textColor = UIColor.gray
         }
     }
+    
+//    func checkCalendarAuthorizationStatus() {
+//        let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
+//        
+//        switch (status) {
+//        case EKAuthorizationStatus.notDetermined:
+//            // This happens on first-run
+//            requestAccessToCalendar()
+//        case EKAuthorizationStatus.authorized:
+//            // Things are in line with being able to show the calendars in the table view
+//            loadCalendars()
+//            //refreshTableView()
+//        case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied:
+//            // We need to help them give us permission
+//            needPermissionView()
+//        }
+//    }
+//    func requestAccessToCalendar() {
+//        eventStore.requestAccess(to: EKEntityType.event, completion: {
+//            (accessGranted: Bool, error: Error?) in
+//            
+//            if accessGranted == true {
+//                DispatchQueue.main.async(execute: {
+//                    self.loadCalendars()
+//                    //self.refreshTableView()
+//                })
+//            } else {
+//                DispatchQueue.main.async(execute: {
+//                    self.needPermissionView()
+//                })
+//            }
+//        })
+//    }
+//    func loadCalendars() {
+//        self.calendars = eventStore.calendars(for: EKEntityType.event)
+//    }
+//    func needPermissionView() {
+//        let alert = UIAlertController(title: "Access",
+//                                      message: "We need access to your calender",
+//                                      preferredStyle: .alert)
+//        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+//            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+//                return
+//            }
+//            
+//            if UIApplication.shared.canOpenURL(settingsUrl) {
+//                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+//                    print("Settings opened: \(success)") // Prints true
+//                })
+//            }
+//        }
+//        alert.addAction(settingsAction)
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+//        alert.addAction(cancelAction)
+//        
+//        present(alert, animated: true, completion: nil)
+//    }
+//    func refreshTableView() {
+//        calendarsTableView.isHidden = false
+//        calendarsTableView.reloadData()
+//    }
 }
