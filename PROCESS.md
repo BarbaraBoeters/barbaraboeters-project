@@ -54,3 +54,11 @@ Add photo by camera or photolibrary with this tutorial: http://www.codingexplore
 Added some keyboard actions but failed to install the IQKeyboardManagerSwift framework: https://github.com/hackiftekhar/IQKeyboardManager. Update: it worked
 Getting an error with the loading of the photo 2017-01-21 02:20:09.321013 barbaraboeters-project[398:46782] [Generic] Creating an image format with an unknown type is an error
 
+# 21 January
+Fixed the IQKeyboardManagerSwift and its working now on all viewcontrollers
+Now there is an error with the interval
+
+# 23 January
+Found solution to error interval -> need to delete app from simulator
+Started writing functions for checking how what difference between interval and time is
+Started Geotifications tutorial 
