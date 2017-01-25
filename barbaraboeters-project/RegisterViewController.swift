@@ -29,15 +29,6 @@ class RegisterViewController: UIViewController {
             }
         }
         ref = FIRDatabase.database().reference()
-        // let user = FIRAuth.auth()?.currentUser
-        // The user's ID, unique to the Firebase project.
-        // Do NOT use this value to authenticate with your backend server,
-        // if you have one. Use getTokenWithCompletion:completion: instead.
-//        let email = user?.email
-//        let uid = user?.uid
-        // let photoURL = user?.photoURL
-        // print(email)
-        // print(uid)
     }
     
     // MARK: Actions
@@ -46,9 +37,6 @@ class RegisterViewController: UIViewController {
             FIRAuth.auth()!.createUser(withEmail: textFieldEmail.text!, password: textFieldPassword.text!) { user, error in
                 if error == nil {
                     FIRAuth.auth()!.signIn(withEmail: self.textFieldEmail.text!, password: self.textFieldPassword.text!)
-//                    let userID: String = user!.uid
-//                    let userEmail: String = self.textFieldEmail.text!
-//                    self.ref.child("Users").child(userID).setValue(["email": userEmail])
                 }
             }
         } else {

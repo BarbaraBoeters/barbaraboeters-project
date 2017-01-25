@@ -8,10 +8,10 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 protocol PlantLocationViewControllerDelegate {
-    func PlantLocationViewController(controller: PlantLocationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D,
-                                        radius: Double, identifier: String, eventType: EventType)
+    func PlantLocationViewController(controller: PlantLocationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, eventType: EventType)
 }
 
 class PlantLocationViewController: UIViewController {
@@ -20,12 +20,17 @@ class PlantLocationViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var radiusTextField: UITextField!
     @IBOutlet weak var eventTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var zoomButton: UIButton!
+    
     var delegate: PlantLocationViewControllerDelegate?
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         addButton.isEnabled = false
+//mapView.delegate = self
+        //mapView.showsUserLocation = true
+        //mapView.userTrackingMode = .follow
+
     }
 
     @IBAction func textFieldEditingChanged(_ sender: Any) {
@@ -46,6 +51,8 @@ class PlantLocationViewController: UIViewController {
     
     @IBAction func toCurrentLocation(_ sender: Any) {
         mapView.zoomToUserLocation()
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .follow
     }
 }
 
@@ -54,5 +61,11 @@ extension MKMapView {
         guard let coordinate = userLocation.location?.coordinate else { return }
         let region = MKCoordinateRegionMakeWithDistance(coordinate, 10000, 10000)
         setRegion(region, animated: true)
+    }
+}
+
+extension PlantLocationViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        mapView.showsUserLocation = (status == .authorizedAlways)
     }
 }

@@ -62,3 +62,6 @@ Now there is an error with the interval
 Found solution to error interval -> need to delete app from simulator
 Started writing functions for checking how what difference between interval and time is
 Started Geotifications tutorial 
+
+# 24 January
+Changed to another tutorial to try out geofencing. https://www.appcoda.com/geo-targeting-ios/

@@ -8,12 +8,6 @@
 
 import UIKit
 import Firebase
-import MapKit
-import CoreLocation
-
-struct PreferencesKeys {
-    static let savedItems = "savedItems"
-}
 
 class MyGardenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -22,19 +16,13 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
     var user: User!
     let ref = FIRDatabase.database().reference(withPath: "plants")
     let usersRef = FIRDatabase.database().reference(withPath: "users")
-    var geotifications: [Geotification] = []
-    var locationManager = CLLocationManager()
+    
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.isHidden = true
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        loadAllGeotifications()
         
         let backgroundImage = UIImage(named: "plantj2.png")
         let imageView = UIImageView(image: backgroundImage)
@@ -121,65 +109,5 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             cell.textLabel?.textColor = UIColor.gray
             cell.detailTextLabel?.textColor = UIColor.gray
         }
-    }
-    
-    // MARK: Geotification functions
-    func loadAllGeotifications() {
-        geotifications = []
-        guard let savedItems = UserDefaults.standard.array(forKey: PreferencesKeys.savedItems) else { return }
-        for savedItem in savedItems {
-            guard let geotification = NSKeyedUnarchiver.unarchiveObject(with: savedItem as! Data) as? Geotification else { continue }
-            add(geotification: geotification)
-        }
-    }
-    
-    // MARK: Functions that update the model/associated views with geotification changes
-    func add(geotification: Geotification) {
-        geotifications.append(geotification)
-        mapView.addAnnotation(geotification)
-        addRadiusOverlay(forGeotification: geotification)
-//        updateGeotificationsCount()
-    }
-    
-//    func remove(geotification: Geotification) {
-//        if let indexInArray = geotifications.index(of: geotification) {
-//            geotifications.remove(at: indexInArray)
-//        }
-//        mapView.removeAnnotation(geotification)
-//        removeRadiusOverlay(forGeotification: geotification)
-//        updateGeotificationsCount()
-//    }
-    
-    // MARK: Map overlay functions
-    func addRadiusOverlay(forGeotification geotification: Geotification) {
-        mapView?.add(MKCircle(center: geotification.coordinate, radius: geotification.radius))
-    }
-    
-    func removeRadiusOverlay(forGeotification geotification: Geotification) {
-        // Find exactly one overlay which has the same coordinates & radius to remove
-        guard let overlays = mapView?.overlays else { return }
-        for overlay in overlays {
-            guard let circleOverlay = overlay as? MKCircle else { continue }
-            let coord = circleOverlay.coordinate
-            if coord.latitude == geotification.coordinate.latitude && coord.longitude == geotification.coordinate.longitude && circleOverlay.radius == geotification.radius {
-                mapView?.remove(circleOverlay)
-                break
-            }
-        }
-    }
-}
-// MARK: Helper Extensions
-extension UIViewController {
-    func showAlert(withTitle title: String?, message: String?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-    }
-}
-
-extension MyGardenViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        mapView.showsUserLocation = (status == .authorizedAlways)
     }
 }

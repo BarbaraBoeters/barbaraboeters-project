@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
-class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     
     // Mark: Properties
     let imagePicker = UIImagePickerController()
@@ -18,6 +19,8 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
     var items: [Plant] = []
     var optionalString: String?
     var turnedString: Int?
+    
+    let locationManager = CLLocationManager()
     
     // Mark: Outlets
     @IBOutlet weak var image: RoundedImageView!
@@ -30,6 +33,18 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewDidLoad()
         imagePicker.delegate = self
         self.image.reloadInputViews()
+        
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
     // MARK: Actions
@@ -60,6 +75,7 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
                               uid: userUid!,
                               completed: false,
                               info: textFieldInfo.text!,
+                              
                               interval: turnedString!,
                               lastUpdated: Date().timeIntervalSince1970)
             let plantRef = self.ref.childByAutoId()
