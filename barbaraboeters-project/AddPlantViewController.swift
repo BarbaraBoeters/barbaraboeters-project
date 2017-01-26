@@ -34,7 +34,6 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewDidLoad()
         imagePicker.delegate = self
         self.image.reloadInputViews()
-        
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {

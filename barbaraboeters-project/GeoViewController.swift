@@ -15,65 +15,51 @@ typealias getLocationsComplete = (Bool, [Plant]?) -> Void
 
 class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
+    // MARK: Outlets
     @IBOutlet weak var mapView: MKMapView!
 
+    // MARK: Properties
     let ref = FIRDatabase.database().reference(withPath: "plants")
     var plants: [Plant] = []
-    
-    // 1. setup LocationManager
     let locationManager = CLLocationManager()
     var monitoredRegions: Dictionary<String, Date> = [:]
     var latitude: Double?
     var longitude: Double?
     
+    // MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 2. setup locationManager
         locationManager.delegate = self;
         locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;
         locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         
-        // 3. setup mapView
         mapView.delegate = self
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
         
         getLocations { (succeed, plants) in
-            
             if succeed {
-                
-                if let plant = plants?.first {
+                for plant in plants! {
                     self.setupData(lat: plant.latitude, long: plant.longitude)
                 }
-                
             } else {
                 print("No plants found!")
             }
         }
-        
     }
     
     private func getLocations(completion: @escaping getLocationsComplete) {
-        
         var plants = [Plant]()
-        
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            
             if snapshot.hasChildren() {
-                
                 let enumerator = snapshot.children
-                
                 while let rest = enumerator.nextObject() as? FIRDataSnapshot {
-                    
                     if let dict = rest.value as? [String: Any] {
-                        
                         let plant = Plant(name: dict["name"] as! String, uid: dict["uid"] as! String, completed: dict["completed"] as! Bool, info: dict["info"] as! String, interval: dict["interval"] as! Int, key: rest.key, lastUpdated: dict["lastUpdated"] as! Double, latitude: dict["latitude"] as! Double, longitude: dict["longitude"] as! Double)
                         plants.append(plant)
-                        
-                        print("\(plant.latitude) & \(plant.longitude)")
+                        print("PLANTJES = \(plant.latitude) & \(plant.longitude)")
                     }
                 }
-                
                 DispatchQueue.main.async {
                     completion(true, plants)
                 }
@@ -87,7 +73,6 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         // 1. status is not determined
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.requestAlwaysAuthorization()
@@ -109,23 +94,18 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func setupData(lat: Double, long: Double) {
         // 1. check if system can monitor regions
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-            
-            
             // 2. region data
             let title = "SAVED LOCATION"
             let coordinate = CLLocationCoordinate2DMake(lat, long)
             let regionRadius = 100.0
-            
             // 3. setup region
             let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude), radius: regionRadius, identifier: title)
             locationManager.startMonitoring(for: region)
-            
             // 4. setup annotation
             let plantAnnotation = MKPointAnnotation()
             plantAnnotation.coordinate = coordinate;
             plantAnnotation.title = "\(title)";
             mapView.addAnnotation(plantAnnotation)
-            
             // 5. setup circle
             let circle = MKCircle(center: coordinate, radius: regionRadius)
             mapView.add(circle)
@@ -167,7 +147,6 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         updateRegionsWithLocation(locations[0])
     }
     
-    // MARK: - Comples business logic
     func updateRegionsWithLocation(_ location: CLLocation) {
         let regionMaxVisiting = 100.0
         var regionsToDelete: [String] = []

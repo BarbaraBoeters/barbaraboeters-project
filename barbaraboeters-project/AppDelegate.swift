@@ -19,11 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var plants: [Plant] = []
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         IQKeyboardManager.sharedManager().enable = true
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
-        //updatePlants()
         geoCheck()
         return true
     }
@@ -43,25 +41,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let plantItem = Plant(snapshot: item as! FIRDataSnapshot)
                 self.plants.append(plantItem)
             }
-            print("DEZE \(self.plants)")
+            // print("DEZE \(self.plants)")
             self.checkIntervalPlants()
         })
     }
     
     private func checkIntervalPlants() {
         for plant in plants {
-            print(plant.lastUpdated)
+            // print(plant.lastUpdated)
             let lastUpdated = Date(timeIntervalSince1970: plant.lastUpdated)
             let timeDifference = Date().timeIntervalSince(lastUpdated)
             let interval = Double(plant.interval * 24 * 60 * 60)
             if timeDifference - interval >= 0 {
-                // TODO func notificaties
+                notifications()
             }
         }
     }
     
-    // todo func notificaties
-    
+    // TODO
+    func notifications() {
+        
+    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -22,7 +22,6 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let backgroundImage = UIImage(named: "plantj2.png")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView

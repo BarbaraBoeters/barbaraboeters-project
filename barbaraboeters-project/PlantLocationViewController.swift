@@ -12,20 +12,20 @@ import CoreLocation
 
 class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
 
+    // MARK: Outlets
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var zoomButton: UIButton!
     
-    var annotation:MKAnnotation!
-    var localSearchRequest:MKLocalSearchRequest!
-    var localSearch:MKLocalSearch!
-    var localSearchResponse:MKLocalSearchResponse!
-    var error:NSError!
-    var pointAnnotation:MKPointAnnotation!
-    var pinAnnotationView:MKPinAnnotationView!
-    
-//    var delegate: PlantLocationViewControllerDelegate?
+    // MARK: Properties
+    var annotation: MKAnnotation!
+    var localSearchRequest: MKLocalSearchRequest!
+    var localSearch: MKLocalSearch!
+    var localSearchResponse: MKLocalSearchResponse!
+    var error: NSError!
+    var pointAnnotation: MKPointAnnotation!
+    var pinAnnotationView: MKPinAnnotationView!
     let locationManager = CLLocationManager()
     var latitude: Double?
     var longitude: Double?
@@ -35,7 +35,6 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
     var segueIdentifier2 = "chosenlocation"
 
     override func viewDidLoad() {
-
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
         self.locationManager.requestAlwaysAuthorization()
@@ -46,23 +45,18 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
             self.locationManager.startUpdatingLocation()
         }
     }
-
-    //@IBAction func textFieldEditingChanged(_ sender: Any) {
-        //addButton.isEnabled = !radiusTextField.text!.isEmpty
-    //}
     
+    // MARK: Actions
     @IBAction func onCancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func searchButton(_ sender: Any) {
         searchBar.resignFirstResponder()
-        //        dismiss(animated: true, completion: nil)
         if self.mapView.annotations.count != 0{
             annotation = self.mapView.annotations[0]
             self.mapView.removeAnnotation(annotation)
         }
-        //2
         localSearchRequest = MKLocalSearchRequest()
         localSearchRequest.naturalLanguageQuery = searchBar.text
         localSearch = MKLocalSearch(request: localSearchRequest)
@@ -74,33 +68,16 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
                 self.present(alertController, animated: true, completion: nil)
                 return
             }
-            //3
             self.pointAnnotation = MKPointAnnotation()
             self.pointAnnotation.title = self.searchBar.text
             self.pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: localSearchResponse!.boundingRegion.center.latitude, longitude:     localSearchResponse!.boundingRegion.center.longitude)
-            let locationthing = CLLocationCoordinate2D(latitude: localSearchResponse!.boundingRegion.center.latitude, longitude:     localSearchResponse!.boundingRegion.center.longitude)
-            print("hereeee it is \(locationthing)")
-            //let latitudething = localSearchResponse!.boundingRegion.center.latitude
-            //let longitudething = localSearchResponse!.boundingRegion.center.longitude
-            //print("lalala \(latitudething), \(longitudething)")
-            //self.chosenLatitude = localSearchResponse!.boundingRegion.center.latitude
-            //self.chosenLongitude = localSearchResponse!.boundingRegion.center.longitude
+            self.chosenLatitude = localSearchResponse!.boundingRegion.center.latitude
+            self.chosenLongitude = localSearchResponse!.boundingRegion.center.longitude
             self.pinAnnotationView = MKPinAnnotationView(annotation: self.pointAnnotation, reuseIdentifier: nil)
             self.mapView.centerCoordinate = self.pointAnnotation.coordinate
             self.mapView.addAnnotation(self.pinAnnotationView.annotation!)
             self.searchBar.text = ""
         }
-    }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    }
-    
-    
-    @IBAction func onAdd(_ sender: Any) {
-//        let coordinate = mapView.centerCoordinate
-//        let radius = Double(radiusTextField.text!) ?? 0
-//        let identifier = NSUUID().uuidString
-//        let eventType: EventType = (segmentedControl.selectedSegmentIndex == 0) ? .onEntry : .onExit
-//        delegate?.PlantLocationViewController(controller: self, didAddCoordinate: coordinate, radius: radius, identifier: identifier, eventType: eventType)
     }
     
     @IBAction func toCurrentLocation(_ sender: Any) {
@@ -118,12 +95,11 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        //print("locations2 = \(locValue.latitude) \(locValue.longitude)")
         latitude = locValue.latitude
         longitude = locValue.longitude
-        //print("locations3 = \(latitude) \(longitude)")
     }
     
+    // MARK: Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueIdentifier {
             let destination = segue.destination as? AddPlantViewController
