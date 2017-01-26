@@ -19,7 +19,8 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
     var items: [Plant] = []
     var optionalString: String?
     var turnedString: Int?
-    
+    var latitude: Double?
+    var longitude: Double?
     let locationManager = CLLocationManager()
     
     // Mark: Outlets
@@ -41,10 +42,7 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-    }
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        print("SAVED LOCATION = \(latitude),\(longitude)")
     }
     
     // MARK: Actions
@@ -75,9 +73,10 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
                               uid: userUid!,
                               completed: false,
                               info: textFieldInfo.text!,
-                              
                               interval: turnedString!,
-                              lastUpdated: Date().timeIntervalSince1970)
+                              lastUpdated: Date().timeIntervalSince1970,
+                              latitude: latitude!,
+                              longitude: longitude!)
             let plantRef = self.ref.childByAutoId()
             plantRef.setValue(plant.toAnyObject())
         } else {
@@ -90,13 +89,10 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     // MARK: - UIImagePickerControllerDelegate Methods
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
         image.image = selectedImage
-        
-        // Dismiss the picker.
         dismiss(animated: true, completion: nil)
     }
 

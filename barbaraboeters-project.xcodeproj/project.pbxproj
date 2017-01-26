@@ -11,14 +11,12 @@
 		1A2320761E2CFCE50025153D /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2320751E2CFCE50025153D /* Plant.swift */; };
 		1A28B90F1E2F8245007585CA /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A28B90E1E2F8245007585CA /* RoundedImageView.swift */; };
 		1A7F1ACC1E3641A600561ED5 /* PlantLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1ACB1E3641A600561ED5 /* PlantLocationViewController.swift */; };
-		1A7F1ACE1E364B0500561ED5 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1ACD1E364B0500561ED5 /* Geotification.swift */; };
 		1A9EA5B41E241620008A8CF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */; };
 		1A9EA5B91E241620008A8CF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9EA5B71E241620008A8CF9 /* Main.storyboard */; };
 		1A9EA5BB1E241620008A8CF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A9EA5BA1E241620008A8CF9 /* Assets.xcassets */; };
 		1A9EA5BE1E241620008A8CF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9EA5BC1E241620008A8CF9 /* LaunchScreen.storyboard */; };
 		1A9EA5C61E2416C7008A8CF9 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EA5C51E2416C7008A8CF9 /* README.md */; };
 		1AABE1B31E3766B4000D8995 /* GeoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AABE1B21E3766B4000D8995 /* GeoViewController.swift */; };
-		1AABE1B91E379D9B000D8995 /* MyLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AABE1B81E379D9B000D8995 /* MyLocationViewController.swift */; };
 		1AAE1C7A1E27C5A3009160AC /* PlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAE1C791E27C5A3009160AC /* PlantCell.swift */; };
 		1AC802101E2660C5002ACAFC /* DESIGN.md in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8020F1E2660C4002ACAFC /* DESIGN.md */; };
 		1AC802121E2669C7002ACAFC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC802111E2669C7002ACAFC /* RegisterViewController.swift */; };
@@ -34,7 +32,6 @@
 		1A2320751E2CFCE50025153D /* Plant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
 		1A28B90E1E2F8245007585CA /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		1A7F1ACB1E3641A600561ED5 /* PlantLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantLocationViewController.swift; sourceTree = "<group>"; };
-		1A7F1ACD1E364B0500561ED5 /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		1A9EA5B01E241620008A8CF9 /* barbaraboeters-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "barbaraboeters-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A9EA5B81E241620008A8CF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -44,7 +41,6 @@
 		1A9EA5C51E2416C7008A8CF9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1AABE1B01E375FF2000D8995 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1AABE1B21E3766B4000D8995 /* GeoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoViewController.swift; sourceTree = "<group>"; };
-		1AABE1B81E379D9B000D8995 /* MyLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLocationViewController.swift; sourceTree = "<group>"; };
 		1AAE1C791E27C5A3009160AC /* PlantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantCell.swift; sourceTree = "<group>"; };
 		1AAE1C7B1E2CCCD5009160AC /* barbaraboeters-project.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "barbaraboeters-project.entitlements"; sourceTree = "<group>"; };
 		1AC8020F1E2660C4002ACAFC /* DESIGN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DESIGN.md; sourceTree = "<group>"; };
@@ -83,7 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				1A2320751E2CFCE50025153D /* Plant.swift */,
-				1A7F1ACD1E364B0500561ED5 /* Geotification.swift */,
 				1A2320731E2CDED80025153D /* User.swift */,
 			);
 			name = Models;
@@ -135,7 +130,6 @@
 				1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */,
 				1AABE1B21E3766B4000D8995 /* GeoViewController.swift */,
 				1A7F1ACB1E3641A600561ED5 /* PlantLocationViewController.swift */,
-				1AABE1B81E379D9B000D8995 /* MyLocationViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -299,12 +293,10 @@
 				1AC8021E1E279EDD002ACAFC /* PROCESS.md in Sources */,
 				1A7F1ACC1E3641A600561ED5 /* PlantLocationViewController.swift in Sources */,
 				1A2320741E2CDED80025153D /* User.swift in Sources */,
-				1AABE1B91E379D9B000D8995 /* MyLocationViewController.swift in Sources */,
 				1AC802121E2669C7002ACAFC /* RegisterViewController.swift in Sources */,
 				1A2320761E2CFCE50025153D /* Plant.swift in Sources */,
 				1A28B90F1E2F8245007585CA /* RoundedImageView.swift in Sources */,
 				1AC802101E2660C5002ACAFC /* DESIGN.md in Sources */,
-				1A7F1ACE1E364B0500561ED5 /* Geotification.swift in Sources */,
 				1A9EA5B41E241620008A8CF9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,14 +9,22 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Firebase
+
+typealias getLocationsComplete = (Bool, [Plant]?) -> Void
 
 class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+
+    let ref = FIRDatabase.database().reference(withPath: "plants")
+    var plants: [Plant] = []
     
     // 1. setup LocationManager
     let locationManager = CLLocationManager()
     var monitoredRegions: Dictionary<String, Date> = [:]
+    var latitude: Double?
+    var longitude: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +38,51 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
         
-        // 4. setup test data
-        setupData()
-
+        getLocations { (succeed, plants) in
+            
+            if succeed {
+                
+                if let plant = plants?.first {
+                    self.setupData(lat: plant.latitude, long: plant.longitude)
+                }
+                
+            } else {
+                print("No plants found!")
+            }
+        }
+        
+    }
+    
+    private func getLocations(completion: @escaping getLocationsComplete) {
+        
+        var plants = [Plant]()
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if snapshot.hasChildren() {
+                
+                let enumerator = snapshot.children
+                
+                while let rest = enumerator.nextObject() as? FIRDataSnapshot {
+                    
+                    if let dict = rest.value as? [String: Any] {
+                        
+                        let plant = Plant(name: dict["name"] as! String, uid: dict["uid"] as! String, completed: dict["completed"] as! Bool, info: dict["info"] as! String, interval: dict["interval"] as! Int, key: rest.key, lastUpdated: dict["lastUpdated"] as! Double, latitude: dict["latitude"] as! Double, longitude: dict["longitude"] as! Double)
+                        plants.append(plant)
+                        
+                        print("\(plant.latitude) & \(plant.longitude)")
+                    }
+                }
+                
+                DispatchQueue.main.async {
+                    completion(true, plants)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(false, nil)
+                }
+            }
+        })
     }
     
     func viewDidAppear(animated: Bool) {
@@ -56,25 +106,25 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    func setupData() {
+    func setupData(lat: Double, long: Double) {
         // 1. check if system can monitor regions
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             
+            
             // 2. region data
             let title = "SAVED LOCATION"
-            let coordinate = CLLocationCoordinate2DMake(52.354699, 4.955915)
-            let regionRadius = 10.0
+            let coordinate = CLLocationCoordinate2DMake(lat, long)
+            let regionRadius = 100.0
             
             // 3. setup region
-            let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: coordinate.latitude,
-                                                                         longitude: coordinate.longitude), radius: regionRadius, identifier: title)
+            let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude), radius: regionRadius, identifier: title)
             locationManager.startMonitoring(for: region)
             
             // 4. setup annotation
-            let restaurantAnnotation = MKPointAnnotation()
-            restaurantAnnotation.coordinate = coordinate;
-            restaurantAnnotation.title = "\(title)";
-            mapView.addAnnotation(restaurantAnnotation)
+            let plantAnnotation = MKPointAnnotation()
+            plantAnnotation.coordinate = coordinate;
+            plantAnnotation.title = "\(title)";
+            mapView.addAnnotation(plantAnnotation)
             
             // 5. setup circle
             let circle = MKCircle(center: coordinate, radius: regionRadius)
@@ -118,28 +168,22 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     // MARK: - Comples business logic
-    
     func updateRegionsWithLocation(_ location: CLLocation) {
-        
         let regionMaxVisiting = 100.0
         var regionsToDelete: [String] = []
         
         for regionIdentifier in monitoredRegions.keys {
             if Date().timeIntervalSince(monitoredRegions[regionIdentifier]!) > regionMaxVisiting {
-                //showAlert("Thanks for visiting our restaurant")
                 let alert = UIAlertController(title: "Yay!",
-                                              message: "Thanks for visiting our restaurant",
+                                              message: "Thanks for visiting",
                     preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 regionsToDelete.append(regionIdentifier)
             }
         }
-        
         for regionIdentifier in regionsToDelete {
             monitoredRegions.removeValue(forKey: regionIdentifier)
         }
     }
-    
-
 }

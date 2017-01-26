@@ -65,3 +65,11 @@ Started Geotifications tutorial
 
 # 24 January
 Changed to another tutorial to try out geofencing. https://www.appcoda.com/geo-targeting-ios/
+Hardcoded the current location to test out the notifications: it works but only within the app. 
+http://stackoverflow.com/questions/25296691/get-users-current-location-coordinates
+
+# 25 January 
+Started working on the code to get the current location and put it in variables. 
+Searchbar http://sweettutos.com/2015/04/24/swift-mapkit-tutorial-series-how-to-search-a-place-address-or-poi-in-the-map/
+
+

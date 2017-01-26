@@ -17,7 +17,6 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
     let ref = FIRDatabase.database().reference(withPath: "plants")
     let usersRef = FIRDatabase.database().reference(withPath: "users")
     
-    
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
     
@@ -45,13 +44,13 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             self.plants = newItems
             self.tableView.reloadData()
         })
-        
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
             guard let user = user else { return }
             self.user = User(authData: user)
         }
     }
     
+    // MARK: Actions
     @IBAction func logOutDidTouch(_ sender: Any) {
         let firebaseAuth = FIRAuth.auth()
         do {

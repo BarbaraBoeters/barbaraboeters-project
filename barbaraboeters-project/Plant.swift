@@ -19,8 +19,10 @@ struct Plant {
     let ref: FIRDatabaseReference?
     var completed: Bool
     let lastUpdated: Double
+    var latitude: Double
+    var longitude: Double
     
-    init(name: String, uid: String, completed: Bool, info: String, interval: Int, key: String = "", lastUpdated: Double) {
+    init(name: String, uid: String, completed: Bool, info: String, interval: Int, key: String = "", lastUpdated: Double, latitude: Double, longitude: Double) {
         self.key = key
         self.name = name
         self.info = info
@@ -29,6 +31,8 @@ struct Plant {
         self.completed = completed
         self.ref = nil
         self.lastUpdated = lastUpdated
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
     init(snapshot: FIRDataSnapshot) {
@@ -41,6 +45,8 @@ struct Plant {
         completed = snapshotValue["completed"] as! Bool
         ref = snapshot.ref
         lastUpdated = snapshotValue["lastUpdated"] as! Double
+        latitude = snapshotValue["latitude"] as! Double
+        longitude = snapshotValue["longitude"] as! Double
     }
     
     func toAnyObject() -> Any {
@@ -50,7 +56,9 @@ struct Plant {
             "uid": uid,
             "interval": interval,
             "completed": completed,
-            "lastUpdated": lastUpdated
+            "lastUpdated": lastUpdated,
+            "latitude": latitude,
+            "longitude": longitude
         ]
     }
 }
