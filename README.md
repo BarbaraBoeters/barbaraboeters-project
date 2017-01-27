@@ -21,3 +21,5 @@ Programmeerproject
 
 ## Sketches
 ![alt tag](https://github.com/barbaraboeters/barbaraboeters-project/blob/master/doc/Sketch%20Interface%20Plantastic.png)
+
+[![BCH compliance](https://bettercodehub.com/edge/badge/BarbaraBoeters/barbaraboeters-project)](https://bettercodehub.com)
