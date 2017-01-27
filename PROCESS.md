@@ -73,12 +73,12 @@
 - Started working on the code to get the current location and put it in variables. 
 - Searchbar http://sweettutos.com/2015/04/24/swift-mapkit-tutorial-series-how-to-search-a-place-address-or-poi-in-the-map/
 
-# 26 January
+## 26 January
 - All plants are showing on the geofencing map
     - Update: only plants of the current user
 - Also in the tableview there are only the plants of the current user. 
 
-# 27 January
+## 27 January
 - Problem: only 20 geolocations can be tracked at the same time. 
 - Put my code through Better Code Hub: at first 5 of 10 points, after configuration 7 of 10 points
 - Still working on figuring out how to keep geofence checking through the whole app and when the app is on the background
