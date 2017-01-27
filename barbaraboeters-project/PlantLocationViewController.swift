@@ -73,6 +73,7 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
             self.pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: localSearchResponse!.boundingRegion.center.latitude, longitude:     localSearchResponse!.boundingRegion.center.longitude)
             self.chosenLatitude = localSearchResponse!.boundingRegion.center.latitude
             self.chosenLongitude = localSearchResponse!.boundingRegion.center.longitude
+            print("lalala \(self.chosenLatitude), \(self.chosenLongitude)")
             self.pinAnnotationView = MKPinAnnotationView(annotation: self.pointAnnotation, reuseIdentifier: nil)
             self.mapView.centerCoordinate = self.pointAnnotation.coordinate
             self.mapView.addAnnotation(self.pinAnnotationView.annotation!)
@@ -108,8 +109,8 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
         }
         if segue.identifier == segueIdentifier2 {
             let destination = segue.destination as? AddPlantViewController
-            destination?.latitude = chosenLatitude
-            destination?.longitude = chosenLongitude
+            destination?.latitude = self.chosenLatitude
+            destination?.longitude = self.chosenLongitude
         }
     }
 }

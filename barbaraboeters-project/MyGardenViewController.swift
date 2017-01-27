@@ -16,6 +16,8 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
     var user: User!
     let ref = FIRDatabase.database().reference(withPath: "plants")
     let usersRef = FIRDatabase.database().reference(withPath: "users")
+    let currentUser = FIRDatabase.database().reference(withPath: "users").child((FIRAuth.auth()?.currentUser)!.uid)
+    var currentU = ""
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -38,11 +40,19 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             var newItems: [Plant] = []
             for item in snapshot.children {
                 let plantItem = Plant(snapshot: item as! FIRDataSnapshot)
-                newItems.append(plantItem)
+                
+                self.currentU = (FIRAuth.auth()!.currentUser?.uid)!
+                let plantUid = plantItem.uid
+                if plantUid == self.currentU {
+                    newItems.append(plantItem)
+                } else {
+                    print("other plant:\(plantItem.uid)")
+                }
             }
             self.plants = newItems
             self.tableView.reloadData()
         })
+
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
             guard let user = user else { return }
             self.user = User(authData: user)

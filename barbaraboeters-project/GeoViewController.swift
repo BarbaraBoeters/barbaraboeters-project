@@ -25,6 +25,8 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var monitoredRegions: Dictionary<String, Date> = [:]
     var latitude: Double?
     var longitude: Double?
+    let currentUser = FIRDatabase.database().reference(withPath: "users").child((FIRAuth.auth()?.currentUser)!.uid)
+    var currentU = ""
     
     // MARK: Functions
     override func viewDidLoad() {
@@ -40,7 +42,7 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         getLocations { (succeed, plants) in
             if succeed {
                 for plant in plants! {
-                    self.setupData(lat: plant.latitude, long: plant.longitude)
+                    self.setupData(lat: plant.latitude, long: plant.longitude, name: plant.name)
                 }
             } else {
                 print("No plants found!")
@@ -56,7 +58,12 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 while let rest = enumerator.nextObject() as? FIRDataSnapshot {
                     if let dict = rest.value as? [String: Any] {
                         let plant = Plant(name: dict["name"] as! String, uid: dict["uid"] as! String, completed: dict["completed"] as! Bool, info: dict["info"] as! String, interval: dict["interval"] as! Int, key: rest.key, lastUpdated: dict["lastUpdated"] as! Double, latitude: dict["latitude"] as! Double, longitude: dict["longitude"] as! Double)
-                        plants.append(plant)
+                        self.currentU = (FIRAuth.auth()!.currentUser?.uid)!
+                        let plantUid = plant.uid
+                        if plantUid == self.currentU {
+                            plants.append(plant)
+                        }
+                        
                         print("PLANTJES = \(plant.latitude) & \(plant.longitude)")
                     }
                 }
@@ -69,6 +76,24 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 }
             }
         })
+        
+//        ref.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+//            var newItems: [Plant] = []
+//            for item in snapshot.children {
+//                let plantItem = Plant(snapshot: item as! FIRDataSnapshot)
+//                
+//                self.currentU = (FIRAuth.auth()!.currentUser?.uid)!
+//                let plantUid = plantItem.uid
+//                if plantUid == self.currentU {
+//                    newItems.append(plantItem)
+//                } else {
+//                    print("other plant:\(plantItem.uid)")
+//                }
+//            }
+//            self.plants = newItems
+//            self.tableView.reloadData()
+//        })
+
     }
     
     func viewDidAppear(animated: Bool) {
@@ -91,11 +116,11 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    func setupData(lat: Double, long: Double) {
+    func setupData(lat: Double, long: Double, name: String) {
         // 1. check if system can monitor regions
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             // 2. region data
-            let title = "SAVED LOCATION"
+            let title = name
             let coordinate = CLLocationCoordinate2DMake(lat, long)
             let regionRadius = 100.0
             // 3. setup region
@@ -131,16 +156,6 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         monitoredRegions[region.identifier] = Date()
-    }
-    
-    // 2. user exit region
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        let alert = UIAlertController(title: "Nay!",
-                                      message: "exit \(region.identifier)",
-            preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-        monitoredRegions.removeValue(forKey: region.identifier)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

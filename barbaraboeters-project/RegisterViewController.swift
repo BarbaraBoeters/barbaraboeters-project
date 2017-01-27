@@ -40,11 +40,7 @@ class RegisterViewController: UIViewController {
                 }
             }
         } else {
-            let alert = UIAlertController(title: "Oops!",
-                                          message: "You didn't enter a valid e-mail and/or password",
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            errorAlert(title: "Error", text: "You didn't enter a valid e-mail and/or password")
         }
     }
 
@@ -52,11 +48,15 @@ class RegisterViewController: UIViewController {
         if textFieldEmail.text != "" && textFieldPassword.text != "" {
             FIRAuth.auth()!.signIn(withEmail: textFieldEmail.text!, password: textFieldPassword.text!)
         } else {
-            let alert = UIAlertController(title: "Oops!",
-                                          message: "You didn't enter a valid e-mail and/or password",
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            errorAlert(title: "Error", text: "You didn't enter a valid e-mail and/or password")
         }
+    }
+    
+    func errorAlert(title: String, text: String) {
+        let alert = UIAlertController(title: title,
+                                      message: text,
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
