@@ -76,24 +76,6 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 }
             }
         })
-        
-//        ref.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
-//            var newItems: [Plant] = []
-//            for item in snapshot.children {
-//                let plantItem = Plant(snapshot: item as! FIRDataSnapshot)
-//                
-//                self.currentU = (FIRAuth.auth()!.currentUser?.uid)!
-//                let plantUid = plantItem.uid
-//                if plantUid == self.currentU {
-//                    newItems.append(plantItem)
-//                } else {
-//                    print("other plant:\(plantItem.uid)")
-//                }
-//            }
-//            self.plants = newItems
-//            self.tableView.reloadData()
-//        })
-
     }
     
     func viewDidAppear(animated: Bool) {

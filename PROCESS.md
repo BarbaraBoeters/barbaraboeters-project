@@ -73,8 +73,11 @@ Started working on the code to get the current location and put it in variables.
 Searchbar http://sweettutos.com/2015/04/24/swift-mapkit-tutorial-series-how-to-search-a-place-address-or-poi-in-the-map/
 
 # 26 January
-All plants are showing on the map
+All plants are showing on the geofencing map
 Update: only plants of the current user
 Also in the tableview there are only the plants of the current user. 
+
+# 27 January
+
 
 
