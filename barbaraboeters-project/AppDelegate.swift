@@ -23,11 +23,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         IQKeyboardManager.sharedManager().enable = true
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
-        locationManager.requestAlwaysAuthorization()
+        //locationManager.requestAlwaysAuthorization()
         geoCheck()
         return true
     }
 
+//    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+//        IQKeyboardManager.sharedManager().enable = true
+//        FIRApp.configure()
+//        FIRDatabase.database().persistenceEnabled = true
+//        locationManager.delegate = self
+//        locationManager.requestAlwaysAuthorization()
+////        application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
+////        UIApplication.shared.cancelAllLocalNotifications()
+//        return true
+//    }
+    
+//    func handleEvent(forRegion region: CLRegion!) {
+//        // Show an alert if application is active
+//        print("Geofence triggered!")
+//        if UIApplication.shared.applicationState == .active {
+//            guard let message = note(fromRegionIdentifier: region.identifier) else { return }
+//            window?.rootViewController?.showAlert(withTitle: nil, message: message)
+//        } else {
+//            // Otherwise present a local notification
+//            let notification = UILocalNotification()
+//            notification.alertBody = note(fromRegionIdentifier: region.identifier)
+//            notification.soundName = "Default"
+//            UIApplication.shared.presentLocalNotificationNow(notification)
+//        }
+//    }
+    
     // TODO func or listener geofencing triggered
     func geoCheck() {
         // updatePlants()
@@ -88,4 +114,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 }
+
+//extension AppDelegate: CLLocationManagerDelegate {
+//    
+//    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+//        if region is CLCircularRegion {
+//            handleEvent(forRegion: region)
+//        }
+//    }
+//    
+//    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+//        if region is CLCircularRegion {
+//            handleEvent(forRegion: region)
+//        }
+//    }
+//}
 

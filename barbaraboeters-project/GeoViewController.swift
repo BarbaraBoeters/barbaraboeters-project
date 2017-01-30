@@ -21,12 +21,14 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // MARK: Properties
     let ref = FIRDatabase.database().reference(withPath: "plants")
     var plants: [Plant] = []
+    var waterPlants = [Plant]()
     let locationManager = CLLocationManager()
     var monitoredRegions: Dictionary<String, Date> = [:]
     var latitude: Double?
     var longitude: Double?
     let currentUser = FIRDatabase.database().reference(withPath: "users").child((FIRAuth.auth()?.currentUser)!.uid)
     var currentU = ""
+    
     
     // MARK: Functions
     override func viewDidLoad() {
@@ -132,11 +134,8 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     // 1. user enter region
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        let alert = UIAlertController(title: "Yay!",
-                                      message: "enter \(region.identifier)",
-                                      preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        print("Did enter region")
+        updatePlants()
         monitoredRegions[region.identifier] = Date()
     }
     
@@ -161,5 +160,39 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         for regionIdentifier in regionsToDelete {
             monitoredRegions.removeValue(forKey: regionIdentifier)
         }
+    }
+    func updatePlants() {
+        let ref = FIRDatabase.database().reference(withPath: "plants")
+        
+        ref.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+            for item in snapshot.children {
+                let plantItem = Plant(snapshot: item as! FIRDataSnapshot)
+                self.plants.append(plantItem)
+            }
+            self.checkIntervalPlants()
+            
+            DispatchQueue.main.async {
+                self.showWaterAlert()
+            }
+        })
+    }
+    
+    private func checkIntervalPlants() {
+        for plant in plants {
+            let lastUpdated = Date(timeIntervalSince1970: plant.lastUpdated)
+            let timeDifference = Date().timeIntervalSince(lastUpdated)
+            let interval = Double(plant.interval * 24 * 60 * 60)
+            if timeDifference - interval >= 0 {
+                self.waterPlants.append(plant)
+            }
+        }
+    }
+    
+    private func showWaterAlert() {
+        let alert = UIAlertController(title: "Yay!",
+        message: self.waterPlants.description,
+        preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

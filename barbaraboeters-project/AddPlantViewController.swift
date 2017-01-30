@@ -66,7 +66,7 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func addPlant(_ sender: Any) {
         let user = FIRAuth.auth()?.currentUser
         let userUid = user?.uid
-        if textFieldName.text != "" {
+        if textFieldName.text != "" && latitude != nil {
             let text = textFieldName.text!
             let plant = Plant(name: text,
                               uid: userUid!,

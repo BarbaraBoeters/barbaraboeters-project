@@ -18,6 +18,7 @@
 		1A9EA5C61E2416C7008A8CF9 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EA5C51E2416C7008A8CF9 /* README.md */; };
 		1AABE1B31E3766B4000D8995 /* GeoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AABE1B21E3766B4000D8995 /* GeoViewController.swift */; };
 		1AAE1C7A1E27C5A3009160AC /* PlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAE1C791E27C5A3009160AC /* PlantCell.swift */; };
+		1ABA724F1E3F52CF00E59761 /* default.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA724E1E3F52CF00E59761 /* default.gpx */; };
 		1AC802101E2660C5002ACAFC /* DESIGN.md in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8020F1E2660C4002ACAFC /* DESIGN.md */; };
 		1AC802121E2669C7002ACAFC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC802111E2669C7002ACAFC /* RegisterViewController.swift */; };
 		1AC8021A1E2790A7002ACAFC /* AddPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */; };
@@ -44,6 +45,7 @@
 		1AABE1B21E3766B4000D8995 /* GeoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoViewController.swift; sourceTree = "<group>"; };
 		1AAE1C791E27C5A3009160AC /* PlantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantCell.swift; sourceTree = "<group>"; };
 		1AAE1C7B1E2CCCD5009160AC /* barbaraboeters-project.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "barbaraboeters-project.entitlements"; sourceTree = "<group>"; };
+		1ABA724E1E3F52CF00E59761 /* default.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = default.gpx; sourceTree = "<group>"; };
 		1AC8020F1E2660C4002ACAFC /* DESIGN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DESIGN.md; sourceTree = "<group>"; };
 		1AC802111E2669C7002ACAFC /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlantViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				1A9EA5BA1E241620008A8CF9 /* Assets.xcassets */,
 				1A9EA5BC1E241620008A8CF9 /* LaunchScreen.storyboard */,
 				1AC802201E27B766002ACAFC /* GoogleService-Info.plist */,
+				1ABA724E1E3F52CF00E59761 /* default.gpx */,
 				1A9EA5BF1E241620008A8CF9 /* Info.plist */,
 			);
 			path = "barbaraboeters-project";
@@ -230,6 +233,7 @@
 				1AC802211E27B766002ACAFC /* GoogleService-Info.plist in Resources */,
 				1A9EA5BB1E241620008A8CF9 /* Assets.xcassets in Resources */,
 				1A9EA5B91E241620008A8CF9 /* Main.storyboard in Resources */,
+				1ABA724F1E3F52CF00E59761 /* default.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
