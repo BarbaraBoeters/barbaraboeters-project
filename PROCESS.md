@@ -82,5 +82,14 @@
 - Problem: only 20 geolocations can be tracked at the same time. 
 - Put my code through Better Code Hub: at first 5 of 10 points, after configuration 7 of 10 points
 - Still working on figuring out how to keep geofence checking through the whole app and when the app is on the background
+    - note: realised it will be too difficult to implement this so for now the goal changed to making it work in the viewcontroller with the geofences. 
+
+# Week 4
+
+## 30 January
+- Connected the Geofencing with updatePlants and wateringPlants and the notifications
+    - note: alerts still need to be nice. 
+    - Fixed that all plants will be showed in different alerts http://stackoverflow.com/questions/28997342/loop-over-multiple-uialertcontrollers BUT it shows too many alerts (repeating the samen information)
+    - need to update plants in Firebase
 
 

@@ -20,8 +20,10 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     // MARK: Properties
     let ref = FIRDatabase.database().reference(withPath: "plants")
+    
     var plants: [Plant] = []
-    var waterPlants = [Plant]()
+    var waterPlants: [Plant] = []
+    
     let locationManager = CLLocationManager()
     var monitoredRegions: Dictionary<String, Date> = [:]
     var latitude: Double?
@@ -57,21 +59,25 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChildren() {
                 let enumerator = snapshot.children
+                
                 while let rest = enumerator.nextObject() as? FIRDataSnapshot {
                     if let dict = rest.value as? [String: Any] {
                         let plant = Plant(name: dict["name"] as! String, uid: dict["uid"] as! String, completed: dict["completed"] as! Bool, info: dict["info"] as! String, interval: dict["interval"] as! Int, key: rest.key, lastUpdated: dict["lastUpdated"] as! Double, latitude: dict["latitude"] as! Double, longitude: dict["longitude"] as! Double)
+                        
                         self.currentU = (FIRAuth.auth()!.currentUser?.uid)!
+                        
                         let plantUid = plant.uid
+                        
                         if plantUid == self.currentU {
                             plants.append(plant)
                         }
-                        
-                        print("PLANTJES = \(plant.latitude) & \(plant.longitude)")
                     }
                 }
+                
                 DispatchQueue.main.async {
                     completion(true, plants)
                 }
+                
             } else {
                 DispatchQueue.main.async {
                     completion(false, nil)
@@ -124,7 +130,8 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    // 6. draw circle
+    // MARK: MKMapViewDelegate
+    // draw circle
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let circleRenderer = MKCircleRenderer(overlay: overlay)
         circleRenderer.strokeColor = UIColor.red
@@ -132,19 +139,137 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return circleRenderer
     }
 
-    // 1. user enter region
+	// MARK: CLLocationManagerDelegate
+    
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("Did enter region")
-        updatePlants()
         monitoredRegions[region.identifier] = Date()
+        updatePlants()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        // showAlert("exit \(region.identifier)")
+        // 2.2 Remove entrance time
+        monitoredRegions.removeValue(forKey: region.identifier)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        updateRegionsWithLocation(locations[0])
+        //updateRegions()
+        updateRegionsWithLocation(location: locations[0])
     }
     
-    func updateRegionsWithLocation(_ location: CLLocation) {
-        let regionMaxVisiting = 100.0
+    func updatePlants() {
+        
+
+        
+        let ref = FIRDatabase.database().reference(withPath: "plants")
+        
+        ref.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+            
+            print("Clear arrays")
+            self.plants = Array<Plant>()
+            
+            for item in snapshot.children {
+                let plantItem = Plant(snapshot: item as! FIRDataSnapshot)
+                self.plants.append(plantItem)
+            }
+            self.checkIntervalPlants()
+
+        })
+//        DispatchQueue.main.async {
+//            self.showWaterAlert()
+//        }
+        //print("ARRAY OF WATERPLANTS: \(self.waterPlants)")
+    }
+    
+    private func checkIntervalPlants() {
+        
+        self.waterPlants = Array<Plant>()
+
+        for plant in plants {
+            let lastUpdated = Date(timeIntervalSince1970: plant.lastUpdated)
+            let timeDifference = Date().timeIntervalSince(lastUpdated)
+            let oneDayInSeconds = Double(plant.interval * 24 * 60 * 60)
+            if timeDifference - oneDayInSeconds >= 0 {
+                self.waterPlants.append(plant)
+            }
+        }
+        
+        if (self.waterPlants.count > 0) {
+            DispatchQueue.main.async {
+                self.showWaterAlert()
+            }
+        }
+        print("HOU OP: \(self.waterPlants.count)")
+    }
+    
+    private func showWaterAlert() {
+        var plantName = String()
+        for plant in self.waterPlants {
+            let name = plant.name
+            plantName.append(name)
+        }
+        print("plantnames: \(plantName) ")
+        
+        let alert = UIAlertController(title: plantName,
+                                      message: "This little fella needs some water please",
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: { action in
+            print("HOHOHOI")
+            
+            
+            for plant in self.waterPlants {
+                print(plant.key)
+                
+                let post: [String: Any] = [
+
+                    "completed" : plant.completed,
+                    "info" : plant.info,
+                    "interval" : plant.interval,
+                    "lastUpdated": Date().timeIntervalSince1970,
+                    "latitude" : plant.latitude,
+                    "longitude" : plant.longitude,
+                    "name" : plant.name,
+                    "uid" : plant.uid
+
+                    
+                ]
+                
+                
+                let childUpdate = [ "\(plant.key)": post ]
+                self.ref.updateChildValues(childUpdate)
+            }
+            
+//            let post = ["uid": userID,
+//                        "author": username,
+//                        "title": title,
+//                        "body": body]
+//            let childUpdates = ["/posts/\(key)": post,
+//                                "/user-posts/\(userID)/\(key)/": post]
+//            ref.updateChildValues(childUpdates)
+            
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+
+        print("whatever")
+//        if let waterPlant = waterPlants.first {
+//            let alert = UIAlertController(title: plantName, message: "This little fella needs some water please",
+//                                          preferredStyle: UIAlertControllerStyle.alert)
+//            let okayActions = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { action in self.waterPlants.remove(at: 0)
+//                self.showWaterAlert()
+//            }
+//            alert.addAction(okayActions)
+//            self.present(alert, animated: true, completion: nil)
+//        } else {
+//            print("all alerts shown")
+//        }
+    }
+
+    
+    
+    func updateRegionsWithLocation(location: CLLocation) {
+        let regionMaxVisiting = 20.0
         var regionsToDelete: [String] = []
         
         for regionIdentifier in monitoredRegions.keys {
@@ -161,38 +286,10 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             monitoredRegions.removeValue(forKey: regionIdentifier)
         }
     }
-    func updatePlants() {
-        let ref = FIRDatabase.database().reference(withPath: "plants")
-        
-        ref.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
-            for item in snapshot.children {
-                let plantItem = Plant(snapshot: item as! FIRDataSnapshot)
-                self.plants.append(plantItem)
-            }
-            self.checkIntervalPlants()
-            
-            DispatchQueue.main.async {
-                self.showWaterAlert()
-            }
-        })
-    }
-    
-    private func checkIntervalPlants() {
-        for plant in plants {
-            let lastUpdated = Date(timeIntervalSince1970: plant.lastUpdated)
-            let timeDifference = Date().timeIntervalSince(lastUpdated)
-            let interval = Double(plant.interval * 24 * 60 * 60)
-            if timeDifference - interval >= 0 {
-                self.waterPlants.append(plant)
-            }
-        }
-    }
-    
-    private func showWaterAlert() {
-        let alert = UIAlertController(title: "Yay!",
-        message: self.waterPlants.description,
-        preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+}
+
+extension GeoViewController {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        mapView.showsUserLocation = (status == .authorizedAlways)
     }
 }

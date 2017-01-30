@@ -73,7 +73,7 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
                               completed: false,
                               info: textFieldInfo.text!,
                               interval: turnedString!,
-                              lastUpdated: Date().timeIntervalSince1970,
+                              lastUpdated: 0, // Date().timeIntervalSince1970,
                               latitude: latitude!,
                               longitude: longitude!)
             let plantRef = self.ref.childByAutoId()

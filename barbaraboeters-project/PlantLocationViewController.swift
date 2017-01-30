@@ -106,8 +106,6 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
             let destination = segue.destination as? AddPlantViewController
             destination?.latitude = latitude
             destination?.longitude = longitude
-            print(latitude)
-            print(longitude)
         }
         if segue.identifier == segueIdentifier2 {
             let destination = segue.destination as? AddPlantViewController

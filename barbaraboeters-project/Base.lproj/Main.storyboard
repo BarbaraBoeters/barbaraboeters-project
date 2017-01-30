@@ -143,7 +143,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rhh-6b-Gg3" id="xmt-VM-Ly6">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ESg-DF-lVz" customClass="RoundedImageView" customModule="barbaraboeters_project" customModuleProvider="target">
@@ -635,7 +635,7 @@
         <image name="location" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aZf-Af-qQt"/>
+        <segue reference="UD9-jR-TQG"/>
         <segue reference="gY3-db-XcR"/>
     </inferredMetricsTieBreakers>
 </document>
