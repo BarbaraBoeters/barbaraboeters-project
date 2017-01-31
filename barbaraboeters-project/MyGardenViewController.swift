@@ -48,8 +48,6 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
                 let plantUid = plantItem.uid
                 if plantUid == self.currentU {
                     newItems.append(plantItem)
-                } else {
-                    print("other plant:\(plantItem.uid)")
                 }
             }
             self.plants = newItems

@@ -25,11 +25,14 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
     var error: NSError!
     var pointAnnotation: MKPointAnnotation!
     var pinAnnotationView: MKPinAnnotationView!
+    
     let locationManager = CLLocationManager()
+    
     var latitude: Double?
     var longitude: Double?
     var chosenLatitude: Double?
     var chosenLongitude: Double?
+    
     var segueIdentifier = "mylocation"
     var segueIdentifier2 = "chosenlocation"
 
@@ -72,9 +75,10 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
             self.pointAnnotation = MKPointAnnotation()
             self.pointAnnotation.title = self.searchBar.text
             self.pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: localSearchResponse!.boundingRegion.center.latitude, longitude:     localSearchResponse!.boundingRegion.center.longitude)
+            
             self.chosenLatitude = localSearchResponse!.boundingRegion.center.latitude
             self.chosenLongitude = localSearchResponse!.boundingRegion.center.longitude
-            print("lalala \(self.chosenLatitude), \(self.chosenLongitude)")
+            
             self.pinAnnotationView = MKPinAnnotationView(annotation: self.pointAnnotation, reuseIdentifier: nil)
             self.mapView.centerCoordinate = self.pointAnnotation.coordinate
             self.mapView.addAnnotation(self.pinAnnotationView.annotation!)
@@ -110,8 +114,8 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
         }
         if segue.identifier == segueIdentifier2 {
             let destination = segue.destination as? AddPlantViewController
-            destination?.latitude = self.chosenLatitude
-            destination?.longitude = self.chosenLongitude
+            destination?.latitude = chosenLatitude
+            destination?.longitude = chosenLatitude
         }
     }
 }

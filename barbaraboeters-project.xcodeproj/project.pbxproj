@@ -137,8 +137,8 @@
 				1AC802111E2669C7002ACAFC /* RegisterViewController.swift */,
 				1AC8021B1E279111002ACAFC /* MyGardenViewController.swift */,
 				1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */,
-				1AABE1B21E3766B4000D8995 /* GeoViewController.swift */,
 				1A7F1ACB1E3641A600561ED5 /* PlantLocationViewController.swift */,
+				1AABE1B21E3766B4000D8995 /* GeoViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

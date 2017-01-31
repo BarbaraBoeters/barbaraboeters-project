@@ -18,11 +18,13 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
 
     let ref = FIRDatabase.database().reference(withPath: "plants")
     
+    //var location: Location!
     var user: User!
     var items: [Plant] = []
     
     var optionalString: String?
     var turnedString: Int?
+
     var latitude: Double?
     var longitude: Double?
     
