@@ -35,13 +35,9 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self;
-        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         
-        mapView.delegate = self
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = .follow
+        setupLocationManager()
+        setupMapView()
         
         getLocations { (succeed, plants) in
             if succeed {
@@ -54,6 +50,18 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
+    func setupLocationManager() {
+        locationManager.delegate = self;
+        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    }
+    
+    func setupMapView() {
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .follow
+    }
+    
     private func getLocations(completion: @escaping getLocationsComplete) {
         var plants = [Plant]()
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -62,8 +70,15 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                 while let rest = enumerator.nextObject() as? FIRDataSnapshot {
                     if let dict = rest.value as? [String: Any] {
-                        let plant = Plant(name: dict["name"] as! String, uid: dict["uid"] as! String, completed: dict["completed"] as! Bool, info: dict["info"] as! String, interval: dict["interval"] as! Int, key: rest.key, lastUpdated: dict["lastUpdated"] as! Double, latitude: dict["latitude"] as! Double, longitude: dict["longitude"] as! Double)
-                        
+                        let plant = Plant(name: dict["name"] as! String,
+                                          uid: dict["uid"] as! String,
+                                          completed: dict["completed"] as! Bool,
+                                          info: dict["info"] as! String,
+                                          interval: dict["interval"] as! Int,
+                                          key: rest.key,
+                                          lastUpdated: dict["lastUpdated"] as! Double,
+                                          latitude: dict["latitude"] as! Double,
+                                          longitude: dict["longitude"] as! Double)
                         self.currentU = (FIRAuth.auth()!.currentUser?.uid)!
                         
                         let plantUid = plant.uid
