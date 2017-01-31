@@ -469,7 +469,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" wraps="YES" value="1" minimumValue="1" maximumValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="iCQ-hh-jqY">
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" wraps="YES" maximumValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="iCQ-hh-jqY">
                                         <rect key="frame" x="245" y="448" width="94" height="29"/>
                                         <connections>
                                             <action selector="stepperAction:" destination="WwG-Xn-sCX" eventType="valueChanged" id="kBp-6C-Pre"/>

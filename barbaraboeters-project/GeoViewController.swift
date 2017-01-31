@@ -167,19 +167,21 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     private func checkIntervalPlants() {
         self.waterPlants = Array<Plant>()
-
+        intervalCheck()
+        
+        if (self.waterPlants.count > 0) {
+            DispatchQueue.main.async {
+                self.showWaterAlert()
+            }
+        }
+    }
+    func intervalCheck() {
         for plant in plants {
             let lastUpdated = Date(timeIntervalSince1970: plant.lastUpdated)
             let timeDifference = Date().timeIntervalSince(lastUpdated)
             let oneDayInSeconds = Double(plant.interval * 24 * 60 * 60)
             if timeDifference - oneDayInSeconds >= 0 {
                 self.waterPlants.append(plant)
-            }
-        }
-        
-        if (self.waterPlants.count > 0) {
-            DispatchQueue.main.async {
-                self.showWaterAlert()
             }
         }
     }

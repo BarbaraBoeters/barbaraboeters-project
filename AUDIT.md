@@ -12,7 +12,8 @@
     - GeoViewController.setupData(Double,Double,String)
     - GeoViewController.updateRegionsWithLocation(CLLocation)
     - GeoViewController.viewDidAppear(Bool)
-    - GeoViewController.showWaterAlert() -> changed to another function
+    - GeoViewController.showWaterAlert() -> put the alert in another function -> done
+    - GeoViewController.checkIntervalPlants() ->
 - Write Clean Code
     - AppDelegate.swift -> done
     - AppDelegate.swift -> done
