@@ -190,27 +190,7 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let name = plant.name
             plantName.append(name)
         }
-        
-        let alert = UIAlertController(title: plantName,
-                                      message: "This little fella needs some water please",
-                                      preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: { action in
-            for plant in self.waterPlants {                
-                let post: [String: Any] = [
-                    "completed" : plant.completed,
-                    "info" : plant.info,
-                    "interval" : plant.interval,
-                    "lastUpdated": Date().timeIntervalSince1970,
-                    "latitude" : plant.latitude,
-                    "longitude" : plant.longitude,
-                    "name" : plant.name,
-                    "uid" : plant.uid
-                ]
-                let childUpdate = [ "\(plant.key)": post ]
-                self.ref.updateChildValues(childUpdate)
-            }
-        }))
-        self.present(alert, animated: true, completion: nil)
+        plantAlert(title: plantName, text: "This little fella needs some water please")
     }
 
     func updateRegionsWithLocation(location: CLLocation) {
@@ -236,6 +216,29 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.zoomToUserLocation()
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
+    }
+    
+    func plantAlert(title: String, text: String) {
+        let alert = UIAlertController(title: title,
+                                      message: text,
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: { action in
+            for plant in self.waterPlants {
+                let post: [String: Any] = [
+                    "completed" : plant.completed,
+                    "info" : plant.info,
+                    "interval" : plant.interval,
+                    "lastUpdated": Date().timeIntervalSince1970,
+                    "latitude" : plant.latitude,
+                    "longitude" : plant.longitude,
+                    "name" : plant.name,
+                    "uid" : plant.uid
+                ]
+                let childUpdate = [ "\(plant.key)": post ]
+                self.ref.updateChildValues(childUpdate)
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

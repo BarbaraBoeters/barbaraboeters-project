@@ -86,8 +86,8 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let groceryItem = plants[indexPath.row]
-            groceryItem.ref?.removeValue()
+            let plantItem = plants[indexPath.row]
+            plantItem.ref?.removeValue()
         }
     }
 }

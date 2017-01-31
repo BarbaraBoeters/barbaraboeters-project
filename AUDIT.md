@@ -1,8 +1,10 @@
 #Task List
 - Keep Unit Interfaces Small
     - GeoViewController.setupData(Double,Double,String) -> struct maken van coordinates
+    - MyGardenViewController.tableView(UITableView,UITableViewCellEditingStyle,IndexPath) ???
+    - Plant.init(String,String,Bool,String,Int,String,Double,Double,Double)
 - Write Short Units of Code
-    - MyGardenViewController.viewDidLoad() -> functie maken van firebase checks
+    - MyGardenViewController.viewDidLoad() -> functie maken van firebase checks -> done
     - PlantLocationViewController.searchButton(Any) -> struct/object maken
     - GeoViewController.getLocations(@escapinggetLocationsComplete)
     - AddPlantViewController.addPlant(Any)
@@ -10,7 +12,9 @@
     - GeoViewController.setupData(Double,Double,String)
     - GeoViewController.updateRegionsWithLocation(CLLocation)
     - GeoViewController.viewDidAppear(Bool)
+    - GeoViewController.showWaterAlert() -> changed to another function
 - Write Clean Code
-    - AppDelegate.swift x
-    - AppDelegate.swift x
+    - AppDelegate.swift -> done
+    - AppDelegate.swift -> done
+    - GeoViewController.swift -> done
 ![alt tag](https://github.com/barbaraboeters/barbaraboeters-project/blob/master/doc/BetterCodeHub.png)
