@@ -91,11 +91,7 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             locationManager.requestAlwaysAuthorization()
         }
         else if CLLocationManager.authorizationStatus() == .denied {
-            let alert = UIAlertController(title: "Error!",
-                                          message: "Location services were previously denied. Please enable location services for this app in Settings.",
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            errorAlertMessage(title: "Error!", text: "Location services were previously denied. Please enable location services for this app in Settings.")
         }
         else if CLLocationManager.authorizationStatus() == .authorizedAlways {
             locationManager.startUpdatingLocation()
@@ -240,6 +236,14 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 self.ref.updateChildValues(childUpdate)
             }
         }))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func errorAlertMessage(title: String, text: String) {
+        let alert = UIAlertController(title: title,
+                                      message: text,
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }
