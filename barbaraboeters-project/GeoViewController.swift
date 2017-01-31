@@ -182,7 +182,6 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 self.showWaterAlert()
             }
         }
-        // print("HOU OP: \(self.waterPlants.count)")
     }
     
     private func showWaterAlert() {
@@ -191,7 +190,6 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let name = plant.name
             plantName.append(name)
         }
-        // print("plantnames: \(plantName) ")
         
         let alert = UIAlertController(title: plantName,
                                       message: "This little fella needs some water please",
