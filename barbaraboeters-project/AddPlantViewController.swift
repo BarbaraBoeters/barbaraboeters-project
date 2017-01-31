@@ -84,13 +84,13 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
                     let plantRef = self.ref.childByAutoId()
                     plantRef.setValue(plant.toAnyObject())
                 } else {
-                    errorAlert(title: "Error", text: "Please select after how many days you want to be reminded")
+                    alertError(title: "Error", text: "Please select after how many days you want to be reminded")
                 }
             } else {
-                errorAlert(title: "Error", text: "You need to at least fill in the name of the plant")
+                alertError(title: "Error", text: "You need to at least fill in the name of the plant")
             }
         } else {
-            errorAlert(title: "Error", text: "Please set your location first")
+            alertError(title: "Error", text: "Please set your location first")
         }
     }
     
@@ -98,7 +98,7 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
         dismiss(animated: true, completion: nil)
     }
     
-    func errorAlert(title: String, text: String) {
+    func alertError(title: String, text: String) {
         let alert = UIAlertController(title: title,
                                       message: text,
                                       preferredStyle: UIAlertControllerStyle.alert)
