@@ -14,34 +14,38 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
     
     // Mark: Properties
     let imagePicker = UIImagePickerController()
+    let locationManager = CLLocationManager()
+
     let ref = FIRDatabase.database().reference(withPath: "plants")
+    
     var user: User!
     var items: [Plant] = []
+    
     var optionalString: String?
     var turnedString: Int?
     var latitude: Double?
     var longitude: Double?
-    let locationManager = CLLocationManager()
     
     // Mark: Outlets
     @IBOutlet weak var image: RoundedImageView!
     @IBOutlet weak var textFieldName: UITextField!
     @IBOutlet weak var textFieldInfo: UITextField!
     @IBOutlet weak var labelStepper: UILabel!
-    @IBOutlet weak var stepper: UIStepper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         imagePicker.delegate = self
         self.image.reloadInputViews()
+        
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-        print("SAVED LOCATION = \(latitude),\(longitude)")
     }
     
     // MARK: Actions
@@ -57,34 +61,47 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
         if let unwrappedString = optionalString {
             let optionalInt = Int(unwrappedString)
             turnedString = optionalInt!
-            if let upwrappedInt = optionalInt {
-                print(upwrappedInt)
-            }
         }
     }
     
     @IBAction func addPlant(_ sender: Any) {
         let user = FIRAuth.auth()?.currentUser
         let userUid = user?.uid
-        if textFieldName.text != "" && latitude != nil {
-            let text = textFieldName.text!
-            let plant = Plant(name: text,
-                              uid: userUid!,
-                              completed: false,
-                              info: textFieldInfo.text!,
-                              interval: turnedString!,
-                              lastUpdated: 0, // Date().timeIntervalSince1970,
-                              latitude: latitude!,
-                              longitude: longitude!)
-            let plantRef = self.ref.childByAutoId()
-            plantRef.setValue(plant.toAnyObject())
+        if latitude != nil && longitude != nil {
+            if textFieldName.text != "" {
+                if turnedString != nil {
+                    let text = textFieldName.text!
+                    let plant = Plant(name: text,
+                                      uid: userUid!,
+                                      completed: false,
+                                      info: textFieldInfo.text!,
+                                      interval: turnedString!,
+                                      lastUpdated: Date().timeIntervalSince1970, // 0,
+                                      latitude: latitude!,
+                                      longitude: longitude!)
+                    let plantRef = self.ref.childByAutoId()
+                    plantRef.setValue(plant.toAnyObject())
+                } else {
+                    errorAlert(title: "Error", text: "Please select after how many days you want to be reminded")
+                }
+            } else {
+                errorAlert(title: "Error", text: "You need to at least fill in the name of the plant")
+            }
         } else {
-            let alert = UIAlertController(title: "Oops!",
-                                          message: "You didn't enter the right information ay",
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            errorAlert(title: "Error", text: "Please set your location first")
         }
+    }
+    
+    @IBAction func onCancel(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func errorAlert(title: String, text: String) {
+        let alert = UIAlertController(title: title,
+                                      message: text,
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: - UIImagePickerControllerDelegate Methods

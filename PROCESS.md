@@ -88,8 +88,16 @@
 
 ## 30 January
 - Connected the Geofencing with updatePlants and wateringPlants and the notifications
-    - note: alerts still need to be nice. 
-    - Fixed that all plants will be showed in different alerts http://stackoverflow.com/questions/28997342/loop-over-multiple-uialertcontrollers BUT it shows too many alerts (repeating the samen information)
-    - need to update plants in Firebase
+    - note: alerts still need to be nice. Update: alerts are working now 
+- Fixed that all plants will be showed in different alerts http://stackoverflow.com/questions/28997342/loop-over-multiple-uialertcontrollers BUT it shows too many alerts (repeating the samen information) Update: if there are multiple plants it will show it in 1 alert only. And it showed too many alerts because the interval was 0 so it would always need to be watered. 
+- need to update plants in Firebase. Update: fixed that the lastUpdated resets in Firebase. 
 
+## 31 January
+- Decided i don't need the completed toggle function so decided to delete the code
+- Need to do error handling today
+- Need to work on better code quality for Better Code Hub. 
+
+## 1 February
+- Implement the photo function in Firebase Storage
+- Make sure it only gives notifications for the current user plants within that geofence. 
 

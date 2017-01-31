@@ -35,12 +35,15 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             currentUserRef.setValue(self.user.email)
             currentUserRef.onDisconnectRemoveValue()
         }
-
-        ref.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+        retrieveDataFirebase()
+    }
+    
+    // MARK: Firebase Data Retrieval Function
+    func retrieveDataFirebase() {
+        ref.queryOrdered(byChild: "interval").observe(.value, with: { snapshot in
             var newItems: [Plant] = []
             for item in snapshot.children {
                 let plantItem = Plant(snapshot: item as! FIRDataSnapshot)
-                
                 self.currentU = (FIRAuth.auth()!.currentUser?.uid)!
                 let plantUid = plantItem.uid
                 if plantUid == self.currentU {
@@ -52,11 +55,6 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             self.plants = newItems
             self.tableView.reloadData()
         })
-
-        FIRAuth.auth()!.addStateDidChangeListener { auth, user in
-            guard let user = user else { return }
-            self.user = User(authData: user)
-        }
     }
     
     // MARK: Actions
@@ -65,11 +63,12 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
         do {
             try firebaseAuth?.signOut()
         } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
+            print("Error signing out: %@", signOutError)
         }
+        dismiss(animated: true, completion: nil)
     }
     
-    // MARK: Tableview functions
+    // MARK: Tableview Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return plants.count
     }
@@ -79,9 +78,7 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
         let plantItem = plants[indexPath.row]
         cell.plantName?.text = plantItem.name
         cell.plantInfo?.text = plantItem.info
-        // cell.plantDaysLeft?.numberOfLines = groceryItem.value
         cell.plantDaysLeft?.text = Int(plantItem.interval).description
-        toggleCellCheckbox(cell, isCompleted: plantItem.completed)
         return cell
     }
     
@@ -93,29 +90,6 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
         if editingStyle == .delete {
             let groceryItem = plants[indexPath.row]
             groceryItem.ref?.removeValue()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        let plantItem = plants[indexPath.row]
-        let toggledCompletion = !plantItem.completed
-        toggleCellCheckbox(cell, isCompleted: toggledCompletion)
-        plantItem.ref?.updateChildValues([
-            "completed": toggledCompletion
-            ])
-    }
-    
-    /// Checking off items.
-    func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
-        if !isCompleted {
-            cell.accessoryType = .none
-            cell.textLabel?.textColor = UIColor.black
-            cell.detailTextLabel?.textColor = UIColor.black
-        } else {
-            cell.accessoryType = .checkmark
-            cell.textLabel?.textColor = UIColor.gray
-            cell.detailTextLabel?.textColor = UIColor.gray
         }
     }
 }

@@ -14,7 +14,6 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
 
     // MARK: Outlets
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var zoomButton: UIButton!
     
@@ -37,8 +36,10 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
     override func viewDidLoad() {
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
+        
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters

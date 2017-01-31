@@ -20,17 +20,17 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     // MARK: Properties
     let ref = FIRDatabase.database().reference(withPath: "plants")
+    let currentUser = FIRDatabase.database().reference(withPath: "users").child((FIRAuth.auth()?.currentUser)!.uid)
+    var currentU = ""
     
     var plants: [Plant] = []
     var waterPlants: [Plant] = []
     
     let locationManager = CLLocationManager()
     var monitoredRegions: Dictionary<String, Date> = [:]
+    
     var latitude: Double?
     var longitude: Double?
-    let currentUser = FIRDatabase.database().reference(withPath: "users").child((FIRAuth.auth()?.currentUser)!.uid)
-    var currentU = ""
-    
     
     // MARK: Functions
     override func viewDidLoad() {
@@ -73,11 +73,9 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                         }
                     }
                 }
-                
                 DispatchQueue.main.async {
                     completion(true, plants)
                 }
-                
             } else {
                 DispatchQueue.main.async {
                     completion(false, nil)
@@ -88,11 +86,10 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        // 1. status is not determined
+        // Authorization code
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.requestAlwaysAuthorization()
         }
-            // 2. authorization were denied
         else if CLLocationManager.authorizationStatus() == .denied {
             let alert = UIAlertController(title: "Error!",
                                           message: "Location services were previously denied. Please enable location services for this app in Settings.",
@@ -100,28 +97,27 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-            // 3. we do have authorization
         else if CLLocationManager.authorizationStatus() == .authorizedAlways {
             locationManager.startUpdatingLocation()
         }
     }
     
     func setupData(lat: Double, long: Double, name: String) {
-        // 1. check if system can monitor regions
+        // Check if system can monitor regions
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-            // 2. region data
+            // Region data
             let title = name
             let coordinate = CLLocationCoordinate2DMake(lat, long)
             let regionRadius = 100.0
-            // 3. setup region
+            // Setup region
             let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude), radius: regionRadius, identifier: title)
             locationManager.startMonitoring(for: region)
-            // 4. setup annotation
+            // Setup annotation
             let plantAnnotation = MKPointAnnotation()
             plantAnnotation.coordinate = coordinate;
             plantAnnotation.title = "\(title)";
             mapView.addAnnotation(plantAnnotation)
-            // 5. setup circle
+            // Setup circle
             let circle = MKCircle(center: coordinate, radius: regionRadius)
             mapView.add(circle)
         }
@@ -130,8 +126,7 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    // MARK: MKMapViewDelegate
-    // draw circle
+    // MARK: MKMapViewDelegate for drawing the cirle
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let circleRenderer = MKCircleRenderer(overlay: overlay)
         circleRenderer.strokeColor = UIColor.red
@@ -140,7 +135,6 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
 
 	// MARK: CLLocationManagerDelegate
-    
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("Did enter region")
         monitoredRegions[region.identifier] = Date()
@@ -148,42 +142,30 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        // showAlert("exit \(region.identifier)")
-        // 2.2 Remove entrance time
+        // Remove entrance time
         monitoredRegions.removeValue(forKey: region.identifier)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //updateRegions()
         updateRegionsWithLocation(location: locations[0])
     }
     
     func updatePlants() {
-        
-
-        
         let ref = FIRDatabase.database().reference(withPath: "plants")
         
         ref.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
-            
-            print("Clear arrays")
             self.plants = Array<Plant>()
             
             for item in snapshot.children {
+                self.currentU = (FIRAuth.auth()!.currentUser?.uid)!
                 let plantItem = Plant(snapshot: item as! FIRDataSnapshot)
                 self.plants.append(plantItem)
             }
             self.checkIntervalPlants()
-
         })
-//        DispatchQueue.main.async {
-//            self.showWaterAlert()
-//        }
-        //print("ARRAY OF WATERPLANTS: \(self.waterPlants)")
     }
     
     private func checkIntervalPlants() {
-        
         self.waterPlants = Array<Plant>()
 
         for plant in plants {
@@ -200,7 +182,7 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 self.showWaterAlert()
             }
         }
-        print("HOU OP: \(self.waterPlants.count)")
+        // print("HOU OP: \(self.waterPlants.count)")
     }
     
     private func showWaterAlert() {
@@ -209,20 +191,14 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let name = plant.name
             plantName.append(name)
         }
-        print("plantnames: \(plantName) ")
+        // print("plantnames: \(plantName) ")
         
         let alert = UIAlertController(title: plantName,
                                       message: "This little fella needs some water please",
                                       preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: { action in
-            print("HOHOHOI")
-            
-            
-            for plant in self.waterPlants {
-                print(plant.key)
-                
+            for plant in self.waterPlants {                
                 let post: [String: Any] = [
-
                     "completed" : plant.completed,
                     "info" : plant.info,
                     "interval" : plant.interval,
@@ -231,60 +207,37 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     "longitude" : plant.longitude,
                     "name" : plant.name,
                     "uid" : plant.uid
-
-                    
                 ]
-                
-                
                 let childUpdate = [ "\(plant.key)": post ]
                 self.ref.updateChildValues(childUpdate)
             }
-            
-//            let post = ["uid": userID,
-//                        "author": username,
-//                        "title": title,
-//                        "body": body]
-//            let childUpdates = ["/posts/\(key)": post,
-//                                "/user-posts/\(userID)/\(key)/": post]
-//            ref.updateChildValues(childUpdates)
-            
         }))
-        
         self.present(alert, animated: true, completion: nil)
-
-        print("whatever")
-//        if let waterPlant = waterPlants.first {
-//            let alert = UIAlertController(title: plantName, message: "This little fella needs some water please",
-//                                          preferredStyle: UIAlertControllerStyle.alert)
-//            let okayActions = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { action in self.waterPlants.remove(at: 0)
-//                self.showWaterAlert()
-//            }
-//            alert.addAction(okayActions)
-//            self.present(alert, animated: true, completion: nil)
-//        } else {
-//            print("all alerts shown")
-//        }
     }
 
-    
-    
     func updateRegionsWithLocation(location: CLLocation) {
         let regionMaxVisiting = 20.0
         var regionsToDelete: [String] = []
         
         for regionIdentifier in monitoredRegions.keys {
             if Date().timeIntervalSince(monitoredRegions[regionIdentifier]!) > regionMaxVisiting {
-                let alert = UIAlertController(title: "Yay!",
-                                              message: "Thanks for visiting",
-                    preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
                 regionsToDelete.append(regionIdentifier)
             }
         }
         for regionIdentifier in regionsToDelete {
             monitoredRegions.removeValue(forKey: regionIdentifier)
         }
+    }
+    
+    // MARK: Actions
+    @IBAction func backButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func toCurrentUserLocation(_ sender: Any) {
+        mapView.zoomToUserLocation()
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .follow
     }
 }
 

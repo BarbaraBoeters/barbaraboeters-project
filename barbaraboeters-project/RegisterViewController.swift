@@ -28,19 +28,20 @@ class RegisterViewController: UIViewController {
                 self.performSegue(withIdentifier: self.loginToList, sender: nil)
             }
         }
-        ref = FIRDatabase.database().reference()
     }
     
-    // MARK: Actions
+    // MARK: Actions to Login or Signup in Firebase
     @IBAction func signUpDidTouch(_ sender: Any) {
         if textFieldEmail.text != "" && textFieldPassword.text != "" {
             FIRAuth.auth()!.createUser(withEmail: textFieldEmail.text!, password: textFieldPassword.text!) { user, error in
                 if error == nil {
                     FIRAuth.auth()!.signIn(withEmail: self.textFieldEmail.text!, password: self.textFieldPassword.text!)
+                } else {
+                    self.errorAlert(title: "Error", text: "You entered an e-mail that already exists")
                 }
             }
         } else {
-            errorAlert(title: "Error", text: "You didn't enter a valid e-mail and/or password")
+            errorAlert(title: "Error", text: "Please enter a valid e-mail and/or password")
         }
     }
 

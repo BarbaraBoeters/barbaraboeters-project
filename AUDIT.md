@@ -11,6 +11,6 @@
     - GeoViewController.updateRegionsWithLocation(CLLocation)
     - GeoViewController.viewDidAppear(Bool)
 - Write Clean Code
-    - AppDelegate.swift
-    - AppDelegate.swift
+    - AppDelegate.swift x
+    - AppDelegate.swift x
 ![alt tag](https://github.com/barbaraboeters/barbaraboeters-project/blob/master/doc/BetterCodeHub.png)
