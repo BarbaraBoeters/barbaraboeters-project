@@ -69,7 +69,6 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="logInDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IBt-3q-4Z8"/>
-                                            <action selector="signUpDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g72-jB-fXr"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nsi-xI-Yjf">
@@ -645,7 +644,7 @@
         <image name="location" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aZf-Af-qQt"/>
+        <segue reference="UD9-jR-TQG"/>
         <segue reference="PxO-Zf-aUu"/>
     </inferredMetricsTieBreakers>
 </document>

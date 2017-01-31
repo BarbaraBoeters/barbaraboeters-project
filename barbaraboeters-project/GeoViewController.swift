@@ -170,7 +170,10 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             for item in snapshot.children {
                 self.currentU = (FIRAuth.auth()!.currentUser?.uid)!
                 let plantItem = Plant(snapshot: item as! FIRDataSnapshot)
-                self.plants.append(plantItem)
+                let plantUid = plantItem.uid
+                if plantUid == self.currentU {
+                    self.plants.append(plantItem)
+                }
             }
             self.checkIntervalPlants()
         })

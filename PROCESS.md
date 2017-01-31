@@ -94,10 +94,12 @@
 
 ## 31 January
 - Decided i don't need the completed toggle function so decided to delete the code
-- Need to do error handling today
-- Need to work on better code quality for Better Code Hub. 
+- Need to do error handling today -> mostly done
+- Worked on better code quality for Better Code Hub. 
 
 ## 1 February
 - Implement the photo function in Firebase Storage
-- Make sure it only gives notifications for the current user plants within that geofence. 
+- Make sure it only gives notifications for the current user plants within that geofence. Update: fixed on 31th of january
+-
+- 
 
