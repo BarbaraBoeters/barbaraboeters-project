@@ -221,20 +221,7 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                       message: text,
                                       preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: { action in
-            for plant in self.waterPlants {
-                let post: [String: Any] = [
-                    "completed" : plant.completed,
-                    "info" : plant.info,
-                    "interval" : plant.interval,
-                    "lastUpdated": Date().timeIntervalSince1970,
-                    "latitude" : plant.latitude,
-                    "longitude" : plant.longitude,
-                    "name" : plant.name,
-                    "uid" : plant.uid
-                ]
-                let childUpdate = [ "\(plant.key)": post ]
-                self.ref.updateChildValues(childUpdate)
-            }
+            self.postPlant()
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -245,6 +232,23 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                       preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func postPlant() {
+        for plant in self.waterPlants {
+            let post: [String: Any] = [
+                "completed" : plant.completed,
+                "info" : plant.info,
+                "interval" : plant.interval,
+                "lastUpdated": Date().timeIntervalSince1970,
+                "latitude" : plant.latitude,
+                "longitude" : plant.longitude,
+                "name" : plant.name,
+                "uid" : plant.uid
+            ]
+            let childUpdate = [ "\(plant.key)": post ]
+            self.ref.updateChildValues(childUpdate)
+        }
     }
 }
 

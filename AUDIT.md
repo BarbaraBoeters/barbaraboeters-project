@@ -5,13 +5,14 @@
     - Plant.init(String,String,Bool,String,Int,String,Double,Double,Double)
 - Write Short Units of Code
     - MyGardenViewController.viewDidLoad() -> functie maken van firebase checks -> done
-    - PlantLocationViewController.searchButton(Any) -> struct/object maken
+    - PlantLocationViewController.searchButton(Any) -> struct/object maken -> tried but couldnt make it work
     - GeoViewController.getLocations(@escapinggetLocationsComplete)
     - AddPlantViewController.addPlant(Any)
     - GeoViewController.viewDidLoad()
-    - GeoViewController.setupData(Double,Double,String)
-    - GeoViewController.updateRegionsWithLocation(CLLocation)
-    - GeoViewController.viewDidAppear(Bool) -> made a alert function 
+    - GeoViewController.setupData(Double,Double,String) 
+    - GeoViewController.plantAlert(String,String) -> try to put the post in another function
+    - GeoViewController.updateRegionsWithLocation(CLLocation) -> probably done? dont remember fixing
+    - GeoViewController.viewDidAppear(Bool) -> made a alert function -> done
     - GeoViewController.showWaterAlert() -> put the alert in another function -> done
     - GeoViewController.checkIntervalPlants() -> put part of the function in another function -> done
 - Write Clean Code
