@@ -12,6 +12,7 @@ The plants are saved into the Firebase Realtime Database with also a photo into 
 
 
 ### Classes
+The app consists of five controllers. In the first controller (RegisterViewController.swift) you can log in/sign up which uses Firebase to create the users and to log the users in. The second controller (MyGardenViewController) shows a list of the plants you saved in Firebase. It uses the PlantCell.swift to display the different plants in the tableview. The third controller(AddPlantViewController) allows the user to add a plant giving it a name, extra information, an interval of days when to give water, a photo. The location can be confirmed in the next controller(PlantViewController) in which you can either use your current location, or a searched location. Back in the controller where your plants are being displayed in the tableview, you can click on the top of the controller which will show you the last controller (GeoViewController). In this controller you will see all your plants on the map, with the geofences in red. In this controller you will get notification when you are near a plant and if it needs water. 
 
 ### RegisterViewController.swift
 #### Data
