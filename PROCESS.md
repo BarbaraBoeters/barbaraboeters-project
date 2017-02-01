@@ -98,7 +98,7 @@
 - Worked on better code quality for Better Code Hub. 
 
 ## 1 February
-- Implement the photo function in Firebase Storage
+- Implement the photo function in Firebase Storage -> uploading done, still have to do downloading
 - Make sure it only gives notifications for the current user plants within that geofence. Update: fixed on 31th of january
 -
 - 

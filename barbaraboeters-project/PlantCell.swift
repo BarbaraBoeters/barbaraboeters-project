@@ -20,7 +20,7 @@ class PlantCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        plantImage.image = UIImage(named: "happyyellowflower.png")
+        // plantImage.image = UIImage(named: "happyyellowflower.png")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -21,6 +21,8 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
     let currentUser = FIRDatabase.database().reference(withPath: "users").child((FIRAuth.auth()?.currentUser)!.uid)
     var currentU = ""
     var storageRef: FIRStorageReference!
+
+    
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -39,6 +41,7 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             currentUserRef.onDisconnectRemoveValue()
         }
         retrieveDataFirebase()
+        configureStorage()
     }
     
     // MARK: Firebase Data Retrieval Function
@@ -85,6 +88,11 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
         cell.plantName?.text = plantItem.name
         cell.plantInfo?.text = plantItem.info
         cell.plantDaysLeft?.text = Int(plantItem.interval).description
+        //cell.imageView?.image = UIImage(names: "")
+        
+        if let profileImageUrl = plantItem.imageUrl {
+            cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
+        }
         return cell
     }
     
