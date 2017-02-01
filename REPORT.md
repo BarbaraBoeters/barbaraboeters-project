@@ -12,6 +12,8 @@ The plants are saved into the Firebase Realtime Database with also a photo into 
 
 ### Model
 #### Plant
+This object is quite large because of the info of the plant itself, the location and the checking of the interval. It is used to upload the different plants, and to download the plants onto the tableview or on the map. 
+
 | Plant         | Values        |
 | ------------- |:-------------:|
 | key      | String |
@@ -27,14 +29,17 @@ The plants are saved into the Firebase Realtime Database with also a photo into 
 | imageUrl | String |
 
 #### User
+This object is used to log in, sign up or log out of Firebase. It was also used to get the right plant objects from the current user instead of all the plants in the database. 
+
 | User         | Values        |
 | ------------- |:-------------:|
 | uid | String |
 | e-mail | String |
 
 ### View
-#### PlantCell
-#### RoundedImageView
+This project mainly uses the storyboard, but also has the following custom views which are used to populate the tableview and to create round photos:
+- PlantCell
+- RoundedImageView
 
 ### Controller
 The app consists of five controllers. In the first controller (RegisterViewController.swift) you can log in/sign up which uses Firebase to create the users and to log the users in. The second controller (MyGardenViewController) shows a list of the plants you saved in Firebase. It uses the PlantCell.swift to display the different plants in the tableview. The third controller(AddPlantViewController) allows the user to add a plant giving it a name, extra information, an interval of days when to give water, a photo. The location can be confirmed in the next controller(PlantViewController) in which you can either use your current location, or a searched location. Back in the controller where your plants are being displayed in the tableview, you can click on the top of the controller which will show you the last controller (GeoViewController). In this controller you will see all your plants on the map, with the geofences in red. In this controller you will get notification when you are near a plant and if it needs water. 
