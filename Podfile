@@ -12,5 +12,6 @@ target 'barbaraboeters-project' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'IQKeyboardManagerSwift'
+  pod 'Firebase/Storage'
 
 end

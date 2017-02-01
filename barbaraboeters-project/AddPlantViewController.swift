@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import CoreLocation
+import Photos
+import FirebaseStorage
 
 class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     
@@ -17,6 +19,12 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
     let locationManager = CLLocationManager()
 
     let ref = FIRDatabase.database().reference(withPath: "plants")
+    //private lazy var messageRef: FIRDatabaseReference = self.channelRef!.child("messages")
+    let storageRef = FIRStorage.storage().reference()
+    
+    //lazy var storageRef: FIRStorageReference = FIRStorage.storage().reference(forURL: "gs://barbaraboeters-project.appspot.com")
+    private let imageURLNotSetKey = "NOTSET"
+    var pickedImage: Data?
     
     //var location: Location!
     var user: User!
@@ -28,6 +36,8 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
     var latitude: Double?
     var longitude: Double?
     
+    var pickedImageData: Data?
+    
     // Mark: Outlets
     @IBOutlet weak var image: RoundedImageView!
     @IBOutlet weak var textFieldName: UITextField!
@@ -38,7 +48,10 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewDidLoad()
         
         imagePicker.delegate = self
-        self.image.reloadInputViews()
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = .photoLibrary
+        
+//        self.image.reloadInputViews()
         
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
@@ -52,8 +65,6 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
     
     // MARK: Actions
     @IBAction func addPhoto(_ sender: Any) {
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
     }
     
@@ -67,30 +78,62 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func addPlant(_ sender: Any) {
-        let user = FIRAuth.auth()?.currentUser
-        let userUid = user?.uid
-        if latitude != nil && longitude != nil {
-            if textFieldName.text != "" {
-                if turnedString != nil {
-                    let text = textFieldName.text!
-                    let plant = Plant(name: text,
-                                      uid: userUid!,
-                                      completed: false,
-                                      info: textFieldInfo.text!,
-                                      interval: turnedString!,
-                                      lastUpdated: Date().timeIntervalSince1970, // 0,
-                                      latitude: latitude!,
-                                      longitude: longitude!)
-                    let plantRef = self.ref.childByAutoId()
-                    plantRef.setValue(plant.toAnyObject())
-                } else {
-                    alertError(title: "Error", text: "Please select after how many days you want to be reminded")
+        
+        if let data = pickedImageData {
+            
+            let user = FIRAuth.auth()?.currentUser
+            let userUid = user?.uid
+            
+            let plantRef = self.ref.childByAutoId()
+            
+            storageRef.child("plants").child("/image_\(plantRef.key).jpg").put(data, metadata: nil, completion: { (metaData, error) in
+                
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
                 }
-            } else {
-                alertError(title: "Error", text: "You need to at least fill in the name of the plant")
-            }
+                
+                let urlString = metaData?.downloadURL()?.absoluteString
+                
+                if self.latitude != nil && self.longitude != nil {
+                    if self.textFieldName.text != "" {
+                        if self.turnedString != nil {
+                            let text = self.textFieldName.text!
+                            let plant = Plant(name: text,
+                                              uid: userUid!,
+                                              completed: false,
+                                              info: self.textFieldInfo.text!,
+                                              interval: self.turnedString!,
+                                              lastUpdated: Date().timeIntervalSince1970, // 0,
+                                latitude: self.latitude!,
+                                longitude: self.longitude!,
+                                imageUrl: urlString!)
+                            
+                            plantRef.setValue(plant.toAnyObject(), withCompletionBlock: { (error, reference) in
+                                
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                    return
+                                }
+                                
+                                print(plant)
+                                
+                            })
+                            
+                        } else {
+                            self.alertError(title: "Error", text: "Please select after how many days you want to be reminded")
+                        }
+                    } else {
+                        self.alertError(title: "Error", text: "You need to at least fill in the name of the plant")
+                    }
+                } else {
+                    self.alertError(title: "Error", text: "Please set your location first")
+                }
+                
+            })
+            
         } else {
-            alertError(title: "Error", text: "Please set your location first")
+            print("Error")
         }
     }
     
@@ -106,15 +149,33 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
         self.present(alert, animated: true, completion: nil)
     }
     
-    // MARK: - UIImagePickerControllerDelegate Methods
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
-    {
-        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        image.image = selectedImage
-        dismiss(animated: true, completion: nil)
+}
+
+extension AddPlantViewController {
+
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : Any]) {
+        var selectedImageFromPicker: UIImage?
+        
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info["UIImagePickerControllerOriginaleImage"] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImage = selectedImageFromPicker {
+            self.image.image = selectedImage
+        }
+        
+        let compressData = UIImageJPEGRepresentation(selectedImageFromPicker!, 0.4)!
+        
+        pickedImageData = compressData
+        
+        imagePicker.dismiss(animated: true, completion:nil)
     }
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
+        imagePicker.dismiss(animated: true, completion:nil)
     }
 }
+

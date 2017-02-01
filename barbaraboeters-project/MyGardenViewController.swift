@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import Photos
+import FirebaseStorage
 
 class MyGardenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -18,6 +20,7 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
     let usersRef = FIRDatabase.database().reference(withPath: "users")
     let currentUser = FIRDatabase.database().reference(withPath: "users").child((FIRAuth.auth()?.currentUser)!.uid)
     var currentU = ""
+    var storageRef: FIRStorageReference!
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -64,6 +67,11 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             print("Error signing out: %@", signOutError)
         }
         dismiss(animated: true, completion: nil)
+    }
+    
+    func configureStorage() {
+        let storageUrl = FIRApp.defaultApp()?.options.storageBucket
+        storageRef = FIRStorage.storage().reference(forURL: "gs://barbaraboeters-project.appspot.com")
     }
     
     // MARK: Tableview Functions

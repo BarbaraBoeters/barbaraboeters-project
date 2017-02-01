@@ -78,7 +78,8 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                           key: rest.key,
                                           lastUpdated: dict["lastUpdated"] as! Double,
                                           latitude: dict["latitude"] as! Double,
-                                          longitude: dict["longitude"] as! Double)
+                                          longitude: dict["longitude"] as! Double,
+                                          imageUrl: dict["imageUrl"] as! String)
                         self.currentU = (FIRAuth.auth()!.currentUser?.uid)!
                         
                         let plantUid = plant.uid
