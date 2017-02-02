@@ -1,8 +1,7 @@
 # Plantastic
 <img src="https://github.com/barbaraboeters/barbaraboeters-project/blob/master/doc/Afbeelding4.png" width="200px" height="200px" />
 
-Programming Project
-Barbara Boeters - 10774513
+## Programming Project - Barbara Boeters - 10774513
 
 ## Global Summary
 Plantastic is a reminder app which helps you remember when to water your plants. Notifications are given when the user is close by a saved plant in need of water. 
