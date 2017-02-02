@@ -2,6 +2,11 @@
 //  AddPlantViewController.swift
 //  barbaraboeters-project
 //
+//  In this viewcontroller the user can add a photo from the photolibrary, a name, extra info, an interval and 
+//  the location (this last one will open up a new viewcontroller in which you can choose your location). The 
+//  information is uploaded to Firebase Database (name, info, interval and location) and the Firebase Storage
+//  (photo).
+//
 //  Created by Barbara Boeters on 12-01-17.
 //  Copyright © 2017 Barbara Boeters. All rights reserved.
 //

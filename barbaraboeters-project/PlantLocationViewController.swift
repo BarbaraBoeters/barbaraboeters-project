@@ -2,6 +2,10 @@
 //  PlantLocationViewController.swift
 //  barbaraboeters-project
 //
+//  In this view the user can choose a location by using his or her current location, or 
+//  searching for one by using the searchbar. The coordinates of the location are being saved
+//  in the AddPlantViewController by using a segue.
+//
 //  Created by Barbara Boeters on 23-01-17.
 //  Copyright © 2017 Barbara Boeters. All rights reserved.
 //

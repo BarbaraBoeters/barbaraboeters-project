@@ -11,22 +11,17 @@
 		1A2320761E2CFCE50025153D /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2320751E2CFCE50025153D /* Plant.swift */; };
 		1A28B90F1E2F8245007585CA /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A28B90E1E2F8245007585CA /* RoundedImageView.swift */; };
 		1A3100341E4355E10072B08C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A3100331E4355E10072B08C /* Assets.xcassets */; };
-		1A61A7C11E427445007C916A /* REPORT.md in Sources */ = {isa = PBXBuildFile; fileRef = 1A61A7C01E427445007C916A /* REPORT.md */; };
 		1A7F1ACC1E3641A600561ED5 /* PlantLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1ACB1E3641A600561ED5 /* PlantLocationViewController.swift */; };
 		1A9EA5B41E241620008A8CF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */; };
 		1A9EA5B91E241620008A8CF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9EA5B71E241620008A8CF9 /* Main.storyboard */; };
 		1A9EA5BE1E241620008A8CF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9EA5BC1E241620008A8CF9 /* LaunchScreen.storyboard */; };
-		1A9EA5C61E2416C7008A8CF9 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EA5C51E2416C7008A8CF9 /* README.md */; };
 		1AABE1B31E3766B4000D8995 /* GeoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AABE1B21E3766B4000D8995 /* GeoViewController.swift */; };
 		1AAE1C7A1E27C5A3009160AC /* PlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAE1C791E27C5A3009160AC /* PlantCell.swift */; };
 		1ABA724F1E3F52CF00E59761 /* default.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA724E1E3F52CF00E59761 /* default.gpx */; };
-		1AC802101E2660C5002ACAFC /* DESIGN.md in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8020F1E2660C4002ACAFC /* DESIGN.md */; };
 		1AC802121E2669C7002ACAFC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC802111E2669C7002ACAFC /* RegisterViewController.swift */; };
 		1AC8021A1E2790A7002ACAFC /* AddPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */; };
 		1AC8021C1E279111002ACAFC /* MyGardenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8021B1E279111002ACAFC /* MyGardenViewController.swift */; };
-		1AC8021E1E279EDD002ACAFC /* PROCESS.md in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8021D1E279EDD002ACAFC /* PROCESS.md */; };
 		1AC802211E27B766002ACAFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AC802201E27B766002ACAFC /* GoogleService-Info.plist */; };
-		1ADF2D5C1E3B55F4009DE7A0 /* AUDIT.md in Sources */ = {isa = PBXBuildFile; fileRef = 1ADF2D5B1E3B55F4009DE7A0 /* AUDIT.md */; };
 		9492E5A62C2468D75906C500 /* Pods_barbaraboeters_project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3008EAC4F7120F32D383B14E /* Pods_barbaraboeters_project.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,26 +30,21 @@
 		1A2320751E2CFCE50025153D /* Plant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
 		1A28B90E1E2F8245007585CA /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		1A3100331E4355E10072B08C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1A61A7C01E427445007C916A /* REPORT.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = REPORT.md; sourceTree = "<group>"; };
 		1A7F1ACB1E3641A600561ED5 /* PlantLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantLocationViewController.swift; sourceTree = "<group>"; };
 		1A9EA5B01E241620008A8CF9 /* barbaraboeters-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "barbaraboeters-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A9EA5B81E241620008A8CF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1A9EA5BD1E241620008A8CF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A9EA5BF1E241620008A8CF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A9EA5C51E2416C7008A8CF9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1AABE1B01E375FF2000D8995 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1AABE1B21E3766B4000D8995 /* GeoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoViewController.swift; sourceTree = "<group>"; };
 		1AAE1C791E27C5A3009160AC /* PlantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantCell.swift; sourceTree = "<group>"; };
 		1AAE1C7B1E2CCCD5009160AC /* barbaraboeters-project.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "barbaraboeters-project.entitlements"; sourceTree = "<group>"; };
 		1ABA724E1E3F52CF00E59761 /* default.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = default.gpx; sourceTree = "<group>"; };
-		1AC8020F1E2660C4002ACAFC /* DESIGN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DESIGN.md; sourceTree = "<group>"; };
 		1AC802111E2669C7002ACAFC /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlantViewController.swift; sourceTree = "<group>"; };
 		1AC8021B1E279111002ACAFC /* MyGardenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGardenViewController.swift; sourceTree = "<group>"; };
-		1AC8021D1E279EDD002ACAFC /* PROCESS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = PROCESS.md; sourceTree = "<group>"; };
 		1AC802201E27B766002ACAFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		1ADF2D5B1E3B55F4009DE7A0 /* AUDIT.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = AUDIT.md; sourceTree = "<group>"; };
 		26F39D638DC3EABC1443229E /* Pods-barbaraboeters-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-barbaraboeters-project.release.xcconfig"; path = "Pods/Target Support Files/Pods-barbaraboeters-project/Pods-barbaraboeters-project.release.xcconfig"; sourceTree = "<group>"; };
 		3008EAC4F7120F32D383B14E /* Pods_barbaraboeters_project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_barbaraboeters_project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30AAF97CDD5277D475B1E7F /* Pods-barbaraboeters-project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-barbaraboeters-project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-barbaraboeters-project/Pods-barbaraboeters-project.debug.xcconfig"; sourceTree = "<group>"; };
@@ -93,11 +83,6 @@
 		1A9EA5A71E241620008A8CF9 = {
 			isa = PBXGroup;
 			children = (
-				1A9EA5C51E2416C7008A8CF9 /* README.md */,
-				1ADF2D5B1E3B55F4009DE7A0 /* AUDIT.md */,
-				1AC8021D1E279EDD002ACAFC /* PROCESS.md */,
-				1A61A7C01E427445007C916A /* REPORT.md */,
-				1AC8020F1E2660C4002ACAFC /* DESIGN.md */,
 				1A9EA5B21E241620008A8CF9 /* barbaraboeters-project */,
 				1A9EA5B11E241620008A8CF9 /* Products */,
 				F77BA2099989FEB053EE91AD /* Pods */,
@@ -298,17 +283,12 @@
 				1AABE1B31E3766B4000D8995 /* GeoViewController.swift in Sources */,
 				1AC8021C1E279111002ACAFC /* MyGardenViewController.swift in Sources */,
 				1AAE1C7A1E27C5A3009160AC /* PlantCell.swift in Sources */,
-				1A9EA5C61E2416C7008A8CF9 /* README.md in Sources */,
 				1AC8021A1E2790A7002ACAFC /* AddPlantViewController.swift in Sources */,
-				1AC8021E1E279EDD002ACAFC /* PROCESS.md in Sources */,
-				1ADF2D5C1E3B55F4009DE7A0 /* AUDIT.md in Sources */,
 				1A7F1ACC1E3641A600561ED5 /* PlantLocationViewController.swift in Sources */,
 				1A2320741E2CDED80025153D /* User.swift in Sources */,
 				1AC802121E2669C7002ACAFC /* RegisterViewController.swift in Sources */,
 				1A2320761E2CFCE50025153D /* Plant.swift in Sources */,
 				1A28B90F1E2F8245007585CA /* RoundedImageView.swift in Sources */,
-				1A61A7C11E427445007C916A /* REPORT.md in Sources */,
-				1AC802101E2660C5002ACAFC /* DESIGN.md in Sources */,
 				1A9EA5B41E241620008A8CF9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

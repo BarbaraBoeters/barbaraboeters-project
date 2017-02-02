@@ -66,21 +66,26 @@ This is the homepage of the app. In this view at first you will see an empty tab
 - tableview functions -> used to display the plants in a tableview.
 
 #### 3. AddPlantViewController.swift
-Uses Firebase to upload one plant with a location and a photo. 
+In this viewcontroller the user can add a photo from the photolibrary, a name, extra info, an interval and the location (this last one will open up a new viewcontroller in which you can choose your location). The information is uploaded to Firebase Database (name, info, interval and location) and the Firebase Storage(photo). In this viewcontroller you can also access your photolibrary by calling on the imagePickerController(). 
 
 #### Methods
-- addPhoto()
-- stepperAction()
-- addPlant()
-- onCancel()
-- alertError()
+- addPhoto() -> presents the image picker 
+- stepperAction() -> handles the stepper and only allows you to choose an interval between 1 and 30 with 1 step at a time. 
+- addPlant() -> -> quite a complex function which forces you to first choose your location. It pushes the information to Firebase Database and Storage
+- onCancel() -> cancels adding a plant and brings you back to MyGardenViewController
+- alertError() -> function that is called when there is an error
 
 Extention:
 - imagePickerController()
 - imagePickerControllerDidCancel()
 
 #### 4. PlantLocationViewController.swift
-#### Data
+This viewcontroller will show a map and the current location of the user. There are two options of saving a location. Either the user chooses the button that saves the current location, or the user uses the searchbar to find a custom location on the map. The current location can be saved by using the 'Use my location' button. The custom location can be saved by using the 'done' button. 
+
+
+//  In this view the user can choose a location by using his or her current location, or 
+//  searching for one by using the searchbar. The coordinates of the location are being saved
+//  in the AddPlantViewController by using a segue.
 
 #### Methods
 - onCancel()
