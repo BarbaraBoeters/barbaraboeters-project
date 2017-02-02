@@ -78,6 +78,7 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func addPhoto(_ sender: Any) {
         present(imagePicker, animated: true, completion: nil)
     }
+    
     // Source: https://www.ioscreator.com/tutorials/uistepper-tutorial-ios8-swift
     @IBAction func stepperAction(_ sender: UIStepper) {
         labelStepper.text = Int(sender.value).description

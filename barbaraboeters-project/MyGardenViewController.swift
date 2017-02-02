@@ -70,7 +70,7 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
         do {
             try firebaseAuth?.signOut()
         } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
+            errorMessage(title: "Error", text: "Error signing out: \(signOutError)")
         }
         dismiss(animated: true, completion: nil)
     }
@@ -91,7 +91,7 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
         let url = NSURL(string: profileImageUrl)
         URLSession.shared.dataTask(with: url! as URL, completionHandler: { (data, response, error) in
             if error != nil {
-                print(error!)
+                self.errorMessage(title: "Error", text: "Error while getting the data")
                 return
             }
             DispatchQueue.main.async(execute: {
@@ -111,6 +111,14 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             let plantItem = plants[indexPath.row]
             plantItem.ref?.removeValue()
         }
+    }
+    
+    func errorMessage(title: String, text: String) {
+        let alert = UIAlertController(title: title,
+                                      message: text,
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

@@ -131,15 +131,25 @@ I used Firebase Storage for uploading and downloading photos that are connected 
 
 **Geofencing**
 
-As this app is not really a 'new' idea, I decided (together with my teachers) to add Geofencing to my project. The main challenge was to make it work on the background and to combine this with checking if the water needed water. The initial [tutorial](https://www.raywenderlich.com/136165/core-location-geofencing-tutorial) was so full of code that I couldn't make sense of it. Though in this tutorial there was the option for background checking, I decided after a long struggle with a [tutorial](https://www.appcoda.com/geo-targeting-ios/) a fellow student recommended. This tutorial did explain quite well how to get the geofencing working, but failed to explain how to keep it working on the background. I tried to go back to the first tutorial but that seemed too big of an effort for the time left. Together with my teacher we decided for now it would be OK to just have the geofencing working in the GeoViewController. 
+As this app is not really a 'new' idea, I decided (together with my teachers) to add Geofencing to my project. The main challenge was to make it work on the background and to combine this with checking if the water needed water. The initial [tutorial](https://www.raywenderlich.com/136165/core-location-geofencing-tutorial) had too much code for me to be able to understand. Though in this tutorial there was the option for background checking, I decided after a long struggle with a [tutorial](https://www.appcoda.com/geo-targeting-ios/) a fellow student recommended. This tutorial did explain quite well how to get the geofencing working, but failed to explain how to keep it working on the background. I tried to go back to the first tutorial but that seemed too big of an effort for the time left. Together with my teacher we decided for now it would be OK to just have the geofencing working in the GeoViewController. 
 
 **Notifications**
 
 Next to checking of geofences in the background, I also wanted to implement background notifications. Notifications within one viewcontroller is easily achieved, but it already seems to become more difficult if you want it throughout the app because it also relies on implementing geofence checks on the background.
 
+## Changes to DESIGN.md 
+In the DESIGN document I stated what the minimum requirements for the product to be viable. The user can register and log in. Plants can be added with a photo, frequency, name and location. The user gets an alert only if the plant in the neighbourhood needs water (though only in one viewcontroller). Last but not least: there is a map with all the plants and their radius in red. 
+The goal of my initial proposal was to design an app that is simplistic in its use. The dream was to create an app with only one view. In my DESIGN.md I initially thought I would have three viewcontrollers(RegisterViewController, MyGardenViewController & AddPlantViewController). I did keep these viewcontrollers as is, though I changed some minor things to the viewcontrollers themselves and added more viewcontrollers for the maps. 
+RegisterViewController is basically exactly the same as I imagined it in the DESIGN document. It still consists of one view with two text fields and two buttons which you use to either log in or register a user. 
+MyGardenViewController still consists of a tableview with all the plants of the user. In the DESIGN document I wanted (if time allowed it) to add a homescreen which would display the next plant in need of water and a sidebar with all the plants of the current user. Unfortunately I didn't have time to implement this.
+AddPlantViewController is almost the same as I explained in the DESIGN document. I implemented a struct in which the name, frequency and extra info were saved, but added some more values (completed, uid, lastUpdated, latitude and longitude). I was able to get Firebase Storage working so I could implement the addPhoto function. The biggest change is adding the location to the plant. You can choose the location by clicking on 'Set my Location'. This brings the user to a new viewcontroller (PlantLocationViewController) in which you can either choose your current location, or search for a location. 
+
 ## Decisions
+By limiting Geofencing and background notifications to only in-app in-viewcontroller implementation, the user doesn't get overloaded with notifications which could be irritating so the user '
 
 Process book: 
+[Process](https://github.com/BarbaraBoeters/barbaraboeters-project/blob/master/PROCESS.md)
+
 
 Defend your decisions by writing an argument of a most a single paragraph. 
 Why was it good to do it different than you thought before? Are there trade-offs for your current solution? 
@@ -150,7 +160,9 @@ If there was more time, the following functions would have been implemented.
 - Background notification
 - Sharing of plants (creation of groups in Firebase)
 - Further perfectioning of the maps
-- Implementing a Countdown
+- Implementing a Countdown for every plant
+- Homescreen with a photo and a countdown for the next plant that needs water
+- Create a search function by using an API or use of webscraping
 
 ## Bugs
 - Location services sometimes become unavailable during simulation. The solution is to delete the app from the simulator and to run it again. 

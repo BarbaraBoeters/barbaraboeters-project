@@ -35,7 +35,6 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
     var pinAnnotationView: MKPinAnnotationView!
     
     let locationManager = CLLocationManager()
-    
     var latitude: Double?
     var longitude: Double?
     var chosenLatitude: Double?
