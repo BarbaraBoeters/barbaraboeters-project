@@ -10,7 +10,6 @@
 		1A2320741E2CDED80025153D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2320731E2CDED80025153D /* User.swift */; };
 		1A2320761E2CFCE50025153D /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2320751E2CFCE50025153D /* Plant.swift */; };
 		1A28B90F1E2F8245007585CA /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A28B90E1E2F8245007585CA /* RoundedImageView.swift */; };
-		1A3100341E4355E10072B08C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A3100331E4355E10072B08C /* Assets.xcassets */; };
 		1A7F1ACC1E3641A600561ED5 /* PlantLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1ACB1E3641A600561ED5 /* PlantLocationViewController.swift */; };
 		1A9EA5B41E241620008A8CF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */; };
 		1A9EA5B91E241620008A8CF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9EA5B71E241620008A8CF9 /* Main.storyboard */; };
@@ -22,6 +21,7 @@
 		1AC8021A1E2790A7002ACAFC /* AddPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */; };
 		1AC8021C1E279111002ACAFC /* MyGardenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8021B1E279111002ACAFC /* MyGardenViewController.swift */; };
 		1AC802211E27B766002ACAFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AC802201E27B766002ACAFC /* GoogleService-Info.plist */; };
+		1AE4D4C51E43DB47005A4884 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AE4D4C41E43DB47005A4884 /* Assets.xcassets */; };
 		9492E5A62C2468D75906C500 /* Pods_barbaraboeters_project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3008EAC4F7120F32D383B14E /* Pods_barbaraboeters_project.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,7 +29,6 @@
 		1A2320731E2CDED80025153D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1A2320751E2CFCE50025153D /* Plant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
 		1A28B90E1E2F8245007585CA /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
-		1A3100331E4355E10072B08C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A7F1ACB1E3641A600561ED5 /* PlantLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantLocationViewController.swift; sourceTree = "<group>"; };
 		1A9EA5B01E241620008A8CF9 /* barbaraboeters-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "barbaraboeters-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +44,7 @@
 		1AC802191E2790A7002ACAFC /* AddPlantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlantViewController.swift; sourceTree = "<group>"; };
 		1AC8021B1E279111002ACAFC /* MyGardenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGardenViewController.swift; sourceTree = "<group>"; };
 		1AC802201E27B766002ACAFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1AE4D4C41E43DB47005A4884 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26F39D638DC3EABC1443229E /* Pods-barbaraboeters-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-barbaraboeters-project.release.xcconfig"; path = "Pods/Target Support Files/Pods-barbaraboeters-project/Pods-barbaraboeters-project.release.xcconfig"; sourceTree = "<group>"; };
 		3008EAC4F7120F32D383B14E /* Pods_barbaraboeters_project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_barbaraboeters_project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30AAF97CDD5277D475B1E7F /* Pods-barbaraboeters-project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-barbaraboeters-project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-barbaraboeters-project/Pods-barbaraboeters-project.debug.xcconfig"; sourceTree = "<group>"; };
@@ -108,8 +108,8 @@
 				1AC8021F1E27B4C4002ACAFC /* Controllers */,
 				1A9EA5B71E241620008A8CF9 /* Main.storyboard */,
 				1A9EA5BC1E241620008A8CF9 /* LaunchScreen.storyboard */,
+				1AE4D4C41E43DB47005A4884 /* Assets.xcassets */,
 				1AC802201E27B766002ACAFC /* GoogleService-Info.plist */,
-				1A3100331E4355E10072B08C /* Assets.xcassets */,
 				1ABA724E1E3F52CF00E59761 /* default.gpx */,
 				1A9EA5BF1E241620008A8CF9 /* Info.plist */,
 			);
@@ -221,7 +221,7 @@
 				1AC802211E27B766002ACAFC /* GoogleService-Info.plist in Resources */,
 				1A9EA5B91E241620008A8CF9 /* Main.storyboard in Resources */,
 				1ABA724F1E3F52CF00E59761 /* default.gpx in Resources */,
-				1A3100341E4355E10072B08C /* Assets.xcassets in Resources */,
+				1AE4D4C51E43DB47005A4884 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
