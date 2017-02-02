@@ -7,7 +7,7 @@
 Plantastic is a reminder app which helps you remember when to water your plants. Notifications are given when the user is close by a saved plant in need of water. 
 
 ## Description
-For this project I created a reminder app that uses geofencing, Firebase and notifications. Existing plant-reminder apps lack in locationbased reminders. For example: when you get a notification while being somewhere else, you will most likely forget about it by the time you get home. Plantastic is an app that will offer the user a location based reminder. Instead of forgetting about giving your plants water because you get the notification on the wrong place, this app will only tell you when you are close by. 
+For this project I created a reminder app that uses geofencing, Firebase and notifications. Existing plant-reminder apps lack in locationbased reminders. For example: when you get a notification while being somewhere else, you will most likely forget about it by the time you get home. Plantastic is an app that will offer the user a location based reminder. Instead of forgetting to give your plants water because you got the notification on the wrong place, this app will only tell you when you are close by. 
 
 ## Components
 Register and logging in
