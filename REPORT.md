@@ -160,6 +160,10 @@ A last and minor decision was to choose to lock the portrait orientation. This d
 
 In an ideal world, I would have spent more time figuring out how to get the notifications and geofencing working on the background. With the background notifications and geofencing I believe that Plantastic would be a fantastic app to use on a daily basis.
 
+Other bugs I wanted to fix: 
+- Better errorhandling especially at the RegisterViewController. 
+- Figuring out the errors that were given back in the terminal 
+
 Please find more details in my [PROCESS](https://github.com/BarbaraBoeters/barbaraboeters-project/blob/master/PROCESS.md) book.
 
 ### Future Goals 
