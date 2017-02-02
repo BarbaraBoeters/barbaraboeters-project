@@ -23,7 +23,9 @@ For this project I created a reminder app that uses geofencing, Firebase and not
 - Mapkit
 
 ## Instructions
-This app requires CocoaPods and Firebase. Install or simulate using Xcode. To simulate the functionality: (1) insert '0' at the interval in AddPlantViewController, (2) simulate a location (for example: London) and (3) add the plant, (4) go to GeoViewController (Map) and (5) simulate going to another place and back again. 
+This app requires CocoaPods and Firebase. Install or simulate using Xcode. To simulate the functionality: (1) insert '0' at the interval in AddPlantViewController, (2) simulate a location (for example: London) and (3) add the plant, (4) go to GeoViewController (Map) and (5) simulate going to another place and back again.
+Note: The search function to choose your location doesn't seem to work well in the GeoViewController when running on the simulator. On the iPhone is does work. 
+
 
 #### External Sources:
 Tutorials & Fora: 
