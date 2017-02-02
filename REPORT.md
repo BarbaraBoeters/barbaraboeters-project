@@ -124,15 +124,42 @@ In AppDelegate the connections to and/or frameworks of Firebase, CoreLocation an
 
 ## Changes and Challenges
 
+### Challenges
+**Firebase** 
+One of the biggest challenges was to use Firebase Database and Firebase Storage. Most of the code came fom a [tutorial](https://www.raywenderlich.com/139322/firebase-tutorial-getting-started-2) and I only understood bits of it. To be able to save or update objects into Firebase Database was a challenge that was met with a lot of errors. For example: when one or multiple values needed to be updated, I decided to completely overwrite the object. There is a way to actually just update a certain value, but I wasn't able to make it work.
+I used Firebase Storage for uploading and downloading photos that are connected to certain plants. This was a last minute implementation because I kept on leaving it to the end, because it didn't seem that important. But at the end I looked at my product and I thought it was something that I really wanted to learn, so I decided to implement it in the last two days of the project. I spent a long time figuring out how to upload the photo's, but after talking with other students I coudl figure it out. The downloading and presenting the photo's in the tableview I completely implemented on my own.
+
+**Geofencing**
+As this app is not really a 'new' idea, I decided (together with my teachers) to add Geofencing to my project. The main challenge was to make it work on the background and to combine this with checking if the water needed water. The initial [tutorial](https://www.raywenderlich.com/136165/core-location-geofencing-tutorial) was so full of code that I couldn't make sense of it. Though in this tutorial there was the option for background checking, I decided after a long struggle with a [tutorial](https://www.appcoda.com/geo-targeting-ios/) a fellow student recommended. This tutorial did explain quite well how to get the geofencing working, but failed to explain how to keep it working on the background. I tried to go back to the first tutorial but that seemed too big of an effort for the time left. Together with my teacher we decided for now it would be OK to just have the geofencing working in the GeoViewController. 
+
+### Changes
+**Background Notifications**
+
+**Background Geofencing**
+
+
+Clearly describe challenges that your have met during development. 
+Document all important changes that your have made with regard to your design document (from the PROCESS.md). 
+Here, we can see how much you have learned in the past month.
+
+
 ## Decisions
+
+Process book: 
+
+Defend your decisions by writing an argument of a most a single paragraph. 
+Why was it good to do it different than you thought before? Are there trade-offs for your current solution? 
+In an ideal world, given much more time, would you choose another solution?
 
 ### Future Goals
 If there was more time, the following functions would have been implemented. 
 - Background notification
 - Sharing of plants (creation of groups in Firebase)
 - Further perfectioning of the maps
+- Implementing a Countdown
 
 ## Bugs
+- Location services sometimes become unavailable during simulation. The solution is to delete the app from the simulator and to run it again. 
 
 ## Credits
 Frameworks:
@@ -140,4 +167,6 @@ Frameworks:
 - CoreLocation
 - Mapkit
 - IQKeyboardManagerSwift
-- https://makeappicon.com
+
+Icon maker: 
+- [Make App Icon](https://makeappicon.com)

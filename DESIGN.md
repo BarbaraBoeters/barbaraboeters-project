@@ -3,7 +3,7 @@
 ### Programmeerproject 
 
 ## Minimum Viable Product
-1. De gebruiker kan registreren /
+1. De gebruiker kan registreren
 2. Er kunnen planten toegevoegd worden met foto, frequentie, naam en locatie
 3. De gebruiker krijgt pas een alert wanneer een plant water nodig heeft en hij/zij op de locatie is van de plant
 4. Kaart met alle planten en hun radius/geofence
