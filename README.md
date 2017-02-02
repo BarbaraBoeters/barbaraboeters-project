@@ -1,6 +1,7 @@
 # Plantastic
 Barbara Boeters - 10774513
 Programmeerproject
+![alt tag](https://github.com/barbaraboeters-project/blob/master/doc/iTunesArtwork@1x.png)
 
 ## Minimum Viable Product
 1. De gebruiker kan registreren /
