@@ -2,6 +2,10 @@
 //  RegisterViewController.swift
 //  barbaraboeters-project
 //
+//  The first viewcontroller in charge of logging in or signing up.
+//  Saves the userdata in Firebase.
+//  Use of alerts when the user didn't enter an email/password.
+//
 //  Created by Barbara Boeters on 11-01-17.
 //  Copyright © 2017 Barbara Boeters. All rights reserved.
 //

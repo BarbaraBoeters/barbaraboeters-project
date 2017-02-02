@@ -2,6 +2,10 @@
 //  MyGardenViewController.swift
 //  barbaraboeters-project
 //
+//  Displaying all the plants of the current user saved in Firebase. 
+//  Use of Firebase Storage to display the photo's
+//  Showing the name of the plant, extra info if entered, photo and the interval.
+//
 //  Created by Barbara Boeters on 12-01-17.
 //  Copyright © 2017 Barbara Boeters. All rights reserved.
 //
@@ -9,23 +13,19 @@
 import UIKit
 import Firebase
 import Photos
-import FirebaseStorage
 
 class MyGardenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: Properties
     var plants: [Plant] = []
     var user: User!
-    
-    var storage: FIRStorage!
-    var storageRef: FIRStorageReference!
+    var picArray = [UIImage]()
+
     let ref = FIRDatabase.database().reference(withPath: "plants")
     let usersRef = FIRDatabase.database().reference(withPath: "users")
     let currentUser = FIRDatabase.database().reference(withPath: "users").child((FIRAuth.auth()?.currentUser)!.uid)
     var currentU = ""
     
-    
-    var picArray = [UIImage]()
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -44,18 +44,13 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             currentUserRef.onDisconnectRemoveValue()
         }
         retrieveDataFirebase()
-        configureStorage()
-    }
-    
-    func configureStorage() {
-        let storageUrl = FIRApp.defaultApp()?.options.storageBucket
-        storageRef = FIRStorage.storage().reference(forURL: "gs://barbaraboeters-project.appspot.com")
     }
     
     // MARK: Firebase Data Retrieval Function
     func retrieveDataFirebase() {
         ref.queryOrdered(byChild: "interval").observe(.value, with: { snapshot in
             var newItems: [Plant] = []
+            
             for item in snapshot.children {
                 let plantItem = Plant(snapshot: item as! FIRDataSnapshot)
                 self.currentU = (FIRAuth.auth()!.currentUser?.uid)!
@@ -117,7 +112,6 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             plantItem.ref?.removeValue()
         }
     }
-
 }
 
 
