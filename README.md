@@ -1,6 +1,6 @@
 # Plantastic
-![alt tag](https://github.com/barbaraboeters/barbaraboeters-project/doc/Schermafbeelding 2017-02-02 om 13.22.37.png)
-barbaraboeters-project/doc/Schermafbeelding 2017-02-02 om 13.22.37.png
+![alt tag](https://github.com/barbaraboeters/barbaraboeters-project/doc/Afbeelding4.png)
+
 Barbara Boeters - 10774513
 Programmeerproject
 

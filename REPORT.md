@@ -1,5 +1,5 @@
 # Plantastic
-![alt tag](https://github.com/barbaraboeters/barbaraboeters-project/blob/master/doc/iTunesArtwork@1x.png)
+![alt tag](https://github.com/barbaraboeters/barbaraboeters-project/doc/Afbeelding4.png)
 
 ## Short Overview
 Plantastic is an assistant helping you to remember when to water your plants. It notifies the user only when being near to the plant in question. 
