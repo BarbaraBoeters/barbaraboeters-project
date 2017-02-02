@@ -68,7 +68,7 @@ This is the homepage of the app. In this view at first you will see an empty tab
 #### 3. AddPlantViewController.swift
 In this viewcontroller the user can add a photo from the photolibrary, a name, extra info, an interval and the location (this last one will open up a new viewcontroller in which you can choose your location). The information is uploaded to Firebase Database (name, info, interval and location) and the Firebase Storage(photo). In this viewcontroller you can also access your photolibrary by calling on the imagePickerController(). 
 
-#### Methods
+##### Methods
 - addPhoto() -> presents the image picker 
 - stepperAction() -> handles the stepper and only allows you to choose an interval between 1 and 30 with 1 step at a time. 
 - addPlant() -> quite a complex function which forces you to first choose your location. It pushes the information to Firebase Database and Storage
