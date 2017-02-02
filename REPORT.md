@@ -24,7 +24,7 @@ This object is quite large because of the info of the plant itself, the location
 | info | String      |
 | uid | String |
 | interval | Int |
-| ref | FIRDatabaseReference? |
+| ref | FIRDatabaseReference |
 | completed | Bool |
 | lastUpdated | Double |
 | latitude | Double |
@@ -137,6 +137,9 @@ As this app is not really a 'new' idea, I decided (together with my teachers) to
 
 Next to checking of geofences in the background, I also wanted to implement background notifications. Notifications within one viewcontroller is easily achieved, but it already seems to become more difficult if you want it throughout the app because it also relies on implementing geofence checks on the background.
 
+## Better Code Hub 
+Please have a look at the [AUDIT](https://github.com/BarbaraBoeters/barbaraboeters-project/blob/master/AUDIT.md) report for more details. 
+
 ## Changes to DESIGN.md 
 In the DESIGN document I stated what the minimum requirements for the product to be viable. The user can register and log in. Plants can be added with a photo, frequency, name and location. The user gets an alert only if the plant in the neighbourhood needs water (though only in one viewcontroller). Last but not least: there is a map with all the plants and their radius in red. 
 
@@ -153,7 +156,7 @@ Initially I wanted to create an app in which you could just add plants and which
 One of the decisions I made, was choosing to only implement local notifications and local geofencing instead of keeping it running on the background. By limiting Geofencing and background notifications to only in-app in-viewcontroller implementation, the user doesn't get overloaded with notifications which could be so irritating that the user could potentially decide to deny notifications. At the other hand it is a function you actually should not miss with an app like this. A big part of the solution is missing if you don't get warned you when you need to water your plants because of your app being in the background. 
 In an ideal world, I would spend more time figuring out how to get the notifications and geofencing working on the background. I believe Plantastic would actually be a fantastic app to use on a daily basis.
 
-Please find more details my [PROCESS](https://github.com/BarbaraBoeters/barbaraboeters-project/blob/master/PROCESS.md) book.
+Please find more details in my [PROCESS](https://github.com/BarbaraBoeters/barbaraboeters-project/blob/master/PROCESS.md) book.
 
 ### Future Goals
 If there is more time, some of the following functions will be implemented. 

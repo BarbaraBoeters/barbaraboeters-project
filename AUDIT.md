@@ -1,8 +1,8 @@
 #Task List
 - Keep Unit Interfaces Small
     - GeoViewController.setupData(Double,Double,String) -> Tried to create a struct for coordinates but couldnt make it work. 
-    - MyGardenViewController.tableView(UITableView,UITableViewCellEditingStyle,IndexPath) -> its already short?
-    - Plant.init(String,String,Bool,String,Int,String,Double,Double,Double) -> will not change, except for deleting the completed bool because at the moment its not doing anything
+    - MyGardenViewController.tableView(UITableView,UITableViewCellEditingStyle,IndexPath) -> its already short? Could not figure out how to change this
+    - Plant.init(String,String,Bool,String,Int,String,Double,Double,Double) -> I will not change this, except for maybe deleting the completed bool because at the moment its not doing anything
 
 - Write Short Units of Code
     - MyGardenViewController.viewDidLoad() -> functie maken van firebase checks -> done

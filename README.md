@@ -1,8 +1,30 @@
 # Plantastic
 <img src="https://github.com/barbaraboeters/barbaraboeters-project/blob/master/doc/Afbeelding4.png" width="200px" height="200px" />
 
+Programming Project
 Barbara Boeters - 10774513
-Programmeerproject
+
+## Global Summary
+Plantastic is a reminder app which helps you remember when to water your plants. Notifications are given when the user is close by a saved plant in need of water. 
+
+## Description
+For this project I created a reminder app that uses geofencing, Firebase and notifications. Existing plant-reminder apps lack in locationbased reminders. For example: when you get a notification while being somewhere else, you will most likely forget about it by the time you get home. Plantastic is an app that will offer the user a location based reminder. Instead of forgetting about giving your plants water because you get the notification on the wrong place, this app will only tell you when you are close by. 
+
+## Components
+Register and logging in
+Adding plants with photo, location, interval of days, name and information
+Map view to choose or use current location
+Tableview to show plants 
+Map view to show plants and their geofences
+
+## Used Frameworks
+Firebase
+CoreLocation
+IQKeyboardManagerSwift
+Mapkit
+
+## Instructions
+This app requires CocoaPods and Firebase. Install or simulate using Xcode. To simulate the functionality: (1) insert '0' at the interval in AddPlantViewController, (2) simulate a location (for example: London) and (3) add the plant, (4) go to GeoViewController (Map) and (5) simulate going to another place and back again. 
 
 ## Minimum Viable Product
 1. De gebruiker kan registreren 
@@ -10,21 +32,38 @@ Programmeerproject
 3. De gebruiker krijgt pas een alert wanneer een plant water nodig heeft en hij/zij op de locatie is van de plant
 4. Kaart met alle planten en hun radius/geofence
 
-## Extra 
+### Extra 
 1. Delen met huisgenoten en rouleren van taak
 2. Zoekfunctie planten met behulp van een API of webscrape
 3. Homescherm maken met de eerstvolgende plant aan de beurt is
 4. Status maken van de plant
 5. Countdown bij elke plant
 
-## Purpose
-<p>Genoeg van stervende planten? Zie hier de oplossing voor een huis zonder sterfgevallen. Plantastic is een app die als geheugensteuntje fungeert wat betreft het water geven aan deze anders doodgaande groene huisgenoten. Plantastic zorgt ervoor dat jij niet vergeet je planten te wateren door een alert te geven op het moment wanneer jij thuis bent. Je kan je planten toevoegen met plantnaam, hoe vaak je water moet geven, en andere informatie (denk aan zon- of schaduwplant, koud of lauw water etc).</p>
-<p>Waar bestaat de basis app uit? Allereerst het beginscherm waar eveneens geregistreerd en ingelogd kan worden met behulp van Firebase (afbeelding 1). Vervolgens kom je op jouw persoonlijke pagina. Op deze pagina staat de foto van de eerstvolgende plant die aan de beurt is om water te krijgen (afbeelding 2). In het volgende scherm staat jouw persoonlijke lijst met planten (afbeelding 3). Aan deze lijst kan een plant worden toegevoegd die je een naam, frequentie en foto mee geeft. Ten slotte zal met gebruik van geofencing pop-up alerts verstuurd worden naar de gebruiker op het moment wanneer een van de planten water nodig heeft. Deze alerts kunnen worden weg geklikt hoewel ze blijven herhalen totdat de taak is uitgevoerd.</p>
-<p>Wanneer de basis app compleet en werkend is, zou ik de volgende features willen toepassen als daar tijd voor is. Als eerste zou ik een functie willen toevoegen waardoor je met meerdere huisgenoten de app kan delen. In plaats van één persoon die telkens water moet geven, wordt de taak afgewisseld tussen de huisgenoten. Ook zou het dan mogelijk moeten zijn om te zien wie er als laatste water heeft gegeven bij de desbetreffende plant op welke dag, zodat er niet dubbel water wordt gegeven. Daarna wil ik graag een countdown toevoegen. Deze komt te staan op de persoonlijke pagina waarop de foto staat van de eerstvolgende plant die aan de beurt is. Verder zou ik aan elke plant een status willen mee geven. Geef je altijd op tijd water? Dan heb je een ‘happy plant’. Als laatste zou het een uitdaging zijn om met behulp van een API of webscraping een zoekfunctie te implementeren die de informatie over de desbetreffende plant geeft. Helaas heb ik tot nu toe geen openbare API’s gevonden die over kamerplanten gaan.</p>
-<p>Mijn doel is om alles overzichtelijk in één view te plaatsen. Mocht dat niet lukken, dan wil ik graag ervoor zorgen dat het een makkelijk en snel begrijpbare app wordt zoals Snapchat. De lijst met planten zou ik graag willen maken zoals de Memories in Snapchat: als een soort swipe-up. Graag zou ik een app willen ontwikkelen die heel goed is in één ding: de gebruiker eraan herinneren wanneer de plantjes dorst hebben.</p>
+#### External Sources:
+Frameworks:
+- Firebase
+- CoreLocation
+- Mapkit
+- IQKeyboardManagerSwift
 
+Tutorials & Forum: 
+- https://www.appcoda.com/geo-targeting-ios/
+- http://stackoverflow.com/questions/25296691/get-users-current-location-coordinates
+- http://sweettutos.com/2015/04/24/swift-mapkit-tutorial-series-how-to-search-a-place-address-or-poi-in-the-map/
+- https://www.youtube.com/watch?v=GX4mcOOUrWQ
+- http://stackoverflow.com/questions/31038759/conditional-binding-if-let-error-initializer-for-conditional-binding-must-hav
+- https://firebase.google.com/docs/storage/ios/download-files
+- http://mrgott.com/swift-programing/32-firebase-storage-how-to-download-files-using-firebase-3-sdk-with-swift-3-in-xcode-8
+- https://www.ioscreator.com/tutorials/uistepper-tutorial-ios8-swift
+- http://stackoverflow.com/questions/31694635/convert-optional-string-to-int-in-swift
+- http://www.codingexplorer.com/choosing-images-with-uiimagepickercontroller-in-swift/
 
-## Copyright Statement
-
+Icon maker: 
+- [Make App Icon](https://makeappicon.com)
 
 [![BCH compliance](https://bettercodehub.com/edge/badge/BarbaraBoeters/barbaraboeters-project)](https://bettercodehub.com)
+
+
+
+The README.md should also acknowledge sources of external code, images and other materials that are in the repository but not created by yourself. Make sure that it is clear which directories are copyrighted by different creators.
+
