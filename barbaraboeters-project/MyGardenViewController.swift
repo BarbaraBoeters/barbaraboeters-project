@@ -68,10 +68,6 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             self.tableView.reloadData()
         })
     }
-
-    
-
-
     
     // MARK: Actions
     @IBAction func logOutDidTouch(_ sender: Any) {

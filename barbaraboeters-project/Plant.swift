@@ -4,7 +4,6 @@
 //
 //  Object which saves the plant item into Firebase.
 //
-//
 //  Created by Barbara Boeters on 16-01-17.
 //  Copyright © 2017 Barbara Boeters. All rights reserved.
 //

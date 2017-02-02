@@ -128,3 +128,4 @@ Frameworks:
 - CoreLocation
 - Mapkit
 - IQKeyboardManagerSwift
+- https://makeappicon.com

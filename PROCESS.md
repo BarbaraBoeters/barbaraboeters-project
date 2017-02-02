@@ -107,6 +107,6 @@
 - Finish all .md files. 
 - At every top of swift files write a little description
 - Ordening of code
-- State Restoration
-- License
+- State Restoration -> only going to do this if I have time left
+- License -> done
 
