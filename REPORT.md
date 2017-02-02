@@ -163,6 +163,7 @@ In an ideal world, I would have spent more time figuring out how to get the noti
 Other bugs I wanted to fix: 
 - Better errorhandling especially at the RegisterViewController. 
 - Figuring out the errors that were given back in the terminal 
+- State Restoration
 
 Please find more details in my [PROCESS](https://github.com/BarbaraBoeters/barbaraboeters-project/blob/master/PROCESS.md) book.
 
