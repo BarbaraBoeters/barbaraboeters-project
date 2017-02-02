@@ -131,7 +131,7 @@ I used Firebase Storage for uploading and downloading photos that are connected 
 
 **Geofencing**
 
-As this app was not really a 'new' idea, I decided (together with my teachers) to add a geofence function to my project. The main challenge was to get it to work on the background and to combine this with the checks if the water needed water. The initial [tutorial](https://www.raywenderlich.com/136165/core-location-geofencing-tutorial) had too much code for me to be able to understand. In this tutorial there was the option for background checking, but I decided to go with another [tutorial](https://www.appcoda.com/geo-targeting-ios/) that a fellow student recommended. This tutorial did explain quite well how to get the geofencing working, but failed to explain how to keep it working on the background. I tried to go back to the first tutorial but that seemed too big of an effort for the time left. Together with my teacher we decided that for now it would be OK to just have the geofencing working in the GeoViewController. 
+As this app was not really a 'new' idea, I decided (together with my teachers) to add a geofence function to my project. The main challenge was to get it to work on the background and to combine this with the checks if the water needed water. The initial [tutorial](https://www.raywenderlich.com/136165/core-location-geofencing-tutorial) had too much code for me to be able to understand. In this tutorial there was the option for background checking, but I decided to go with another [tutorial](https://www.appcoda.com/geo-targeting-ios/) that a fellow student recommended. This tutorial did explain quite well how to get the geofencing working, but failed to explain how to keep it working on the background. I tried to go back to the first tutorial but that seemed too big of an effort for the time left. Together with my teacher we decided that for now it would be OK to just have the geofencing working in the GeoViewController. Another problem with geofencing is that it cant follow more than 20 geofences at the same time. This would also be something worth looking at in the futuer. 
 
 **Notifications**
 
@@ -161,7 +161,7 @@ A last and minor decision was to choose to lock the portrait orientation. This d
 In an ideal world, I would have spent more time figuring out how to get the notifications and geofencing working on the background. With the background notifications and geofencing I believe that Plantastic would be a fantastic app to use on a daily basis.
 
 Other bugs I wanted to fix: 
-- Better errorhandling especially at the RegisterViewController. 
+- Better errorhandling especially at the RegisterViewController and AddPlantViewController 
 - Figuring out the errors that were given back in the terminal 
 - State Restoration
 
