@@ -72,7 +72,6 @@ In this viewcontroller the user can add a photo from the photolibrary, a name, e
 - addPhoto() -> presents the image picker 
 - stepperAction() -> handles the stepper and only allows you to choose an interval between 1 and 30 with 1 step at a time. 
 - addPlant() -> quite a complex function which forces you to first choose your location. It pushes the information to Firebase Database and Storage
-- onCancel() -> cancels adding a plant and brings you back to MyGardenViewController
 - alertError() -> function that is called when there is an error
 
 Extention:
