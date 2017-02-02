@@ -36,14 +36,23 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var textFieldName: UITextField!
     @IBOutlet weak var textFieldInfo: UITextField!
     @IBOutlet weak var labelStepper: UILabel!
+    @IBOutlet weak var addPhotoBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configurePicker()
+        configureLocationManager()
+        addPhotoBtn.isHidden = false
+    }
+    
+    // MARK: Configure functions
+    func configurePicker() {
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
-
+    }
+    
+    func configureLocationManager() {
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         
@@ -69,18 +78,18 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func addPlant(_ sender: Any) {
-        if let data = pickedImageData {
-            let user = FIRAuth.auth()?.currentUser
-            let userUid = user?.uid
-            let plantRef = self.ref.childByAutoId()
-            storageRef.child("plants").child("/image_\(plantRef.key).jpg").put(data, metadata: nil, completion: { (metaData, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
-                let urlString = metaData?.downloadURL()?.absoluteString
-                
-                if self.latitude != nil && self.longitude != nil {
+        if self.latitude != nil && self.longitude != nil {
+            if let data = pickedImageData {
+                let user = FIRAuth.auth()?.currentUser
+                let userUid = user?.uid
+                let plantRef = self.ref.childByAutoId()
+                storageRef.child("plants").child("/image_\(plantRef.key).jpg").put(data, metadata: nil, completion: { (metaData, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        return
+                    }
+                    let urlString = metaData?.downloadURL()?.absoluteString
+                    
                     if self.textFieldName.text != "" {
                         if self.turnedString != nil {
                             let text = self.textFieldName.text!
@@ -106,12 +115,12 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
                     } else {
                         self.alertError(title: "Error", text: "You need to at least fill in the name of the plant")
                     }
-                } else {
-                    self.alertError(title: "Error", text: "Please set your location first")
                 }
-            })
+                )} else {
+                self.alertError(title: "Error", text: "Please select a photo")
+            }
         } else {
-            self.alertError(title: "Error", text: "Please select a photo")
+            self.alertError(title: "Error", text: "Please set your location first")
         }
     }
     
@@ -140,6 +149,7 @@ extension AddPlantViewController {
         }
         if let selectedImage = selectedImageFromPicker {
             self.image.image = selectedImage
+            addPhotoBtn.isHidden = true
         }
         let compressData = UIImageJPEGRepresentation(selectedImageFromPicker!, 0.4)!
         pickedImageData = compressData

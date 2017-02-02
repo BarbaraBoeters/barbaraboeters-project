@@ -263,7 +263,8 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 "latitude" : plant.latitude,
                 "longitude" : plant.longitude,
                 "name" : plant.name,
-                "uid" : plant.uid
+                "uid" : plant.uid,
+                "imageUrl" : plant.imageUrl
             ]
             let childUpdate = [ "\(plant.key)": post ]
             self.ref.updateChildValues(childUpdate)

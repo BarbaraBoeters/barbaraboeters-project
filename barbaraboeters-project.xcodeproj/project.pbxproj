@@ -11,6 +11,7 @@
 		1A2320761E2CFCE50025153D /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2320751E2CFCE50025153D /* Plant.swift */; };
 		1A28B90F1E2F8245007585CA /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A28B90E1E2F8245007585CA /* RoundedImageView.swift */; };
 		1A61A7C11E427445007C916A /* REPORT.md in Sources */ = {isa = PBXBuildFile; fileRef = 1A61A7C01E427445007C916A /* REPORT.md */; };
+		1A61A7C31E4283C5007C916A /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 1A61A7C21E4283C5007C916A /* LICENSE.md */; };
 		1A7F1ACC1E3641A600561ED5 /* PlantLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1ACB1E3641A600561ED5 /* PlantLocationViewController.swift */; };
 		1A9EA5B41E241620008A8CF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */; };
 		1A9EA5B91E241620008A8CF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9EA5B71E241620008A8CF9 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		1A2320751E2CFCE50025153D /* Plant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
 		1A28B90E1E2F8245007585CA /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		1A61A7C01E427445007C916A /* REPORT.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = REPORT.md; sourceTree = "<group>"; };
+		1A61A7C21E4283C5007C916A /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		1A7F1ACB1E3641A600561ED5 /* PlantLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantLocationViewController.swift; sourceTree = "<group>"; };
 		1A9EA5B01E241620008A8CF9 /* barbaraboeters-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "barbaraboeters-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9EA5B31E241620008A8CF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				1A9EA5C51E2416C7008A8CF9 /* README.md */,
 				1ADF2D5B1E3B55F4009DE7A0 /* AUDIT.md */,
+				1A61A7C21E4283C5007C916A /* LICENSE.md */,
 				1AC8021D1E279EDD002ACAFC /* PROCESS.md */,
 				1A61A7C01E427445007C916A /* REPORT.md */,
 				1AC8020F1E2660C4002ACAFC /* DESIGN.md */,
@@ -307,6 +310,7 @@
 				1AC802121E2669C7002ACAFC /* RegisterViewController.swift in Sources */,
 				1A2320761E2CFCE50025153D /* Plant.swift in Sources */,
 				1A28B90F1E2F8245007585CA /* RoundedImageView.swift in Sources */,
+				1A61A7C31E4283C5007C916A /* LICENSE.md in Sources */,
 				1A61A7C11E427445007C916A /* REPORT.md in Sources */,
 				1AC802101E2660C5002ACAFC /* DESIGN.md in Sources */,
 				1A9EA5B41E241620008A8CF9 /* AppDelegate.swift in Sources */,

@@ -67,9 +67,7 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
         localSearch.start { (localSearchResponse, error) -> Void in
             
             if localSearchResponse == nil{
-                let alertController = UIAlertController(title: nil, message: "Place Not Found", preferredStyle: UIAlertControllerStyle.alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
+                self.errorMessage(title: "Error", text: "Place Not Found")
                 return
             }
             self.pointAnnotation = MKPointAnnotation()
@@ -108,15 +106,33 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
     // MARK: Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueIdentifier {
-            let destination = segue.destination as? AddPlantViewController
-            destination?.latitude = latitude
-            destination?.longitude = longitude
+            if latitude != nil && longitude != nil {
+                let destination = segue.destination as? AddPlantViewController
+                destination?.latitude = latitude
+                destination?.longitude = longitude
+            } else {
+                errorMessage(title: "Error", text: "Your current location is not found")
+            }
         }
+        
+        
         if segue.identifier == segueIdentifier2 {
-            let destination = segue.destination as? AddPlantViewController
-            destination?.latitude = chosenLatitude
-            destination?.longitude = chosenLatitude
+            if chosenLatitude != nil && chosenLongitude != nil {
+                let destination = segue.destination as? AddPlantViewController
+                destination?.latitude = chosenLatitude
+                destination?.longitude = chosenLatitude
+            } else {
+                errorMessage(title: "Error", text: "There is no location")
+            }
         }
+    }
+    
+    func errorMessage(title: String, text: String) {
+        let alert = UIAlertController(title: title,
+                                      message: text,
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

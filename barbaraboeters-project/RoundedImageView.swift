@@ -2,6 +2,8 @@
 //  RoundedImageView.swift
 //  barbaraboeters-project
 //
+//  Can be used to manipulate imageviews so they appear round
+//
 //  Created by Barbara Boeters on 18-01-17.
 //  Copyright © 2017 Barbara Boeters. All rights reserved.
 //

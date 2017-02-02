@@ -16,13 +16,16 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: Properties
     var plants: [Plant] = []
     var user: User!
+    
+    var storage: FIRStorage!
+    var storageRef: FIRStorageReference!
     let ref = FIRDatabase.database().reference(withPath: "plants")
     let usersRef = FIRDatabase.database().reference(withPath: "users")
     let currentUser = FIRDatabase.database().reference(withPath: "users").child((FIRAuth.auth()?.currentUser)!.uid)
     var currentU = ""
-    var storageRef: FIRStorageReference!
-
     
+    
+    var picArray = [UIImage]()
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -44,6 +47,11 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
         configureStorage()
     }
     
+    func configureStorage() {
+        let storageUrl = FIRApp.defaultApp()?.options.storageBucket
+        storageRef = FIRStorage.storage().reference(forURL: "gs://barbaraboeters-project.appspot.com")
+    }
+    
     // MARK: Firebase Data Retrieval Function
     func retrieveDataFirebase() {
         ref.queryOrdered(byChild: "interval").observe(.value, with: { snapshot in
@@ -60,6 +68,10 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             self.tableView.reloadData()
         })
     }
+
+    
+
+
     
     // MARK: Actions
     @IBAction func logOutDidTouch(_ sender: Any) {
@@ -70,11 +82,6 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             print("Error signing out: %@", signOutError)
         }
         dismiss(animated: true, completion: nil)
-    }
-    
-    func configureStorage() {
-        let storageUrl = FIRApp.defaultApp()?.options.storageBucket
-        storageRef = FIRStorage.storage().reference(forURL: "gs://barbaraboeters-project.appspot.com")
     }
     
     // MARK: Tableview Functions
@@ -88,11 +95,20 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
         cell.plantName?.text = plantItem.name
         cell.plantInfo?.text = plantItem.info
         cell.plantDaysLeft?.text = Int(plantItem.interval).description
-        //cell.imageView?.image = UIImage(names: "")
+        //cell.plantImage.image = UIImage(named: "")
         
-        if let profileImageUrl = plantItem.imageUrl {
-            cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
-        }
+        let profileImageUrl = plantItem.imageUrl
+        let url = NSURL(string: profileImageUrl)
+        URLSession.shared.dataTask(with: url! as URL, completionHandler: { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            DispatchQueue.main.async(execute: {
+                cell.plantImage?.image = UIImage(data: data!)
+
+            })
+        }).resume()
         return cell
     }
     
@@ -106,4 +122,8 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
             plantItem.ref?.removeValue()
         }
     }
+
 }
+
+
+
