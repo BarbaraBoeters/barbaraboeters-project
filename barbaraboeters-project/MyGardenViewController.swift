@@ -72,7 +72,6 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
         } catch let signOutError as NSError {
             errorMessage(title: "Error", text: "Error signing out: \(signOutError)")
         }
-        dismiss(animated: true, completion: nil)
     }
     
     // MARK: Tableview Functions

@@ -41,7 +41,7 @@ class RegisterViewController: UIViewController {
                 if error == nil {
                     FIRAuth.auth()!.signIn(withEmail: self.textFieldEmail.text!, password: self.textFieldPassword.text!)
                 } else {
-                    self.errorAlert(title: "Error", text: "You entered an e-mail that already exists")
+                    self.errorAlert(title: "Error", text: "Please enter a valid e-mail and/or password")
                 }
             }
         } else {

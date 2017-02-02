@@ -142,7 +142,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rhh-6b-Gg3" id="xmt-VM-Ly6">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ESg-DF-lVz" customClass="RoundedImageView" customModule="barbaraboeters_project" customModuleProvider="target">
@@ -239,6 +239,7 @@
                                 </state>
                                 <connections>
                                     <action selector="logOutDidTouch:" destination="6Go-Zd-7ES" eventType="touchUpInside" id="PW9-Z6-EBg"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="VU1-TJ-DeX"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -430,6 +431,7 @@
                                 </state>
                                 <connections>
                                     <action selector="onCancel:" destination="WwG-Xn-sCX" eventType="touchUpInside" id="ykX-vS-JVX"/>
+                                    <segue destination="6Go-Zd-7ES" kind="show" id="KhW-cR-9LF"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qtw-IE-rX5">
@@ -642,6 +644,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aZf-Af-qQt"/>
-        <segue reference="YME-5W-JAt"/>
+        <segue reference="gY3-db-XcR"/>
     </inferredMetricsTieBreakers>
 </document>

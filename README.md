@@ -26,12 +26,6 @@ For this project I created a reminder app that uses geofencing, Firebase and not
 This app requires CocoaPods and Firebase. Install or simulate using Xcode. To simulate the functionality: (1) insert '0' at the interval in AddPlantViewController, (2) simulate a location (for example: London) and (3) add the plant, (4) go to GeoViewController (Map) and (5) simulate going to another place and back again. 
 
 #### External Sources:
-Frameworks:
-- Firebase
-- CoreLocation
-- Mapkit 
-- IQKeyboardManagerSwift
-
 Tutorials & Fora: 
 - https://www.appcoda.com/geo-targeting-ios/
 - http://stackoverflow.com/questions/25296691/get-users-current-location-coordinates
