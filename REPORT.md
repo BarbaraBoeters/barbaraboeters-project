@@ -48,7 +48,7 @@ This project mainly uses the storyboard, but also has the following custom views
 #### Overview
 The app consists of five controllers. In the first controller (RegisterViewController.swift) you can log in/sign up which uses Firebase to create the users and to log the users in. The second controller (MyGardenViewController) shows a list of the plants you saved in Firebase. It uses the PlantCell.swift to display the different plants in the tableview. The third controller(AddPlantViewController) allows the user to add a plant giving it a name, extra information, an interval of days when to give water, a photo. The location can be confirmed in the next controller(PlantViewController) in which you can either use your current location, or a searched location. Back in the controller where your plants are being displayed in the tableview, you can click on the top of the controller which will show you the last controller (GeoViewController). In this controller you will see all your plants on the map, with the geofences in red. In this controller you will get notification when you are near a plant and if it needs water. 
 
-#### RegisterViewController.swift
+#### 1. RegisterViewController.swift
 The RegisterViewController contains the log in and sign up connection to Firebase. Users are able to sign in with an emailadres and with a password of at least 6 characters long. Functions like signUpDidTouch(), logInDidTouch() are called on and used when using the buttons on the interface. The errorAlert() function is called when there are errors like if signing up or logging in didn't work.
 
 ##### Methods
@@ -56,18 +56,16 @@ The RegisterViewController contains the log in and sign up connection to Firebas
 - logInDidTouch() -> logs in at Firebase
 - errorAlert() -> function that is called when there is an error
 
-### MyGardenViewController.swift
-#### Data
-Uses Firebase to show the plants into a tableview. It uses two arrays: Plant and User. 
+#### 2. MyGardenViewController.swift
+This is the homepage of the app. In this view at first you will see an empty tableview. When plants are added the tableview will be populated with the name, extra info, interval and the photo. Plants can also be deleted by swiping to the left. Upon deletion they also dissapear from the Firebase Real-time Database. The tableview is ordered on the lowest interval to the highest. From this screen you can access the viewcontroller where you can add plants, and the map with all the plants with geofences. 
 
-#### Methods
+##### Methods
 - retrieveDataFirebase() -> Ordering by "interval", this method retrieves all the plants from the current user from Firebase
 - logOutDidTouch() -> Logs out the current user
 - configureStorage() -> Holds the reference to Firebase Storage
 - tableview functions -> used to display the plants in a tableview.
 
-### AddPlantViewController.swift
-#### Data
+#### 3. AddPlantViewController.swift
 Uses Firebase to upload one plant with a location and a photo. 
 
 #### Methods
@@ -81,7 +79,7 @@ Extention:
 - imagePickerController()
 - imagePickerControllerDidCancel()
 
-### PlantLocationViewController.swift
+#### 4. PlantLocationViewController.swift
 #### Data
 
 #### Methods
@@ -96,7 +94,7 @@ Extention:
 - zoomToUserLocation
 - locationManager
 
-### GeoViewController.swift
+#### 5. GeoViewController.swift
 #### Data
 
 #### Methods
