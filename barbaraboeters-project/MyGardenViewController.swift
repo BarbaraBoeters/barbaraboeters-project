@@ -95,7 +95,6 @@ class MyGardenViewController: UIViewController, UITableViewDelegate, UITableView
         cell.plantName?.text = plantItem.name
         cell.plantInfo?.text = plantItem.info
         cell.plantDaysLeft?.text = Int(plantItem.interval).description
-        //cell.plantImage.image = UIImage(named: "")
         
         let profileImageUrl = plantItem.imageUrl
         let url = NSURL(string: profileImageUrl)
