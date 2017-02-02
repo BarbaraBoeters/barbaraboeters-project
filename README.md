@@ -25,19 +25,6 @@ For this project I created a reminder app that uses geofencing, Firebase and not
 ## Instructions
 This app requires CocoaPods and Firebase. Install or simulate using Xcode. To simulate the functionality: (1) insert '0' at the interval in AddPlantViewController, (2) simulate a location (for example: London) and (3) add the plant, (4) go to GeoViewController (Map) and (5) simulate going to another place and back again. 
 
-## Minimum Viable Product
-1. De gebruiker kan registreren 
-2. Er kunnen planten toegevoegd worden met foto, frequentie, naam en locatie
-3. De gebruiker krijgt pas een alert wanneer een plant water nodig heeft en hij/zij op de locatie is van de plant
-4. Kaart met alle planten en hun radius/geofence
-
-### Extra 
-1. Delen met huisgenoten en rouleren van taak
-2. Zoekfunctie planten met behulp van een API of webscrape
-3. Homescherm maken met de eerstvolgende plant aan de beurt is
-4. Status maken van de plant
-5. Countdown bij elke plant
-
 #### External Sources:
 Frameworks:
 - Firebase
