@@ -43,7 +43,7 @@ This app requires CocoaPods and Firebase. Install or simulate using Xcode. To si
 Frameworks:
 - Firebase
 - CoreLocation
-- Mapkit
+- Mapkit 
 - IQKeyboardManagerSwift
 
 Tutorials & Forum: 
