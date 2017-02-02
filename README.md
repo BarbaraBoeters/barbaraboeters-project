@@ -46,7 +46,7 @@ Frameworks:
 - Mapkit 
 - IQKeyboardManagerSwift
 
-Tutorials & Forum: 
+Tutorials & Fora: 
 - https://www.appcoda.com/geo-targeting-ios/
 - http://stackoverflow.com/questions/25296691/get-users-current-location-coordinates
 - http://sweettutos.com/2015/04/24/swift-mapkit-tutorial-series-how-to-search-a-place-address-or-poi-in-the-map/
@@ -61,9 +61,6 @@ Tutorials & Forum:
 Icon maker: 
 - [Make App Icon](https://makeappicon.com)
 
+Copyright (c) 2017, BarbaraBoeters All rights reserved.
+
 [![BCH compliance](https://bettercodehub.com/edge/badge/BarbaraBoeters/barbaraboeters-project)](https://bettercodehub.com)
-
-
-
-The README.md should also acknowledge sources of external code, images and other materials that are in the repository but not created by yourself. Make sure that it is clear which directories are copyrighted by different creators.
-
