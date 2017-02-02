@@ -430,7 +430,6 @@
                                     <color key="titleColor" red="0.14848759770393372" green="0.7206304669380188" blue="0.078652270138263702" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="onCancel:" destination="WwG-Xn-sCX" eventType="touchUpInside" id="ykX-vS-JVX"/>
                                     <segue destination="6Go-Zd-7ES" kind="show" id="KhW-cR-9LF"/>
                                 </connections>
                             </button>
@@ -643,7 +642,7 @@
         <image name="plantlocation" width="1180" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aZf-Af-qQt"/>
         <segue reference="gY3-db-XcR"/>
+        <segue reference="KhW-cR-9LF"/>
     </inferredMetricsTieBreakers>
 </document>

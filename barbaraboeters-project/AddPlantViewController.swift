@@ -136,10 +136,6 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
         }
     }
     
-    @IBAction func onCancel(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     func alertError(title: String, text: String) {
         let alert = UIAlertController(title: title,
                                       message: text,
