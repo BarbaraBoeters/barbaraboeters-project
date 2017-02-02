@@ -71,7 +71,7 @@ In this viewcontroller the user can add a photo from the photolibrary, a name, e
 #### Methods
 - addPhoto() -> presents the image picker 
 - stepperAction() -> handles the stepper and only allows you to choose an interval between 1 and 30 with 1 step at a time. 
-- addPlant() -> -> quite a complex function which forces you to first choose your location. It pushes the information to Firebase Database and Storage
+- addPlant() -> quite a complex function which forces you to first choose your location. It pushes the information to Firebase Database and Storage
 - onCancel() -> cancels adding a plant and brings you back to MyGardenViewController
 - alertError() -> function that is called when there is an error
 
@@ -80,41 +80,47 @@ Extention:
 - imagePickerControllerDidCancel()
 
 #### 4. PlantLocationViewController.swift
-This viewcontroller will show a map and the current location of the user. There are two options of saving a location. Either the user chooses the button that saves the current location, or the user uses the searchbar to find a custom location on the map. The current location can be saved by using the 'Use my location' button. The custom location can be saved by using the 'done' button. 
+This viewcontroller will show a map and the current location of the user. There are two options of saving a location. Either the user chooses the button that saves the current location, or the user uses the searchbar to find a custom location on the map. The current location can be saved by using the 'Use my location' button. The custom location can be saved by using the 'done' button. When these buttons are clicked, the information is being send through to the AddPlantViewController through a segue. 
 
-
-//  In this view the user can choose a location by using his or her current location, or 
-//  searching for one by using the searchbar. The coordinates of the location are being saved
-//  in the AddPlantViewController by using a segue.
-
-#### Methods
-- onCancel()
-- searchButton()
-- toCurrentLocation()
-- dropAnnotationPin()
-- locationManager()
-- segue
+##### Methods
+- onCancel() -> dismisses this view and goes back to the AddPlantViewController
+- searchButton() -> Uses the text from the searchbar to perform a MKLocalSearchRequest
+- toCurrentLocation() -> button which brings you to your current location
+- locationManager() functions -> handles the configuration of CoreLocation like your current location and coordinates
+- prepare(for segue: UIStoryboardSegue) -> pushes the coordinates to the AddPlantViewController
 
 Extention:
 - zoomToUserLocation
 - locationManager
 
 #### 5. GeoViewController.swift
-#### Data
+Shows a map with all the plants from the current user with a red radius around them. Use of Geofencing only within this viewcontroller. When the user is close to a plant, functions are called to check if the plants needs water and if yes, the user receives a notification (within this window). When clicking on the 'OK' button, the lastUpdated value in Firebase resets.
 
-#### Methods
-- setupLocationManager()
-- setupMapView()
-- getLocations
-- viewDidAppear()
-- setupData()
-- mapView()
-- CLLocationManagerDelegate
-- updatePlants()
-- checkIntervalPlants()
-- intervalCheck()
-- showWaterAlert()
-- updateRegionsWithLocation()
+##### Methods
+- setupLocationManager() -> configuration of the Locationmanager during viewDidLoad()
+- setupMapView() -> configuration of the MapView during viewDidLoad()
+- getLocations -> Downloads the plants from Firebase, but only of the current user. These objects are pushed to an array and the locations are being showed on the MapView. 
+- viewDidAppear() -> checks if the user authorized that his or her location is being used.  
+- mapView() -> creates the red circle around the pinannotations. 
+- updatePlants() -> downloads the plants of the current user out of Firebase and calls on the checkIntervalPlants() function.
+- checkIntervalPlants() -> calls on the intervalCheck() function. After it only calls on the showWaterAlert() function if there are any plants being send back.
+- intervalCheck() -> checks the timedifference of every plant 
+- showWaterAlert() -> for all the plants that need water there will be one notification. When using the 'OK' button the postPlant() function will be called
+- postPlant() -> uploads the plant object again to the Firebase Database so the lastUpdated value will be resetted. 
+- errorAlertMessage() -> is called different times for error handling
+- plantAlert() -> change with errorAlertMessage() is that plantAlert() calls on the postPlant() function
+- backButton() -> dismisses this view and goes back to the MyGardenViewController
+- toCurrentUserLocation() -> button which brings you to your current location
+
+Extention: 
+- Locationmanager functions -> to check if the user enters or exists the region
+- setupData() -> checks if regions can be monitored. After that the data of the plants is being displayed on the map by a radius and a pin.
+
+#### AppDelegate
+In AppDelegate the connections to and/or frameworks of Firebase, CoreLocation and IQKeyboardManager are being established
+- IQKeyboardManager: https://github.com/hackiftekhar/IQKeyboardManager
+- Firebase: https://firebase.google.com
+- CoreLocation: https://www.raywenderlich.com/136165/core-location-geofencing-tutorial & https://www.appcoda.com/geo-targeting-ios/
 
 ## Changes and Challenges
 

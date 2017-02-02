@@ -105,7 +105,7 @@
 
 ## 2 February
 - Finish all .md files. 
-- At every top of swift files write a little description
+- At every top of swift files write a little description and sources -> done
 - Ordening of code
 - State Restoration -> only going to do this if I have time left
 - License -> done

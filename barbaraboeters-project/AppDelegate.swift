@@ -3,6 +3,7 @@
 //  barbaraboeters-project
 //
 //  Establishes the connection to the different frameworks (Firebase, IQKeyboardManagerSwift, CoreLocation)
+//  Source: https://github.com/hackiftekhar/IQKeyboardManager
 //
 //  Created by Barbara Boeters on 09-01-17.
 //  Copyright © 2017 Barbara Boeters. All rights reserved.

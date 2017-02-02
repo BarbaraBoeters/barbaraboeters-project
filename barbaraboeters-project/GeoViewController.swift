@@ -2,6 +2,14 @@
 //  GeoViewController.swift
 //  barbaraboeters-project
 //
+//  Shows a map with all the plants from the current user with a red radius around them. 
+//  Use of Geofencing only within this viewcontroller. When the user is close to a plant,
+//  functions are called to check if the plants needs water and if yes, the user receives
+//  a notification (within this window). When clicking on the 'OK' button, the lastUpdated
+//  value in Firebase resets.
+//
+//  Source Geofencing: https://www.appcoda.com/geo-targeting-ios/
+//
 //  Created by Barbara Boeters on 24-01-17.
 //  Copyright © 2017 Barbara Boeters. All rights reserved.
 //
@@ -45,7 +53,7 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     self.setupData(lat: plant.latitude, long: plant.longitude, name: plant.name)
                 }
             } else {
-                print("No plants found!")
+                self.errorAlertMessage(title: "Error", text: "No plants founc!")
             }
         }
     }
@@ -113,55 +121,8 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             locationManager.startUpdatingLocation()
         }
     }
-    
-    func setupData(lat: Double, long: Double, name: String) {
-        // Check if system can monitor regions
-        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-            // Region data
-            let title = name
-            let coordinate = CLLocationCoordinate2DMake(lat, long)
-            let regionRadius = 100.0
-            // Setup region
-            let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude), radius: regionRadius, identifier: title)
-            locationManager.startMonitoring(for: region)
-            // Setup annotation
-            let plantAnnotation = MKPointAnnotation()
-            plantAnnotation.coordinate = coordinate;
-            plantAnnotation.title = "\(title)";
-            mapView.addAnnotation(plantAnnotation)
-            // Setup circle
-            let circle = MKCircle(center: coordinate, radius: regionRadius)
-            mapView.add(circle)
-        }
-        else {
-            print("System can't track regions")
-        }
-    }
-    
-    // MARK: MKMapViewDelegate for drawing the cirle
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let circleRenderer = MKCircleRenderer(overlay: overlay)
-        circleRenderer.strokeColor = UIColor.red
-        circleRenderer.lineWidth = 1.0
-        return circleRenderer
-    }
 
-	// MARK: CLLocationManagerDelegate
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        print("Did enter region")
-        monitoredRegions[region.identifier] = Date()
-        updatePlants()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        // Remove entrance time
-        monitoredRegions.removeValue(forKey: region.identifier)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        updateRegionsWithLocation(location: locations[0])
-    }
-    
+    // MARK: Functions to check and update if water is needed
     func updatePlants() {
         let ref = FIRDatabase.database().reference(withPath: "plants")
         
@@ -190,6 +151,7 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
         }
     }
+    
     func intervalCheck() {
         for plant in plants {
             let lastUpdated = Date(timeIntervalSince1970: plant.lastUpdated)
@@ -207,32 +169,7 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let name = plant.name
             plantName.append(name)
         }
-        plantAlert(title: plantName, text: "This little fella needs some water please")
-    }
-
-    func updateRegionsWithLocation(location: CLLocation) {
-        let regionMaxVisiting = 20.0
-        var regionsToDelete: [String] = []
-        
-        for regionIdentifier in monitoredRegions.keys {
-            if Date().timeIntervalSince(monitoredRegions[regionIdentifier]!) > regionMaxVisiting {
-                regionsToDelete.append(regionIdentifier)
-            }
-        }
-        for regionIdentifier in regionsToDelete {
-            monitoredRegions.removeValue(forKey: regionIdentifier)
-        }
-    }
-    
-    // MARK: Actions
-    @IBAction func backButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func toCurrentUserLocation(_ sender: Any) {
-        mapView.zoomToUserLocation()
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = .follow
+        plantAlert(title: plantName, text: "Please water this/these plant(s)")
     }
     
     func plantAlert(title: String, text: String) {
@@ -244,7 +181,7 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }))
         self.present(alert, animated: true, completion: nil)
     }
-
+    
     func errorAlertMessage(title: String, text: String) {
         let alert = UIAlertController(title: title,
                                       message: text,
@@ -270,9 +207,80 @@ class GeoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             self.ref.updateChildValues(childUpdate)
         }
     }
+    
+    // MARK: Button actions
+    @IBAction func backButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func toCurrentUserLocation(_ sender: Any) {
+        mapView.zoomToUserLocation()
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .follow
+    }
+    
+    // MARK: MKMapViewDelegate for drawing the circles
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let circleRenderer = MKCircleRenderer(overlay: overlay)
+        circleRenderer.strokeColor = UIColor.red
+        circleRenderer.lineWidth = 1.0
+        return circleRenderer
+    }
 }
 
 extension GeoViewController {
+    // MARK: CLLocationManagerDelegate
+    func setupData(lat: Double, long: Double, name: String) {
+        // Check if system can monitor regions
+        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+            // Region data
+            let title = name
+            let coordinate = CLLocationCoordinate2DMake(lat, long)
+            let regionRadius = 100.0
+            // Setup region
+            let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude), radius: regionRadius, identifier: title)
+            locationManager.startMonitoring(for: region)
+            // Setup annotation
+            let plantAnnotation = MKPointAnnotation()
+            plantAnnotation.coordinate = coordinate;
+            plantAnnotation.title = "\(title)";
+            mapView.addAnnotation(plantAnnotation)
+            // Setup circle
+            let circle = MKCircle(center: coordinate, radius: regionRadius)
+            mapView.add(circle)
+        }
+        else {
+            errorAlertMessage(title: "Error", text: "System can't track regions")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        monitoredRegions[region.identifier] = Date()
+        updatePlants()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        monitoredRegions.removeValue(forKey: region.identifier)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        updateRegionsWithLocation(location: locations[0])
+    }
+    
+    func updateRegionsWithLocation(location: CLLocation) {
+        let regionMaxVisiting = 20.0
+        var regionsToDelete: [String] = []
+        
+        for regionIdentifier in monitoredRegions.keys {
+            if Date().timeIntervalSince(monitoredRegions[regionIdentifier]!) > regionMaxVisiting {
+                regionsToDelete.append(regionIdentifier)
+            }
+        }
+        for regionIdentifier in regionsToDelete {
+            monitoredRegions.removeValue(forKey: regionIdentifier)
+        }
+    }
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         mapView.showsUserLocation = (status == .authorizedAlways)
     }

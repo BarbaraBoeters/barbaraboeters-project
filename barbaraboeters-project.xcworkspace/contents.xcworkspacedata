@@ -5,13 +5,13 @@
       location = "group:README.md">
    </FileRef>
    <FileRef
+      location = "group:REPORT.md">
+   </FileRef>
+   <FileRef
       location = "group:AUDIT.md">
    </FileRef>
    <FileRef
       location = "group:PROCESS.md">
-   </FileRef>
-   <FileRef
-      location = "group:REPORT.md">
    </FileRef>
    <FileRef
       location = "group:DESIGN.md">

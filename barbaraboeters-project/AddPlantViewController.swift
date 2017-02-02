@@ -7,6 +7,12 @@
 //  information is uploaded to Firebase Database (name, info, interval and location) and the Firebase Storage
 //  (photo).
 //
+//  Sources to Firebase Storage tutorials:
+//  - https://www.youtube.com/watch?v=GX4mcOOUrWQ
+//  - http://stackoverflow.com/questions/31038759/conditional-binding-if-let-error-initializer-for-conditional-binding-must-hav
+//  - https://firebase.google.com/docs/storage/ios/download-files
+//  - http://mrgott.com/swift-programing/32-firebase-storage-how-to-download-files-using-firebase-3-sdk-with-swift-3-in-xcode-8
+//
 //  Created by Barbara Boeters on 12-01-17.
 //  Copyright © 2017 Barbara Boeters. All rights reserved.
 //
@@ -72,9 +78,10 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func addPhoto(_ sender: Any) {
         present(imagePicker, animated: true, completion: nil)
     }
-    
+    // Source: https://www.ioscreator.com/tutorials/uistepper-tutorial-ios8-swift
     @IBAction func stepperAction(_ sender: UIStepper) {
         labelStepper.text = Int(sender.value).description
+        // Source: http://stackoverflow.com/questions/31694635/convert-optional-string-to-int-in-swift
         optionalString = labelStepper.text
         if let unwrappedString = optionalString {
             let optionalInt = Int(unwrappedString)
@@ -144,6 +151,7 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
 }
 
 extension AddPlantViewController {
+    // Source: http://www.codingexplorer.com/choosing-images-with-uiimagepickercontroller-in-swift/
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : Any]) {
         var selectedImageFromPicker: UIImage?

@@ -6,6 +6,10 @@
 //  searching for one by using the searchbar. The coordinates of the location are being saved
 //  in the AddPlantViewController by using a segue.
 //
+//  Source: 
+//  - http://stackoverflow.com/questions/25296691/get-users-current-location-coordinates
+//  - http://sweettutos.com/2015/04/24/swift-mapkit-tutorial-series-how-to-search-a-place-address-or-poi-in-the-map/
+//
 //  Created by Barbara Boeters on 23-01-17.
 //  Copyright © 2017 Barbara Boeters. All rights reserved.
 //
@@ -94,13 +98,6 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
         mapView.userTrackingMode = .follow
     }
     
-    func dropAnnotationPin(coordinate: CLLocationCoordinate2D) {
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
-        annotation.title = "Here am I"
-        self.mapView.addAnnotation(annotation)
-    }
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         latitude = locValue.latitude
@@ -118,7 +115,6 @@ class PlantLocationViewController: UIViewController, MKMapViewDelegate, CLLocati
                 errorMessage(title: "Error", text: "Your current location is not found")
             }
         }
-        
         
         if segue.identifier == segueIdentifier2 {
             if chosenLatitude != nil && chosenLongitude != nil {
