@@ -10,17 +10,17 @@ Plantastic is a reminder app which helps you remember when to water your plants.
 For this project I created a reminder app that uses geofencing, Firebase and notifications. Existing plant-reminder apps lack in locationbased reminders. For example: when you get a notification while being somewhere else, you will most likely forget about it by the time you get home. Plantastic is an app that will offer the user a location based reminder. Instead of forgetting to give your plants water because you got the notification on the wrong place, this app will only tell you when you are close by. 
 
 ## Components
-Register and logging in
-Adding plants with photo, location, interval of days, name and information
-Map view to choose or use current location
-Tableview to show plants 
-Map view to show plants and their geofences
+- Register and logging in
+- Adding plants with photo, location, interval of days, name and information
+- Map view to choose or use current location
+- Tableview to show plants 
+- Map view to show plants and their geofences
 
 ## Used Frameworks
-Firebase
-CoreLocation
-IQKeyboardManagerSwift
-Mapkit
+- Firebase
+- CoreLocation
+- IQKeyboardManagerSwift
+- Mapkit
 
 ## Instructions
 This app requires CocoaPods and Firebase. Install or simulate using Xcode. To simulate the functionality: (1) insert '0' at the interval in AddPlantViewController, (2) simulate a location (for example: London) and (3) add the plant, (4) go to GeoViewController (Map) and (5) simulate going to another place and back again. 
