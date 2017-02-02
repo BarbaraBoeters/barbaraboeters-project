@@ -471,7 +471,7 @@
                                             <action selector="stepperAction:" destination="WwG-Xn-sCX" eventType="valueChanged" id="kBp-6C-Pre"/>
                                         </connections>
                                     </stepper>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfk-YM-VuE">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfk-YM-VuE">
                                         <rect key="frame" x="148" y="452" width="85" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="85" id="gDO-nO-VUq"/>
