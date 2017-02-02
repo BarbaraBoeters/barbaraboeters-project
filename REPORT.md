@@ -139,24 +139,24 @@ Next to checking of geofences in the background, I also wanted to implement back
 
 ## Changes to DESIGN.md 
 In the DESIGN document I stated what the minimum requirements for the product to be viable. The user can register and log in. Plants can be added with a photo, frequency, name and location. The user gets an alert only if the plant in the neighbourhood needs water (though only in one viewcontroller). Last but not least: there is a map with all the plants and their radius in red. 
+
 The goal of my initial proposal was to design an app that is simplistic in its use. The dream was to create an app with only one view. In my DESIGN.md I initially thought I would have three viewcontrollers(RegisterViewController, MyGardenViewController & AddPlantViewController). I did keep these viewcontrollers as is, though I changed some minor things to the viewcontrollers themselves and added more viewcontrollers for the maps. 
+
 RegisterViewController is basically exactly the same as I imagined it in the DESIGN document. It still consists of one view with two text fields and two buttons which you use to either log in or register a user. 
+
 MyGardenViewController still consists of a tableview with all the plants of the user. In the DESIGN document I wanted (if time allowed it) to add a homescreen which would display the next plant in need of water and a sidebar with all the plants of the current user. Unfortunately I didn't have time to implement this.
+
 AddPlantViewController is almost the same as I explained in the DESIGN document. I implemented a struct in which the name, frequency and extra info were saved, but added some more values (completed, uid, lastUpdated, latitude and longitude). I was able to get Firebase Storage working so I could implement the addPhoto function. The biggest change is adding the location to the plant. You can choose the location by clicking on 'Set my Location'. This brings the user to a new viewcontroller (PlantLocationViewController) in which you can either choose your current location, or search for a location. 
 
 ## Decisions
-By limiting Geofencing and background notifications to only in-app in-viewcontroller implementation, the user doesn't get overloaded with notifications which could be irritating so the user '
+Initially I wanted to create an app in which you could just add plants and which would give you a notification when those plants need water. By researching the app store I found that there were already similar apps. The goal changed then to add something new to an existing idea. The choice quickly fell on adding a location for your plant. That way you could take care of plants in different places (at home, at work, at your parents etc). Also there is the extra option to share plants. Unfortunately I couldnt implement the extra option, but I succeeded in creating an app which gives you a solution to not only forgetting about your plants, but also to only get a notification when you are **near** your plant. 
+One of the decisions I made, was choosing to only implement local notifications and local geofencing instead of keeping it running on the background. By limiting Geofencing and background notifications to only in-app in-viewcontroller implementation, the user doesn't get overloaded with notifications which could be so irritating that the user could potentially decide to deny notifications. At the other hand it is a function you actually should not miss with an app like this. A big part of the solution is missing if you don't get warned you when you need to water your plants because of your app being in the background. 
+In an ideal world, I would spend more time figuring out how to get the notifications and geofencing working on the background. I believe Plantastic would actually be a fantastic app to use on a daily basis.
 
-Process book: 
-[Process](https://github.com/BarbaraBoeters/barbaraboeters-project/blob/master/PROCESS.md)
-
-
-Defend your decisions by writing an argument of a most a single paragraph. 
-Why was it good to do it different than you thought before? Are there trade-offs for your current solution? 
-In an ideal world, given much more time, would you choose another solution?
+Please find more details my [PROCESS](https://github.com/BarbaraBoeters/barbaraboeters-project/blob/master/PROCESS.md) book.
 
 ### Future Goals
-If there was more time, the following functions would have been implemented. 
+If there is more time, some of the following functions will be implemented. 
 - Background notification
 - Sharing of plants (creation of groups in Firebase)
 - Further perfectioning of the maps
