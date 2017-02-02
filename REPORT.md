@@ -15,7 +15,7 @@ The plants are saved into the Firebase Realtime Database. Next to that the photo
 
 ### 1. Model
 #### Plant
-This object is quite large because of the info of the plant itself, the location and the interval. It is used to upload objects of plants and to download the plants onto the tableview and on the map. 
+This object is quite large because of the info of the plant itself, the location and the interval. It is used to upload objects of plants and to download the plants onto the tableview and on the map. Used in MyGardenViewController, AddPlantViewController and GeoViewController. 
 
 | Plant         | Values        |
 | ------------- |:-------------:|
@@ -32,7 +32,7 @@ This object is quite large because of the info of the plant itself, the location
 | imageUrl | String |
 
 #### User
-This object is used to log in, sign up or log out of Firebase. It is also used to get the right plant objects from the current user instead of all the plants in the database. 
+This object is used to log in, sign up or log out of Firebase. It is also used to get the right plant objects from the current user instead of all the plants in the database. Used in RegisterViewController, MyGardenViewController and AddPlantViewController. 
 
 | User         | Values        |
 | ------------- |:-------------:|
