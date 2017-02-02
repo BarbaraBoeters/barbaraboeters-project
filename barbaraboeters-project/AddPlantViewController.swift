@@ -97,7 +97,7 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
                 let plantRef = self.ref.childByAutoId()
                 storageRef.child("plants").child("/image_\(plantRef.key).jpg").put(data, metadata: nil, completion: { (metaData, error) in
                     if let error = error {
-                        print(error.localizedDescription)
+                        self.alertError(title: "Error", text: "\(error.localizedDescription)")
                         return
                     }
                     let urlString = metaData?.downloadURL()?.absoluteString
@@ -116,10 +116,9 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
                                               imageUrl: urlString!)
                             plantRef.setValue(plant.toAnyObject(), withCompletionBlock: { (error, reference) in
                                 if let error = error {
-                                    print(error.localizedDescription)
+                                    self.alertError(title: "Error", text: "\(error.localizedDescription)")
                                     return
                                 }
-                                print(plant)
                             })
                         } else {
                             self.alertError(title: "Error", text: "Please select after how many days you want to be reminded")
