@@ -1,5 +1,5 @@
 # Plantastic
-![alt tag](https://github.com/barbaraboeters/barbaraboeters-project/doc/Afbeelding4.png)
+![alt tag](https://github.com/barbaraboeters/barbaraboeters-project/blob/master/doc/Afbeelding4.png)
 
 Barbara Boeters - 10774513
 Programmeerproject
