@@ -23,8 +23,6 @@ Programmeerproject
 <p>Wanneer de basis app compleet en werkend is, zou ik de volgende features willen toepassen als daar tijd voor is. Als eerste zou ik een functie willen toevoegen waardoor je met meerdere huisgenoten de app kan delen. In plaats van één persoon die telkens water moet geven, wordt de taak afgewisseld tussen de huisgenoten. Ook zou het dan mogelijk moeten zijn om te zien wie er als laatste water heeft gegeven bij de desbetreffende plant op welke dag, zodat er niet dubbel water wordt gegeven. Daarna wil ik graag een countdown toevoegen. Deze komt te staan op de persoonlijke pagina waarop de foto staat van de eerstvolgende plant die aan de beurt is. Verder zou ik aan elke plant een status willen mee geven. Geef je altijd op tijd water? Dan heb je een ‘happy plant’. Als laatste zou het een uitdaging zijn om met behulp van een API of webscraping een zoekfunctie te implementeren die de informatie over de desbetreffende plant geeft. Helaas heb ik tot nu toe geen openbare API’s gevonden die over kamerplanten gaan.</p>
 <p>Mijn doel is om alles overzichtelijk in één view te plaatsen. Mocht dat niet lukken, dan wil ik graag ervoor zorgen dat het een makkelijk en snel begrijpbare app wordt zoals Snapchat. De lijst met planten zou ik graag willen maken zoals de Memories in Snapchat: als een soort swipe-up. Graag zou ik een app willen ontwikkelen die heel goed is in één ding: de gebruiker eraan herinneren wanneer de plantjes dorst hebben.</p>
 
-## Sketches
-![alt tag](https://github.com/barbaraboeters/barbaraboeters-project/blob/master/doc/Sketch%20Interface%20Plantastic.png)
 
 ## Copyright Statement
 

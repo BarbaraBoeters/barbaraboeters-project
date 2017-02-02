@@ -31,3 +31,6 @@ Planten kunnen toegevoegd worden door de + button op MyGardenViewController. Dit
 
 ## Diagram Classes
 ![alt tag](https://github.com/barbaraboeters/barbaraboeters-project/blob/master/doc/Diagram.png)
+
+## Sketches
+![alt tag](https://github.com/barbaraboeters/barbaraboeters-project/blob/master/doc/Sketch%20Interface%20Plantastic.png)

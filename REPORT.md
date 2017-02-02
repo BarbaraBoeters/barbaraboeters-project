@@ -2,7 +2,7 @@
 <img src="https://github.com/barbaraboeters/barbaraboeters-project/blob/master/doc/Afbeelding4.png" width="200px" height="200px" />
 
 ## Short Overview
-Plantastic is an assistant helping you to remember when to water your plants. It notifies the user only when being near to the plant in question. 
+Plantastic is an app that helps the user to remember when to water his/her plants. Plants are added with the following information: location, name, interval of days and a photo. On the homepage it will show the plants of the user in a tableview. When pressing the 'Go to the Map'-button a map will appear with all the plants of the user. It notifies the user only when being near to a plant, and if it needs water. 
 
 ## 
 <img src="https://github.com/barbaraboeters/barbaraboeters-project/blob/master/doc/Overview.png"/>
@@ -13,7 +13,7 @@ Plantastic is an assistant helping you to remember when to water your plants. It
 
 The plants are saved into the Firebase Realtime Database with also a photo into the Firebase Storage. The database is used to show all the plants through a tableview. In addition I used Corelocation and and Mapkit to get or choose the location of the plant. Using Mapkit the different plants are showed on a map. As a extra design feature i used IQKeyboardManagerSwift for moving up the screen when using the keyboard. 
 
-### Model
+### 1. Model
 #### Plant
 This object is quite large because of the info of the plant itself, the location and the checking of the interval. It is used to upload the different plants, and to download the plants onto the tableview or on the map. 
 
@@ -39,19 +39,19 @@ This object is used to log in, sign up or log out of Firebase. It was also used 
 | uid | String |
 | e-mail | String |
 
-### View
+### 2. View
 This project mainly uses the storyboard, but also has the following custom views which are used to populate the tableview and to create round photos:
 - PlantCell
 - RoundedImageView
 
-### Controller
+### 3. Controller
+#### Overview
 The app consists of five controllers. In the first controller (RegisterViewController.swift) you can log in/sign up which uses Firebase to create the users and to log the users in. The second controller (MyGardenViewController) shows a list of the plants you saved in Firebase. It uses the PlantCell.swift to display the different plants in the tableview. The third controller(AddPlantViewController) allows the user to add a plant giving it a name, extra information, an interval of days when to give water, a photo. The location can be confirmed in the next controller(PlantViewController) in which you can either use your current location, or a searched location. Back in the controller where your plants are being displayed in the tableview, you can click on the top of the controller which will show you the last controller (GeoViewController). In this controller you will see all your plants on the map, with the geofences in red. In this controller you will get notification when you are near a plant and if it needs water. 
 
-### RegisterViewController.swift
-#### Data
-The RegisterViewController contains the log in and sign up connection to Firebase. 
+#### RegisterViewController.swift
+The RegisterViewController contains the log in and sign up connection to Firebase. Users are able to sign in with an emailadres and with a password of at least 6 characters long. Functions like signUpDidTouch(), logInDidTouch() are called on and used when using the buttons on the interface. The errorAlert() function is called when there are errors like if signing up or logging in didn't work.
 
-#### Methods
+##### Methods
 - signUpDidTouch() -> creates a new user into Firebase and logs in automatically
 - logInDidTouch() -> logs in at Firebase
 - errorAlert() -> function that is called when there is an error
