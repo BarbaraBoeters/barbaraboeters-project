@@ -98,8 +98,15 @@
 - Worked on better code quality for Better Code Hub. 
 
 ## 1 February
-- Implement the photo function in Firebase Storage -> uploading done, still have to do downloading
+- Implement the photo function in Firebase Storage -> uploading done, still have to do downloading -> fixed! https://www.youtube.com/watch?v=GX4mcOOUrWQ http://stackoverflow.com/questions/31038759/conditional-binding-if-let-error-initializer-for-conditional-binding-must-hav https://firebase.google.com/docs/storage/ios/download-files
 - Make sure it only gives notifications for the current user plants within that geofence. Update: fixed on 31th of january
--
+- Started the REPORT, added some information at the top of the swift files
 - 
+
+## 2 February
+- Finish all .md files. 
+- At every top of swift files write a little description
+- Ordening of code
+- State Restoration
+- License
 
