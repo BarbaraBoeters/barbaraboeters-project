@@ -176,7 +176,7 @@ Please find more details in my [PROCESS](https://github.com/BarbaraBoeters/barba
 
 ## Bugs
 - Location services sometimes become unavailable during simulation. The solution is to delete the app from the simulator and to run it again. If this doesn't work, it sometimes helps to restart Xcode.
-- The search function to choose your location doesn't seem to work well in the GeoViewController when running on the simulator. On the iPhone is does work. 
+- The search function to choose your location doesn't seem to work well when running on the simulator. On the iPhone is does work. 
 
 ## Credits
 Frameworks:
